@@ -1,7 +1,26 @@
-\documentclass{article}
+\documentclass[12pt, titlepage]{article}
 
-\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=black,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage{ulem}
+\usepackage[round]{natbib}
+
+\usepackage{graphicx}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -23,6 +42,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sept 25 & Edwin Do & Initial commit with names\\
+Sept 25 & Edwin Do & Add list of goals and new table format\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -63,37 +83,54 @@ anyone who is interested in observing the resistivity values in microstructures.
 The environment of this project includes the use of a current source, nano-voltmeter,
 a Window's based computer provided by the Department of Materials Engineering and Science.
 
-% 5 goals
-\section{Goals}
+%  5 goals
 %  Real time monitoring of conductivity
 %  Remote access of control of the application
 %  Create a window's based app that can be installed easily
 %  Control acquisition rate up to 100 times per second
 %  Display data as plots and text files
+\newpage
+\section{Goals}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    
+    \toprule
+    \textbf{Goals} & \textbf{Reason and measurement}\\
+   
+    \midrule{Real-time monitoring of conductivity} & A key feature to measure conductivity changes during thermal treatment. This can be measured by comparing the acquisition rate and how quickly the data is updated in the GUI. \\
+    \midrule{Remote access of the application} & There may be jobs that take an extensive amount of time to complete. This will allow the user to check on the progress remotely. This can be measured by testing how accurate the progress is updated on the remote device. \\
+    \midrule{Window Based Application that can be easily installed} & The computer used to connect to the nano-voltmeter and the current source will be using Windows as its operating system. This can be measured by looking at how successful the installation is and the time it required to be installed. \\
+    \midrule{Control acquisition rate up to 100 times per second} & An acquistion rate of 100 times per second is necessary to provide the required granularity so that the data will be useful. This can be measured by observing the acquisition rate of the equipment and its output. \\
+    \midrule{Display data as plots and text files} & The data must be displayed as plots so provide a visual representation of the data. Outputting the data to text files can allow the data to be ready for other uses/applications. This can be measured by observing how successful and accurate the application outputs the results to plots and text files. \\
+    
+    \bottomrule
+    
+    \end{tabular}
+    \caption{List of goals}
+\end{table}
 
 
-
-\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
-    \hline
-    Goal& Reason & How to measure\\
-    \hline
-   %  Copy the line below for each entry
-   Description of goal & Reasoning & Measuring method \\
-    \hline
-   \end{tabular}
-
+\newpage
+\section{Stretch Goals} %Edit This
 % 3 goals
-\section{Stretch Goals}
 % Achieve an acquistion rate of 150 times per second
 % Cross platform compatibility
-
-\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
-    \hline
-    Goal& Reason & How to measure\\
-    \hline
-   %  Copy the line below for each entry
-   Description of goal & Reasoning & Measuring method \\
-    \hline
-   \end{tabular}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    
+    \toprule
+    \textbf{Stretch Goals} & \textbf{Reason and measurement}\\
+   
+    \midrule{Real-time monitoring of conductivity} & A key feature to measure conductivity changes during thermal treatment. This can be measured by comparing the acquisition rate and how quickly the data is updated in the GUI. \\
+    \midrule{Remote access of the application} & There may be jobs that take an extensive amount of time to complete. This will allow the user to check on the progress remotely. This can be measured by testing how accurate the progress is updated on the remote device. \\
+    \midrule{Window Based Application that can be easily installed} & The computer used to connect to the nano-voltmeter and the current source will be using Windows as its operating system. This can be measured by looking at how successful the installation is and the time it required to be installed. \\
+    
+    \bottomrule
+    
+    \end{tabular}
+    \caption{List of stretch goals}
+\end{table}
 
 \end{document}
