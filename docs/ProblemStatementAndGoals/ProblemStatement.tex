@@ -22,35 +22,76 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+Sept 25 & Edwin Do & Initial commit with names\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
+The Department of Materials Science and Engineering would like to measure the microstructure changes
+during thermal treatment by looking at the conductivity changes in real-time when a sample undergoes 
+thermal treatment. The changes can occur very quickly and it is crucial to read real-time data at a high enough acquisition rate.
+The equipment 
+% Add more here
+We need to create an application that is compatible with the window's based computer in the Department of Materials Engineering.
+This computer has a
+%PORT? 
+port that is compatible with the existing nano-voltmeter. 
+In addition, the application must be able to read and display real-time data at a high acquisition rate to provide the most accurate data.
+
 
 \wss{You should check your problem statement with the
 \href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
 {problem statement checklist}.}
 \wss{You can change the section headings, as long as you include the required information.}
 
+%To Do
 \subsection{Problem}
 
+%To Do
 \subsection{Inputs and Outputs}
 
 \wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
 Use abstraction so that you can avoid details.}
 
 \subsection{Stakeholders}
+The stakeholders of this project include Dr. Hatem Zurob (Supervisor) and 
+anyone who is interested in observing the resistivity values in microstructures.
 
 \subsection{Environment}
+The environment of this project includes the use of a current source, nano-voltmeter,
+a Window's based computer provided by the Department of Materials Engineering and Science.
 
-\wss{Hardware and software}
-
+% 5 goals
 \section{Goals}
+%  Create a window's based app that can be installed easily
+%  Control acquisition rate up to 100 times per second
+%  Display data as plots and text files
+%  Real time monitoring of conductivity
+%  Remote Access of control of the application
 
+\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
+    \hline
+    Goal& Reason & How to measure\\
+    \hline
+   %  Copy the line below for each entry
+   Description of goal & Reasoning & Measuring method \\
+    \hline
+   \end{tabular}
+
+% 3 goals
 \section{Stretch Goals}
+% Cross platform compatibility
+% Achieve an acquistion rate of 150 times per second
+% ? 
+\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
+    \hline
+    Goal& Reason & How to measure\\
+    \hline
+   %  Copy the line below for each entry
+   Description of goal & Reasoning & Measuring method \\
+    \hline
+   \end{tabular}
 
 \end{document}
