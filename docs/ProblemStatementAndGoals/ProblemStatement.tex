@@ -1,7 +1,26 @@
-\documentclass{article}
+\documentclass[12pt, titlepage]{article}
 
-\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=black,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage{ulem}
+\usepackage[round]{natbib}
+
+\usepackage{graphicx}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -23,75 +42,91 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sept 25 & Edwin Do & Initial commit with names\\
+Sept 25 & Timothy Chen & Added to 1.1 and 1.2 \\
+Sept 25 & Edwin Do & Add list of goals and new table format\\
+Sept 25 & Joseph Braun & Made changes to Problem Statement \\
+Sept 25 & Joseph Braun & Added stretch goals \\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
-The Department of Materials Science and Engineering would like to measure the microstructure changes
-during thermal treatment by looking at the conductivity changes in real-time when a sample undergoes 
-thermal treatment. The changes can occur very quickly and it is crucial to read real-time data at a high enough acquisition rate.
-The equipment 
-% Add more here
-We need to create an application that is compatible with the window's based computer in the Department of Materials Engineering.
-This computer has a
-%PORT? 
-port that is compatible with the existing nano-voltmeter. 
-In addition, the application must be able to read and display real-time data at a high acquisition rate to provide the most accurate data.
-
-
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
+The Department of Materials Science and Engineering would like to measure changes in a material's microstructure
+during thermal treatment. This can be done by looking at the changes in conductivity in real-time as a sample undergoes 
+thermal treatment. The changes can occur very quickly and it is crucial to read real-time data at a sufficient acquisition rate.
+The equipment to be used in this project has been provided by the project supervisor, Dr. Hatem Zurob, and includes a current source, nanovoltmeter, and a Windows computer. 
+Dr.Zurob has also provided a room in the JHE building for our team to use as a workspace. 
+We need to create a GUI application that is compatible with the Windows computer provided.
+The computer is outfitted with a port which can be used to read data from the equipment.
+In addition, the application must be able to read and display real-time data at the same rate as the data is being sampled by the equipment. Failure to match the rates will result in inaccurate readings beings displayed by the application.
 
 %To Do
 \subsection{Problem}
+GUI Application required to connect and read measurements from equipment measuring sample material during thermal treatment.
+The application needs to accurately process and display results at a high acquisition rate.
 
 %To Do
 \subsection{Inputs and Outputs}
-
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+The current source and voltage measurements are inputs used to compute resistance.
+Resistance and dimensions of the sample are then used to calculate the conductivity 
+during themal treatment.
 
 \subsection{Stakeholders}
-The stakeholders of this project include Dr. Hatem Zurob (Supervisor) and 
+The stakeholders of this project include Dr. Hatem Zurob (project supervisor) and 
 anyone who is interested in observing the resistivity values in microstructures.
 
 \subsection{Environment}
-The environment of this project includes the use of a current source, nano-voltmeter,
-a Window's based computer provided by the Department of Materials Engineering and Science.
+The environment for the hardware for this project will be the workspace in the JHE building. 
+The software will be developed for the Windows platform which the computer runs on.
 
-% 5 goals
-\section{Goals}
+%  5 goals
+%  Real time monitoring of conductivity
+%  Remote access of control of the application
 %  Create a window's based app that can be installed easily
 %  Control acquisition rate up to 100 times per second
 %  Display data as plots and text files
-%  Real time monitoring of conductivity
-%  Remote Access of control of the application
+\newpage
+\section{Goals}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    
+    \toprule
+    \textbf{Goals} & \textbf{Reason and measurement}\\
+   
+    \midrule{Real-time monitoring of conductivity} & A key feature to measure conductivity changes during thermal treatment. This can be measured by comparing the acquisition rate and how quickly the data is updated in the GUI. \\
+    \midrule{Remote access of the application} & There may be jobs that take an extensive amount of time to complete. This will allow the user to check on the progress remotely. This can be measured by testing how accurate the progress is updated on the remote device. \\
+    \midrule{Window Based Application that can be easily installed} & The computer used to connect to the nano-voltmeter and the current source will be using Windows as its operating system. This can be measured by looking at how successful the installation is and the time it required to be installed. \\
+    \midrule{Control acquisition rate up to 100 times per second} & An acquistion rate of 100 times per second is necessary to provide the required granularity so that the data will be useful. This can be measured by observing the acquisition rate of the equipment and its output. \\
+    \midrule{Display data as plots and text files} & The data must be displayed as plots so provide a visual representation of the data. Outputting the data to text files can allow the data to be ready for other uses/applications. This can be measured by observing how successful and accurate the application outputs the results to plots and text files. \\
+    
+    \bottomrule
+    
+    \end{tabular}
+    \caption{List of goals}
+\end{table}
 
-\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
-    \hline
-    Goal& Reason & How to measure\\
-    \hline
-   %  Copy the line below for each entry
-   Description of goal & Reasoning & Measuring method \\
-    \hline
-   \end{tabular}
 
+\newpage
+\section{Stretch Goals} %Edit This
 % 3 goals
-\section{Stretch Goals}
-% Cross platform compatibility
 % Achieve an acquistion rate of 150 times per second
-% ? 
-\begin{tabular}{ |p{3cm}||p{3cm}|p{4cm}|}
-    \hline
-    Goal& Reason & How to measure\\
-    \hline
-   %  Copy the line below for each entry
-   Description of goal & Reasoning & Measuring method \\
-    \hline
-   \end{tabular}
+% Cross platform compatibility
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    
+    \toprule
+    \textbf{Stretch Goals} & \textbf{Reason and measurement}\\
+   
+    \midrule{Cross platform compatibility} & The primary goal of the project is to create the application to work on the Windows computer provided. However, creating cross-platform compatibility for the application allows for users to run the program on their own system. This will help future-proof the use of this application.\\
+    \midrule{Achieve an acquistion rate of 150 times per second} & Once data acquisition is functional and communication with the Windows application is stable, another goal would be to increase the sampling or acquisition rate as much as possible, as this will lead to more accurate results. \\
+    
+    \bottomrule
+    
+    \end{tabular}
+    \caption{List of stretch goals}
+\end{table}
 
 \end{document}
