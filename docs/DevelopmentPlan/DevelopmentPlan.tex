@@ -34,7 +34,7 @@ Sept 25 2022 & Joseph Braun & Added Project Scheduling \\
 
 \maketitle
 
-\indent The evolution of the material’s microstructure during thermal treatment can be followed by measuring changes to the electrical conductivity of the material. The electrical conductivity is measured using a four-point probe. A current source provides a small current that passes through the material and a nano-voltmeter measures the voltage. Using the current and voltage values, the resistance can be calculated. This can in turn be converted to conductivity if the dimensions of the sample are known. The goal of this project is to develop a Window’s based App which can be used to measure the conductivity. A current source and a nano- voltmeter will be provided. The App needs to connect to these devices and calculate the conductivity. The user should be able to control the acquisition rate as well as output the data (plots and text files). The equipment should operate under constant current and delta (current pulse) control.
+\noindent The evolution of the material’s microstructure during thermal treatment can be followed by measuring changes to the electrical conductivity of the material. The electrical conductivity is measured using a four-point probe. A current source provides a small current that passes through the material and a nano-voltmeter measures the voltage. Using the current and voltage values, the resistance can be calculated. This can in turn be converted to conductivity if the dimensions of the sample are known. The goal of this project is to develop a Window’s based App which can be used to measure the conductivity. A current source and a nano- voltmeter will be provided. The App needs to connect to these devices and calculate the conductivity. The user should be able to control the acquisition rate as well as output the data (plots and text files). The equipment should operate under constant current and delta (current pulse) control.
 
 \section{Team Meeting Plan}
 Team meeting will be held weekly on Microsoft Teams, exact time will be determined based on everyone's availability.
@@ -105,20 +105,19 @@ you will be able to overcome this risk?
 \section{Technology}
 
 
-Our project code will be written in javascript, html and CSS on Electron framework as 
-we find it provides the best functionality for the tasks at hand. We will be using ESLint 
-as our linting tool throughout the course of the project. In terms of our unit testing 
+Our project code will be written in JavaScript, HTML and CSS in the Electron framework as 
+we find it provides the best functionality for the tasks at hand. It is a mature framework for developing Desktop applications for different platforms.
+We will be using ESLint as our linting tool throughout the course of the project. In terms of our unit testing 
 framework we will be using MochaJS, as it is known to be one of the best testing libraries. 
-We will be using CI throughout our initial development and will assess as we use it if we believe
-that it is an essential tool in our development moving forward. In terms of code coverage, the MochaJS 
-framework has built in code coverage measuring so we will put that to use in our project. For the
+We will be using CI throughout our initial development to prevent failing builds and maximize our testing time with the computer in the lab. In terms of code coverage, the MochaJS 
+framework has built-in code coverage reports that can help measure the quality of the code as we progress. For the
 measurement of performance we will be looking to use a variety of tools including LogtailJS and SigNoz 
-for debugging and performance tracking. Electron comes equipped with many useful libraries that we 
-will be looking to make use of. One main library we wish to use is the Electron serial ports library.
+for debugging and error tracing. Electron comes equipped with many useful libraries that we 
+will be looking to make use of. One main library we plan to use is the Electron serial ports library since we will be communicating with the voltmeter.
   
 \section{Coding Standard}
   
-For our coding standards we will be following Google's javascript styler guide. This guide has everything
+For our coding standards we will be following Google's JavaScript style guide. This guide has everything
 necessary outlined for javascript styling and is a good standard to follow. Electron also has some built in 
 style standards that we will follow when necessary.
 
@@ -126,17 +125,18 @@ style standards that we will follow when necessary.
 
 \noindent The project will be scheduled primarily using GitHub milestones. As described in our Workflow Plan, we will create milestones which will align with the course schedule. Smaller tasks will be created as issues on GitHub and labeled appropriately. Issues will be grouped under the relevant major milestone. Our major milestones are as follows:
 
-\item Oct 05 - Requirements Document Revision 0
-\item Oct 19 - Hazard Analysis 0 
-\item Nov 02 - V\&V Plan Revision 0
-\item Nov 14-25 - POC Demonstration
-\item Jan 18 - Design Document Revision 0
-\item Feb 06-17 - Revision 0 Demonstration
-\item Mar 08 - V\&V Report Revision 0
-\item Mar 20-31 - Final Demonstration
-\item April TBD - EXPO Demonstration
-\item April 5 - Final Documentation \\
-
+\begin{itemize}
+  \item Oct 05 - Requirements Document Revision 0
+  \item Oct 19 - Hazard Analysis 0 
+  \item Nov 02 - V\&V Plan Revision 0
+  \item Nov 14-25 - POC Demonstration
+  \item Jan 18 - Design Document Revision 0
+  \item Feb 06-17 - Revision 0 Demonstration
+  \item Mar 08 - V\&V Report Revision 0
+  \item Mar 20-31 - Final Demonstration
+  \item April TBD - EXPO Demonstration
+  \item April 5 - Final Documentation \\
+\end{itemize}
 \noindent Our team will meet at least once a week to discuss who will complete which tasks. We have also committed to meeting with our project supervisor at least once every two weeks. More meetings may be scheduled as needed, especially before particularly important milestones. Our team uses When2Meet to compile all team members's schedules in order to find the best times for meetings. For virtual meetings, Microsoft Teams is used. Frequent communication over Teams chat is also crucial to staying on schedule and keeping the team and the project supervisor in sync. \\
 
 
