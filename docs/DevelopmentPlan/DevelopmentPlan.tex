@@ -21,6 +21,11 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sept 25 2022 & Edwin Do & Initial commit with outline\\
+Sept 25 2022 & Edwin Do & Add team member roles\\
+Sept 25 2022 & Timothy Chen & Added to 1 and 2\\
+Sept 25 2022 & Edwin Do & Add workflow plan \\
+Sept 25 2022 & Joseph Braun & Added Project Scheduling \\
+Sept 25 2022 & Abdul Nour Seddiki & Added Proof of Concept Demonstration Plan \\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -30,47 +35,115 @@ Sept 25 2022 & Edwin Do & Initial commit with outline\\
 
 \maketitle
 
-\indent The evolution of the material’s microstructure during thermal treatment can be followed by measuring changes to the electrical conductivity of the material. The electrical conductivity is measured using a four-point probe. A current source provides a small current that passes through the material and a nano-voltmeter measures the voltage. Using the current and voltage values, the resistance can be calculated. This can in turn be converted to conductivity if the dimensions of the sample are known. The goal of this project is to develop a Window’s based App which can be used to measure the conductivity. A current source and a nano- voltmeter will be provided. The App needs to connect to these devices and calculate the conductivity. The user should be able to control the acquisition rate as well as output the data (plots and text files). The equipment should operate under constant current and delta (current pulse) control.
+\noindent The evolution of the material’s microstructure during thermal treatment can be followed by measuring changes to the electrical conductivity of the material. The electrical conductivity is measured using a four-point probe. A current source provides a small current that passes through the material and a nano-voltmeter measures the voltage. Using the current and voltage values, the resistance can be calculated. This can in turn be converted to conductivity if the dimensions of the sample are known. The goal of this project is to develop a Window’s based App which can be used to measure the conductivity. A current source and a nano- voltmeter will be provided. The App needs to connect to these devices and calculate the conductivity. The user should be able to control the acquisition rate as well as output the data (plots and text files). The equipment should operate under constant current and delta (current pulse) control.
 
 \section{Team Meeting Plan}
+Team meeting will be held weekly on Microsoft Teams, exact time will be determined based on everyone's availability.
+The meeting will start as soon as all members are present. 
+Goal of the meeting will be determined before the meeting beginnings. 
+A Bi-weekly meeting will be set with the supervisor to ensure project is heading in the direction. 
 
 \section{Team Communication Plan}
+Commuication will take place on Microsoft Teams and Discord. 
+Microsoft teams is the main source of commuication used to host meeting with the team and the supervisor. 
+Discord commuication are for updates and meeting to resolve issues brought up. 
+All team members are expected to respone to commucations regarding themselves within a day.
 
 \section{Team Member Roles}
+\indent Everyone will be responsible for any aspect of the project on a as-needed basis. Therefore, there will be no team leader.
+This will require every team member to be flexible and be able to move from one domain to another (i.e. software to hardware, or hardware to software).
+The roles listed below will outline each member's primary responsiblities.
+\begin{table}[h!]
+    \centering
+
+	
+    \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+
+    \toprule
+    \textbf{Team Member} & \textbf{Role}\\
+
+    \midrule{Edwin Do} & Software Developer. Primarily assisting the team with Git, project management and the development of the GUI. \\
+    \midrule{Timothy Chen} & Software Developer. Primarily assisting the team with development of the GUI. \\
+    \midrule{Abdul Nour Seddiki} & Hardware Engineer. Primarily assisting the team with reading the data from the nano-voltmeter and current source. \\
+    \midrule{Tyler Magarelli} & Software Developer. Primarily assisting the team with development of the GUI. \\
+    \midrule{Joseph Braun} & Hardware Engineer. Primarily assisting the team with reading the data from the nano-voltmeter and current source.  \\
+
+    \bottomrule
+
+    \end{tabular}
+    \caption{Team Member Roles}
+\end{table}
+
 
 \section{Workflow Plan}
 
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
+\noindent Our plan is to primarily use GitHub to manage our workflow. 
+Milestones will be created on GitHub ahead of time to outline our high level goals and when each milestone needs to be completed by.
+The deadline of the milestones would align with the schedule outlined in the course outline.
+Each milestone will include all issues that would be resolved in order to complete the milestone. 
+Issues will be classified using the labels on GitHub. The classifications that will be primarily used for the 
+GitHub issues are 'bug', 'feature', 'help-wanted' and 'documentation'. 'feature' issues will be outlined prior to starting a 
+new milestone and 'bug' and 'help-wanted' issues will be created on a as-needed basis. In addition, 'feature' issues will help distribute work to 
+members on the team and 'bug' and 'help-wanted' issues are flexible for any member that is available to provide help. 
+When a new issue is created, it must be assigned to a milestone and this can be the current milestone or a future milestone.
+Documentation issues will be used for issues related to our document deliverables (LaTex). \\
+
+\noindent Every member will always to be assigned to at least one issue to ensure progress and equal distribution of work.
+A new branch will be created for each issue. Once an issue has been completed, 
+a pull request will be created and all team members will review the request before merge. 
+There is a template for each pull request and can be edited as needed, but should outline the work that is completed
+and the problem/issue that it solves. \\
+
+\noindent Additional issue categories can include 'software' and 'hardware' to inform the team which domain the issue falls under so 
+that assistance can be provided promptly.
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+\noindent The main risk with regard to the success of our project is getting less than sufficient data sampling rates out of the existing measurement hardware. As a preliminary measure, Dr. Zurob has mentioned we might need around 100 samples/second in order to have useful data for analysis. In case this risk proves to be real, we would be at a roadblock since acquiring a new nanovoltmeter would be very costly.
+\noindent Another risk we might come across is regarding the version of the operating system provided on the control computer. The computer currently runs on Windows 7, which is outdated and unsupported. We might face difficulties migrating to a newer version of Windows, or rather with finding or losing the right drivers for the extension card that is used to communicate with our nanovoltmeter and other devices including the current supply and thermometer. \\
+
+\noindent More risks involving the hardware are potential time-data synchronization problems due to poor communication/drivers, or due to upgrading one of the components and losing the chain of communication between all of the devices. 
+Testing will depend on whether or not we have a reliable way to manually test the resistability of the material before and after thermal treatment. We will need to get in touch with Dr. Zurob and get more familiar with the experiment so we can have an idea of how to test the samples. Testing the programme and interface should not be a problem due to the plethora of testing methods available to programmers online. \\
+
+\noindent Portability might very well be a concern especially that the thermal treatment is going to be done in Dr. Zurob's lab. Yet, we could either make a remote/split kind of demo setup where some team members could stay in the lab to set up the measurements and cast the computer screen to the other team members presenting the demo in class. Or we could make a video recording or screen capture in order to show the function of our programme and interface. 
+\noindent All of the mentioned risks aside, we would consider this project to have a successful proof of concept when we have a sample showing the change in the resistibility of the material between before and after thermal treatment. This will serve as a parameter to indicate microstructural change as a result of thermal treatment.
 
 \section{Technology}
 
-\begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
-\end{itemize}
 
+Our project code will be written in JavaScript, HTML and CSS in the Electron framework as 
+we find it provides the best functionality for the tasks at hand. It is a mature framework for developing Desktop applications for different platforms.
+We will be using ESLint as our linting tool throughout the course of the project. In terms of our unit testing 
+framework we will be using MochaJS, as it is known to be one of the best testing libraries. 
+We will be using CI throughout our initial development to prevent failing builds and maximize our testing time with the computer in the lab. In terms of code coverage, the MochaJS 
+framework has built-in code coverage reports that can help measure the quality of the code as we progress. For the
+measurement of performance we will be looking to use a variety of tools including LogtailJS and SigNoz 
+for debugging and error tracing. Electron comes equipped with many useful libraries that we 
+will be looking to make use of. One main library we plan to use is the Electron serial ports library since we will be communicating with the voltmeter.
+  
 \section{Coding Standard}
+  
+For our coding standards, we will be following Google's JavaScript style guide. This guide has everything
+necessary outlined for javascript styling and will be an useful guide to develop high quality JavaScript code. Electron also has some built in 
+style standards that we will follow.
 
 \section{Project Scheduling}
 
-\wss{How will the project be scheduled?}
+\noindent The project will be scheduled primarily using GitHub milestones. As described in our Workflow Plan, we will create milestones which will align with the course schedule. Smaller tasks will be created as issues on GitHub and labeled appropriately. Issues will be grouped under the relevant major milestone. Our major milestones are as follows:
+
+\begin{itemize}
+  \item Oct 05 - Requirements Document Revision 0
+  \item Oct 19 - Hazard Analysis 0 
+  \item Nov 02 - V\&V Plan Revision 0
+  \item Nov 14-25 - POC Demonstration
+  \item Jan 18 - Design Document Revision 0
+  \item Feb 06-17 - Revision 0 Demonstration
+  \item Mar 08 - V\&V Report Revision 0
+  \item Mar 20-31 - Final Demonstration
+  \item April TBD - EXPO Demonstration
+  \item April 5 - Final Documentation \\
+\end{itemize}
+\noindent Our team will meet at least once a week to discuss who will complete which tasks. We have also committed to meeting with our project supervisor at least once every two weeks. More meetings may be scheduled as needed, especially before particularly important milestones. Our team uses When2Meet to compile all team members's schedules in order to find the best times for meetings. For virtual meetings, Microsoft Teams is used. Frequent communication over Teams chat is also crucial to staying on schedule and keeping the team and the project supervisor in sync. \\
+
 
 \end{document}
