@@ -45,6 +45,7 @@
 \midrule
 Sept 25 & Edwin Do & Revision 0 - Initial commit\\
 Oct 5, 2021 & Edwin Do & Adopt Volere template + Add content \\
+Oct 5, 2021 & Timothy Chen & Added to Non-Functional Requirements\\
 
 \bottomrule
 \end{tabularx}
@@ -218,7 +219,8 @@ ADD TEXT HERE
 \subsection{Look and Feel Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-L}1.]
-   ADD TEXT
+   \item The product shall feel simple to use.\\
+   Fit Criterion: Survey should reflect 90 percent of users should feel like the product is uncomplicated to use.
 \end{enumerate}
 \end{adjustwidth}
  
@@ -226,44 +228,66 @@ ADD TEXT HERE
 \subsection{Usability and Humanity Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-U}1.]
-    ADD TEXT
+  \item Users with no prior experience with the product should be able to use it.\\
+  Fit Criterion: 90 percent of new users will be able to complete each task successful within 1 minute. 
+  \item Product shall have a straightforward interface allowing for quick modification to parameters with ease.\\
+  Fit Criterion: The time between the user thinking about modifying a parameter to changing it in the interface should be no longer than 5 seconds.
+  \item Product shall help the user accurately make modifcation and avoid mistakes.\\
+  Fit Criterion: The total rate of mistakes made by the user should be no more than 1 percent over 4 months uses of the product. 
+  \item Users shall not need to remember how to interact with the product.\\
+  Fit Criterion: User will be able to use the product accurately within 5 second after 12 hours of not interacting with the product.
+  \item The product shall conceal detail structures and caluations from the user.\\
+  Fit Criterion: The product will not show any caluations used for producing output based on the user's parameters.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Performance Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-P}1.]
-  % 100/s sampling rate
-    ADD TEXT
+  \item The product shall be able to read 100 samplings/s.\\
+  Fit Criterion: The rate of reading will be measured and the rate determined by the measurement shall be 100 or more samplings/s for 95 percent of the time. 
+  Readings will be no less than 98 samplings/s.
+  \item Changes to the parameters will be reflected in the product within 1 second of the user's input.\\
+  Fit Criterion: The product will reflect changes given by the user within 1 second for 95 percent of the time. 
+  The changes will take no longer than 2 seconds to show in the product.
+  \item The product shall read measurements accurately to 3 decimal places.\\
+  Fit Criterion: The measurements will be accurate to 3 decminal places 100 percent of the time.
+  \item The caluations and data displayed shall be accurate to 2 decimal places.\\
+  Fit Criterion: Displayed data provide to the user will be accurate 100 percent of the time.
+  \item When the user is using the product, it shall be up and running 99 percent of the time.\\
+  Fit Criterion: The product will be up and running for at least 99 percent of the time during the durarion of the tasks set by users. 
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Operational and Environmental Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-O}1.]
-    ADD TEXT
-    
+  \item ADD TEXT HERE
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Maintainability and Support Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
-\begin{enumerate}[{NFR-M}1.]
-    ADD TEXT
+\begin{enumerate}[{NFR-M}1.] 
+  \item Product shall work on Window 7 and Window 10 operating systems.\\
+  Fit Criterion: The product will be installed on both operating systems and have there functions verified.
 \end{enumerate} 
 \end{adjustwidth}
 
 \subsection{Security Requirements}
 \begin{adjustwidth}{2.0em}{0pt}
 \begin{enumerate}[{NFR-S}1.]
-    ADD TEXT
+  \item The product shall prevent modifcations or injections of measurements.\\
+  Fit Criterion: The product will only allow users to read measurements and deny any attempts to change it.
+  \item Only autherized users are allowed to modify concealed caluations settings and/or parameters.\\
+  Fit Criterion: Users who have clearance will have access to modify certain caluations and parameters.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Cultural Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-C}1.]
-    \item The project must not include any graphics or terms that may be considered offensive or inappropriate to the user.\\
+    \item The product must not include any graphics or terms that may be considered offensive or inappropriate to the user.\\
     Fit Criterion: To measure this, a usability survey will be conducted to evaluate the graphics and terms on a scale of 1-10. Above 70\% of the surveys returning with a score of 8 will be considered successful.
 \end{enumerate}
 \end{adjustwidth}
