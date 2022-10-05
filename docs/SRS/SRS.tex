@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage{soul}
 \usepackage{changepage}
+\usepackage{graphicx}
 \setstcolor{red}
 \hypersetup{
     colorlinks,
@@ -38,13 +39,14 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
 \caption{\bf Revision History}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\begin{tabularx}{\textwidth}{p{2.5cm}p{2.5cm}X}
 \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Sept 25 & Edwin Do & Revision 0 - Initial commit\\
+Sept 25, 2021 & Edwin Do & Revision 0 - Initial commit\\
 Oct 5, 2021 & Edwin Do & Adopt Volere template + Add content \\
+Oct 5, 2021 & Joseph Braun & Add functional Requirements \\ 
 
 \bottomrule
 \end{tabularx}
@@ -137,14 +139,17 @@ The user is also assumed to have general working knowledge of how to install and
 \section{Functional Requirements}
 \subsection{The Scope of the Work and the Product}
 
-ADD TEXT HERE \\
-The scope of the work is to complete the development of the product with the features requirements outlined in this document. 
+The hardware for this project is provided by the Department of Materials Engineering through the project supervisor, Dr. Zurob. A Windows computer, current source, and nanovoltmeter have already been included. A fourth hardware device, for measuring the temperature of the sample material, will also be provided or else a new device shall be purchased for this purpose. The product will be a Window's based GUI application which can set the data acquisition rate (sample rate), connect to the hardware devices, acquire the output data, and calculate the conductivity of the sample material in real time. The application should also be able to be accessed remotely to check on the progress of ongoing experiments. \\
 
 \subsubsection{The Context of the Work}
 % Electron - JS, HTML , CSS
 % CI/CD - Build
 % Devs may require the use of other libraries to speed up the dev process
-ADD TEXT HERE
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.8]{ContextDiagram.PNG}}
+\caption{Basic context diagram (subject to change as project progresses)}
+\label{fig}
+\end{figure}
 
 \subsubsection{Work Partitioning}
 
@@ -154,11 +159,16 @@ ADD TEXT HERE
 	\label{my-label}
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Event Number} & \textbf{Event Name} & \textbf{Input} & \textbf{Output}     \\ \hline
-		1 &  &  &  \\ \hline
-		2 &  &  &  \\ \hline
-		3 &  &  &  \\ \hline
-		4 &  &  &  \\ \hline
+		\textbf{Event \#} & \textbf{Event Name} & \textbf{Input} & \textbf{Output}     \\ \hline
+		1 & \begin{tabular}{@{}c@{}}User requests\\conductivity data\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Data\\request\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Conductivity\\data\end{tabular} \\ \hline
+		2 & \begin{tabular}{@{}c@{}}App connects\\to hardware\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Data\\sampling rate\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Voltage and\\temperature data\end{tabular} \\ \hline
+		3 & \begin{tabular}{@{}c@{}}App calculates\\conductivity\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Voltage and\\temperature data\end{tabular} & 
+            \begin{tabular}{@{}c@{}}Sample\\conductivity\end{tabular}  \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -168,11 +178,10 @@ ADD TEXT HERE
 	\label{my-label}
 	\begin{tabular}{|c|c|}
 		\hline
-		\textbf{Event Number} & \textbf{Description}											\\ \hline
-		1 & 	\\ \hline
-		2 & 	\\ \hline
-		3 &   \\ \hline
-		4 &   \\ \hline
+		\textbf{Event \#} & \textbf{Description}											\\ \hline
+		1 & \begin{tabular}{@{}c@{}}User opens app and requests conductivity data\\for the current sample connected to hardware\end{tabular}	\\ \hline
+		2 & \begin{tabular}{@{}c@{}}App interfaces with hardware, sets sampling rate,\\and records data from hardware\end{tabular}	\\ \hline
+		3 & \begin{tabular}{@{}c@{}}App uses data received from hardware to calculate\\conductivity of sample\end{tabular}  \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -182,20 +191,31 @@ ADD TEXT HERE
 \begin{enumerate}[{UC-}1:]
     
 %--Use Case Template
-\item Description of Use Case\\
-    \textbf{Related Requirements:} FR1, FR2, FR3\\ %Cross reference with requirements below
-    \textbf{Initiating Actor:} \\
-    \textbf{Actor's Goal:} \\
-    \textbf{Participating Actors:} \\
-    \textbf{Pre-conditions:}\\
-    \textbf{Post-conditions:}\\
+\item Use the App in the lab to measure conductivity changes in sample material\\
+    \textbf{Related Requirements:} FR1, FR2, FR3, FR4\\ %Cross reference with requirements below
+    \textbf{Initiating Actor:} User\\
+    \textbf{Actor's Goal:} Record conductivity changes in sample material during thermal treatment\\
+    \textbf{Participating Actors:} User, App, Hardware\\
+    \textbf{Pre-conditions:} User in lab; sample material connected to hardware\\
     \textbf{Flow of events for main success:}\\
-    $\rightarrow$ 1. Use right arrow for input\\
-    $\leftarrow$ 2. Use left arrow for output\\
-    \textbf{Flow of events for Extensions:}\\
-    Additional events (extension) \\
-    $\rightarrow$ 1. Use right arrow for input\\
-    $\leftarrow$ 2. Use left arrow for output\\
+    $\rightarrow$ 1. User requests conductivity data from App\\
+    $\rightarrow$ 2. App interfaces with hardware\\
+    $\leftarrow$ 3. Hardware outputs voltage and temperature data to App\\
+    $\leftarrow$ 4. App calcaultes and outputs conductivity data to User\\
+
+\item Access the App remotely to monitor conductivity changes in sample material\\
+    \textbf{Related Requirements:} FR1, FR2, FR3, FR4, FR5\\ %Cross reference with requirements below
+    \textbf{Initiating Actor:} User\\
+    \textbf{Actor's Goal:} Monitor conductivity changes in sample material remotely during thermal treatment\\
+    \textbf{Participating Actors:} User, App, Hardware\\
+    \textbf{Pre-conditions:} User remotely connected to App; sample material connected to hardware\\
+    \textbf{Flow of events for main success:}\\
+    $\rightarrow$ 1. User requests conductivity data\\
+    $\rightarrow$ 2. Request is relayed over network to App\\
+    $\rightarrow$ 3. App interfaces with hardware\\
+    $\leftarrow$ 4. Hardware outputs voltage and temperature data to App\\
+    $\leftarrow$ 5. App calcaultes and outputs conductivity data\\
+    $\leftarrow$ 6. Conductivity is relayed over network to User
     
 \color{black}
 \end{enumerate}
@@ -204,11 +224,15 @@ ADD TEXT HERE
 % List functional requirements here
 \begin{enumerate}[{FR}1.] 
     \item
-    The system shall ... 
+    The app shall monitor the conductivity of the sample material in real time. 
     \item
-    The system shall not...
+    The app shall identify critical changes due to phase transition in the sample.
     \item
-    Once the system samples..
+    The app shall change the data sampling rate as required.
+    \item
+    The app shall automate the process of identifying slope changes and correlating these to phase changes in the sample. 
+    \item
+    The app shall have remote access and control. \\
 	
 \end{enumerate}
 
