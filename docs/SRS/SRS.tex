@@ -53,6 +53,7 @@ Oct 5, 2022 & Timothy Chen & Added to Reflection\\
 Oct 5, 2022 & Joseph Braun & Add functional Requirements \\ 
 Oct 5, 2022 & Abdul Nour Seddiki & Added to Reflections\\
 Oct 5, 2022 & Edwin Do & Add reflection + small fixes \\
+Oct 6, 2022 & Edwin Do & Add missing tasks, ideas for solution, and open issues \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -376,8 +377,10 @@ The hardware for this project is provided by the Department of Materials Enginee
 
 \subsection{Open Issues}
 % What are some issues we have right now
-
-ADD SOME TEXT HERE
+\begin{itemize}
+  \item Determine maintainability and stability of the Windows 7 operating system
+  \item Identify the best suited method for communication between lab equipment and the application
+\end{itemize}
 
 \subsection{Off-the-Shelf Solutions}
 The application will use Electron, a JavaScript framework that allows developers to create cross-platform compatible desktop applications. 
@@ -398,7 +401,11 @@ To minimize this problem, the product will be implemented with a quick start gui
 % Communicate lab equipment output to some kind of communication channel (serial port, sockets, named pipes)
 % Read data from the communication channel
 % Create a GUI that can be installed and run on Windows 7
-ADD STUFF HERE 
+\begin{itemize}
+  \item Find and create a method of communication between the lab equipment and the application (i.e. serial ports, named pipes, interprocess communication)
+  \item Accurately read the data output in real-time from the application
+  \item Create a GUI that can be installed and successfully run on a Windows 7 operating system
+\end{itemize}
 
 \subsection{Migration to the New Product}
 N/A
@@ -431,10 +438,16 @@ An additional safety document will also be created for users, before using any o
 \end{itemize}
 
 \subsection{Ideas for Solutions}
-ADD MORE STUFF
 % Electron
 % Serial ports and communication
 % Use electron libraries
+\begin{itemize}
+  \item Use Electron to create Desktop Application
+  \item Write the data from the lab equipment to a serial port for communication with application
+  \item Utilize electron libraries to supported communication on a serial port
+  \item Utilize interprocess communication for communication between the lab equipment and applicaton
+\end{itemize}
+
 
 \bibliographystyle{plainnat}
 
