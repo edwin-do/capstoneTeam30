@@ -46,6 +46,10 @@
 \midrule
 Sept 25, 2021 & Edwin Do & Revision 0 - Initial commit\\
 Oct 5, 2021 & Edwin Do & Adopt Volere template + Add content \\
+Oct 5, 2021 & Timothy Chen & Added to Non-Functional Requirements\\
+Oct 5, 2021 & Abdul Nour Seddiki & Added to Relevant Facts and Assumptions\\
+Oct 5, 2021 & Abdul Nour Seddiki & Added to Waiting Room\\
+Oct 5, 2021 & Timothy Chen & Added to Reflection\\
 Oct 5, 2021 & Joseph Braun & Add functional Requirements \\ 
 
 \bottomrule
@@ -125,11 +129,21 @@ At this point, there is an estimated budget of \$1000. This may change as the te
 
 \subsection{Relevant Facts and Assumptions}
 \subsubsection{Facts}
-ADD TEXT HERE
+The client and control computer is using Windows 7 operating system that is questionably upgradable and it is worth mentioning that Windows 7 is currently unsupported. The equipment for power supply and measurement tools are outdated and require special connection media, both physical connections and drivers, to communicate with the computer. There exists an application with a similar purpose and function to our project’s on the computer, which does not fulfill the goals of the user anymore, and the source code for that application is not provided.
+
+Resistivity of a sample material is calculated by the following equation. Where $\rho$ is the resistivity, R is the resistance, A is the cross-sectional area, and L is the length of the sample:
+$ \rho = \frac{RA}{L} $
 % Include a couple sentences about the background and maybe an equation describing how the conductivity is calculated.
 
 \subsubsection{Assumptions}
-ADD TEXT HERE
+Statement: It is assumed that materials will have microstructural changes when they undergo heat treatment. 
+Effect: In case this assumption is false, our product will display no output. 
+
+Statement: Another assumption is that these microstructural changes will result in changes in resistivity of the materials treated. 
+Effect: If this assumption is false, the product will be rendered unsuitable for the task as the main function of it is to measure changes in resistivity.
+
+Statement: According to the project timeline, it is assumed that a proof of concept will be ready by November 14th, a first functional design will be ready by February 6th, and a final revision will be demoed by March 31st.
+Effect: These dates are made to observe progress of the project. In case the final demo is not met, the project will have been incomplete, since that will be the end of term for the developers.
 % Include a couple sentences about any assumptions that we have
 
 \subsubsection{User Characteristics}
@@ -242,7 +256,10 @@ The hardware for this project is provided by the Department of Materials Enginee
 \subsection{Look and Feel Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-L}1.]
-   ADD TEXT
+   \item The product shall feel simple to use.\\
+   Fit Criterion: Survey should reflect 90 percent of users should feel like the product is uncomplicated to use.
+   \item The product shall be in English only.
+   Fit Criterion: The language used throughout the product will be in English.
 \end{enumerate}
 \end{adjustwidth}
  
@@ -250,44 +267,79 @@ The hardware for this project is provided by the Department of Materials Enginee
 \subsection{Usability and Humanity Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-U}1.]
-    ADD TEXT
+  \item Users with no prior experience with the product should be able to use it.\\
+  Fit Criterion: 90 percent of new users will be able to complete each task successful within 1 minute. 
+  \item Product shall have a straightforward interface allowing for quick modification to parameters with ease.\\
+  Fit Criterion: The time between the user thinking about modifying a parameter to changing it in the interface should be no longer than 5 seconds.
+  \item Product shall help the user accurately make modifcation and avoid mistakes.\\
+  Fit Criterion: The total rate of mistakes made by the user should be no more than 1 percent over 4 months uses of the product. 
+  \item Users shall not need to remember how to interact with the product.\\
+  Fit Criterion: User will be able to use the product accurately within 5 second after 12 hours of not interacting with the product.
+  \item The product shall conceal detail structures and caluations from the user.\\
+  Fit Criterion: The product will not show any caluations used for producing output based on the user's parameters.
+  \item The capacity of the product shall not be large.\\
+  Fit Criterion: The product will be no more than 8 GB.
+  \item Product shall not require manually setting up after initial connection to the measurement equipment.\\
+  Fit Criterion: The user will have instructions on how to set up the connections the first time, no further set up will be needed after the initial installment.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Performance Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-P}1.]
-  % 100/s sampling rate
-    ADD TEXT
+  \item The product shall be able to read 100 samplings/s.\\
+  Fit Criterion: The rate of reading will be measured and the rate determined by the measurement shall be 100 or more samplings/s for 95 percent of the time. 
+  Readings will be no less than 98 samplings/s.
+  \item Changes to the parameters will be reflected in the product within 1 second of the user's input.\\
+  Fit Criterion: The product will reflect changes given by the user within 1 second for 95 percent of the time. 
+  The changes will take no longer than 2 seconds to show in the product.
+  \item The product shall read measurements accurately to 3 decimal places.\\
+  Fit Criterion: The measurements will be accurate to 3 decminal places 100 percent of the time.
+  \item The caluations and data displayed shall be accurate to 2 decimal places.\\
+  Fit Criterion: Displayed data provide to the user will be accurate 100 percent of the time.
+  \item When the user is using the product, it shall be up and running 99 percent of the time.\\
+  Fit Criterion: The product will be up and running for at least 99 percent of the time during the durarion of the tasks set by users.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Operational and Environmental Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-O}1.]
-    ADD TEXT
-    
+  \item Product should accept inputs from keybroad and mouse.\\
+  Fit Criterion: Keyboard and mouse connected to the computer will be able to interact with the product.
+  \item Product shall be able to be installed with ease by a user with no prior experience with the product.\\
+  Fit Criterion: 90 percent of surveys from user with no prior experience should indictate the installation was simple.
+  \item Releases occur at least once every 6 months.\\
+  Fit Criterion: The team will make a release with minor bug fixes and new features if needed at least once every 6 months.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Maintainability and Support Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
-\begin{enumerate}[{NFR-M}1.]
-    ADD TEXT
+\begin{enumerate}[{NFR-M}1.] 
+  \item Major bugs or issues brought up by the user shall be handled within 72 hours of receiving it.\\
+  Fit Criterion: Bugs or issues will be handled by developers within 48 hrs and will be escalated after so it can be resolved by 72 hour mark.
+  \item Product shall work on Window 7 and Window 10 operating systems.\\
+  Fit Criterion: The product will be installed on both operating systems and have there functions verified.
+  \item Product shall be expected to work on the computers in the lab.\\
+  Fit Criterion: The product will be installed and used as expected on the lab's computer.
 \end{enumerate} 
 \end{adjustwidth}
 
 \subsection{Security Requirements}
 \begin{adjustwidth}{2.0em}{0pt}
 \begin{enumerate}[{NFR-S}1.]
-    ADD TEXT
+  \item The product shall prevent modifcations or injections of measurements.\\
+  Fit Criterion: The product will only allow users to read measurements and deny any attempts to change it.
+  \item Only autherized users are allowed to modify concealed caluations settings and/or parameters.\\
+  Fit Criterion: Users who have clearance will have access to modify certain caluations and parameters.
 \end{enumerate}
 \end{adjustwidth}
 
 \subsection{Cultural Requirements}
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-C}1.]
-    \item The project must not include any graphics or terms that may be considered offensive or inappropriate to the user.\\
+    \item The product must not include any graphics or terms that may be considered offensive or inappropriate to the user.\\
     Fit Criterion: To measure this, a usability survey will be conducted to evaluate the graphics and terms on a scale of 1-10. Above 70\% of the surveys returning with a score of 8 will be considered successful.
 \end{enumerate}
 \end{adjustwidth}
@@ -303,7 +355,7 @@ The hardware for this project is provided by the Department of Materials Enginee
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NFR-H}1.]
   % Add item about lab safety  
-  \item ADD TEXT HERE
+  % \item ADD TEXT HERE
   \item Colours and graphics used in the application should take into account users who may be prone to seizures. \\
     Fit Criterion: There should be no animations that simulate flashing/ flickering (i.e change of brightness or colour at a rapid rate). There should also be no static optical illusions that may simulate amy flashing/ flickering.
     \item Colours should not be too bright, causing potential harm to users eyes. \\
@@ -367,7 +419,15 @@ A main README file will be created and documented for information such as instal
 An additional safety document will also be created for users, before using any of the lab equipment. 
 
 \subsection{Waiting Room}
-ADD STUFF HERE
+\begin{itemize}
+    \item Requiring the highest possible rate of output.
+    \item Requiring the software to work on the latest (supported) version of Windows.
+    \item The option of using the application remotely.
+    \item The option of using the application on different platforms, operating systems, devices, and with different input and measurement tools.
+    \item Ability of the system to be a real-time system where it is used concurrently with the heat treatment process of materials, connected to the heat treatment systems and controlling them, measuring changes in real time and making decisions on the fly.
+    \item Incorporation of machine learning and artificial intelligence in order to analyse data within processes and making adjustments to the treatment for customized optimal results.
+    \item Addition of other methods of measurement of microstructural change; like adding high speed electronic microscopes with slow motion capture for manual or automated analysis on the physical outputs.
+\end{itemize}
 
 \subsection{Ideas for Solutions}
 ADD MORE STUFF
@@ -402,5 +462,17 @@ N/A
 From the identified approaches, which will each team member pursue, and why did they make this choice?\\
 
 \noindent Response
+
+
+Timothy - We need to acquire the knowledge and skills on developing a Window application using the Electron as the framework. One of the main requirements
+from the supervisor is that it has to work on Windows operating system. In my experience through Co-op and school work, I have 
+yet to interact with Window applications. This knowledge will hope us meet the requirements set by the supervisor as well 
+as learning a new technical skill. 
+
+There are a few approaches to acquiring this knowledge. The first way would be to look for blogs from other developers and learn from there
+examples. The second way would be to watch and read tutorials online. The third way would be to read the documentation and conduct research. Lastly, 
+we could also learn by trial and error. The approach I will be taking will be watching and reading tutorials online as they will be able to explain 
+concepts in a simpler form with visual aids. This will help me gain knowledge in this concept and 
+make it a skill I can gain from this project.
 
 \end{document}
