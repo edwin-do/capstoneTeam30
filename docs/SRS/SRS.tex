@@ -51,6 +51,7 @@ Oct 5, 2021 & Abdul Nour Seddiki & Added to Relevant Facts and Assumptions\\
 Oct 5, 2021 & Abdul Nour Seddiki & Added to Waiting Room\\
 Oct 5, 2021 & Timothy Chen & Added to Reflection\\
 Oct 5, 2021 & Joseph Braun & Add functional Requirements \\ 
+Oct 5, 2021 & Abdul Nour Seddiki & Added to Reflections\\
 
 \bottomrule
 \end{tabularx}
@@ -60,7 +61,7 @@ Oct 5, 2021 & Joseph Braun & Add functional Requirements \\
 
 \pagenumbering{arabic}
 
-This document describes the software requirements for the capstone project of measuring microstructure changes of samples during thermal treatment. The template for the Software Requirements Specification (SRS) is a subset of the Volere
+\noindent This document describes the software requirements for the capstone project of measuring microstructure changes of samples during thermal treatment. The template for the Software Requirements Specification (SRS) is a subset of the Volere
 template.
 
 
@@ -129,20 +130,20 @@ At this point, there is an estimated budget of \$1000. This may change as the te
 
 \subsection{Relevant Facts and Assumptions}
 \subsubsection{Facts}
-The client and control computer is using Windows 7 operating system that is questionably upgradable and it is worth mentioning that Windows 7 is currently unsupported. The equipment for power supply and measurement tools are outdated and require special connection media, both physical connections and drivers, to communicate with the computer. There exists an application with a similar purpose and function to our project’s on the computer, which does not fulfill the goals of the user anymore, and the source code for that application is not provided.
+The client and control computer is using Windows 7 operating system that is questionably upgradable and it is worth mentioning that Windows 7 is currently unsupported. The equipment for power supply and measurement tools are outdated and require special connection media, both physical connections and drivers, to communicate with the computer. There exists an application with a similar purpose and function to our project’s on the computer, which does not fulfill the goals of the user anymore, and the source code for that application is not provided.\\
 
-Resistivity of a sample material is calculated by the following equation. Where $\rho$ is the resistivity, R is the resistance, A is the cross-sectional area, and L is the length of the sample:
+\noindent Resistivity of a sample material is calculated by the following equation. Where $\rho$ is the resistivity, R is the resistance, A is the cross-sectional area, and L is the length of the sample:
 $ \rho = \frac{RA}{L} $
 % Include a couple sentences about the background and maybe an equation describing how the conductivity is calculated.
 
 \subsubsection{Assumptions}
 Statement: It is assumed that materials will have microstructural changes when they undergo heat treatment. 
-Effect: In case this assumption is false, our product will display no output. 
+Effect: In case this assumption is false, our product will display no output. \\
 
-Statement: Another assumption is that these microstructural changes will result in changes in resistivity of the materials treated. 
-Effect: If this assumption is false, the product will be rendered unsuitable for the task as the main function of it is to measure changes in resistivity.
+\noindent Statement: Another assumption is that these microstructural changes will result in changes in resistivity of the materials treated. 
+Effect: If this assumption is false, the product will be rendered unsuitable for the task as the main function of it is to measure changes in resistivity.\\
 
-Statement: According to the project timeline, it is assumed that a proof of concept will be ready by November 14th, a first functional design will be ready by February 6th, and a final revision will be demoed by March 31st.
+\noindent Statement: According to the project timeline, it is assumed that a proof of concept will be ready by November 14th, a first functional design will be ready by February 6th, and a final revision will be demoed by March 31st.
 Effect: These dates are made to observe progress of the project. In case the final demo is not met, the project will have been incomplete, since that will be the end of term for the developers.
 % Include a couple sentences about any assumptions that we have
 
@@ -408,7 +409,7 @@ In the case that it does not work, the operating system will have to be upgraded
 Department of Materials Engineering that Windows 7 is no longer supported but since the lab computer does not require any network connections, it has remained running Windows 7. This poses a future risk of 
 the operating system being forcefully upgraded.\\
 
-Another risk is that the lab equipment does not offer the necessary sampling or is not compatible with the lab computer. 
+\noindent Another risk is that the lab equipment does not offer the necessary sampling or is not compatible with the lab computer. 
 
 \subsection{Costs}
 The largest estimated cost of this project is time. It will require both the developers and the client's time to work and evaluate the project throughout.
@@ -461,7 +462,7 @@ N/A
 \noindent Q2: For each of the knowledge areas and skills identified in the previous question, what are at least two approaches to acquiring the knowledge or mastering the skill? 
 From the identified approaches, which will each team member pursue, and why did they make this choice?\\
 
-\noindent Response
+\noindent Responses\\
 
 
 Timothy - We need to acquire the knowledge and skills on developing a Window application using the Electron as the framework. One of the main requirements
@@ -473,10 +474,14 @@ There are a few approaches to acquiring this knowledge. The first way would be t
 examples. The second way would be to watch and read tutorials online. The third way would be to read the documentation and conduct research. Lastly, 
 we could also learn by trial and error. The approach I will be taking will be watching and reading tutorials online as they will be able to explain 
 concepts in a simpler form with visual aids. This will help me gain knowledge in this concept and 
-make it a skill I can gain from this project.
+make it a skill I can gain from this project.\\
+
+Abdul - The team needs to learn about programming with relation to signal inputs and outputs. Potentially signal processing knowledge would be involved. Another aspect we will need to learn about is simple circuit design specifically for testing metallic specimen, that involves dealing with current sources and nano-voltmeters.
+
+Online resources are a very good candidate for these skills. Mostly happening through continuous research along with trial and error. Some material science specific questions could be raised to Dr. Zurob.\\
 
 Joseph - One of the main components of the project will be to interface the Windows application with the hardware. Since none of the team members has worked with this particular hardware setup before, this will be new knowledge we are required to learn.  
 
-There are two main ways I can think of to acquire this knowledge. The first way would be to use the old Windows application which is currently installed on the lab computer. This application could be reverse engineered to determine how the software interfaced with the hardware, and then this method could be copied for our own application. A second way would be to study the datasheets and/or user manuals of the hardware in order to learn how the hardware is designed to interface with software. The approach I will be taking is the latter. I may find out through this approach that there is more than one possible method, in which case we could choose the one most suitable for our needs rather than be limited to one method. 
+There are two main ways I can think of to acquire this knowledge. The first way would be to use the old Windows application which is currently installed on the lab computer. This application could be reverse engineered to determine how the software interfaced with the hardware, and then this method could be copied for our own application. A second way would be to study the datasheets and/or user manuals of the hardware in order to learn how the hardware is designed to interface with software. The approach I will be taking is the latter. I may find out through this approach that there is more than one possible method, in which case we could choose the one most suitable for our needs rather than be limited to one method.\\ 
 
 \end{document}
