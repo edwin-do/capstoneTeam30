@@ -46,6 +46,8 @@
 Sept 25 & Edwin Do & Revision 0 - Initial commit\\
 Oct 5, 2021 & Edwin Do & Adopt Volere template + Add content \\
 Oct 5, 2021 & Timothy Chen & Added to Non-Functional Requirements\\
+Oct 5, 2021 & Abdul Nour Seddiki & Added to Relevant Facts and Assumptions\\
+Oct 5, 2021 & Abdul Nour Seddiki & Added to Waiting Room\\
 Oct 5, 2021 & Timothy Chen & Added to Reflection\\
 
 \bottomrule
@@ -125,11 +127,21 @@ At this point, there is an estimated budget of \$1000. This may change as the te
 
 \subsection{Relevant Facts and Assumptions}
 \subsubsection{Facts}
-ADD TEXT HERE
+The client and control computer is using Windows 7 operating system that is questionably upgradable and it is worth mentioning that Windows 7 is currently unsupported. The equipment for power supply and measurement tools are outdated and require special connection media, both physical connections and drivers, to communicate with the computer. There exists an application with a similar purpose and function to our project’s on the computer, which does not fulfill the goals of the user anymore, and the source code for that application is not provided.
+
+Resistivity of a sample material is calculated by the following equation. Where $\rho$ is the resistivity, R is the resistance, A is the cross-sectional area, and L is the length of the sample:
+$ \rho = \frac{RA}{L} $
 % Include a couple sentences about the background and maybe an equation describing how the conductivity is calculated.
 
 \subsubsection{Assumptions}
-ADD TEXT HERE
+Statement: It is assumed that materials will have microstructural changes when they undergo heat treatment. 
+Effect: In case this assumption is false, our product will display no output. 
+
+Statement: Another assumption is that these microstructural changes will result in changes in resistivity of the materials treated. 
+Effect: If this assumption is false, the product will be rendered unsuitable for the task as the main function of it is to measure changes in resistivity.
+
+Statement: According to the project timeline, it is assumed that a proof of concept will be ready by November 14th, a first functional design will be ready by February 6th, and a final revision will be demoed by March 31st.
+Effect: These dates are made to observe progress of the project. In case the final demo is not met, the project will have been incomplete, since that will be the end of term for the developers.
 % Include a couple sentences about any assumptions that we have
 
 \subsubsection{User Characteristics}
@@ -382,7 +394,15 @@ A main README file will be created and documented for information such as instal
 An additional safety document will also be created for users, before using any of the lab equipment. 
 
 \subsection{Waiting Room}
-ADD STUFF HERE
+\begin{itemize}
+    \item Requiring the highest possible rate of output.
+    \item Requiring the software to work on the latest (supported) version of Windows.
+    \item The option of using the application remotely.
+    \item The option of using the application on different platforms, operating systems, devices, and with different input and measurement tools.
+    \item Ability of the system to be a real-time system where it is used concurrently with the heat treatment process of materials, connected to the heat treatment systems and controlling them, measuring changes in real time and making decisions on the fly.
+    \item Incorporation of machine learning and artificial intelligence in order to analyse data within processes and making adjustments to the treatment for customized optimal results.
+    \item Addition of other methods of measurement of microstructural change; like adding high speed electronic microscopes with slow motion capture for manual or automated analysis on the physical outputs.
+\end{itemize}
 
 \subsection{Ideas for Solutions}
 ADD MORE STUFF
