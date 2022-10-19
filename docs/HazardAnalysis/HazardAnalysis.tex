@@ -70,16 +70,21 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
   \item Interfaces between above devices and control computer
   \item The control computer
   \item The software application that will be installed on the control computer
-\end{enumerate}\\
+\end{enumerate}
 
 \noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the thermometer, the nano-voltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+\noindent The following is a list of assumptions to protect ourselves during the development of ReSprint from unforeseen hazards:
+
+\begin{itemize}
+  \item Thermal treated samples will be contained in a safe area away from the control computer and operator. 
+  \item Curret source device will be used as intended and will not be misuse by the operator.
+  \item Wires will not come loose during operation by the operator.
+  \item Data collected from the samples will be saved correctly on the control device.
+  \item Plugs and wires are attached correctly into the devices and control computer.
+\end{itemize}
 
 \section{Failure Mode and Effect Analysis}
 
