@@ -70,7 +70,7 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
   \item Interfaces between above devices and control computer
   \item The control computer
   \item The software application that will be installed on the control computer
-\end{enumerate}\\
+\end{enumerate}
 
 \noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the thermometer, the nano-voltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
 
@@ -87,8 +87,18 @@ this potential failure mode.}
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection*{Safety Requirements}
+\begin{enumerate}
+  \item[SFR-1.] Graphics shall avoid changing of brightness at rapid rate to take account for users prone to seizures.\\
+  \item[SFR-2.] Colours should avoid brightness that can be damaging to users' eyes.\\
+  \item[SFR-3.] Untrained users should not need to interact with any electronic equipment to avoid potential injury.\\
+\end{enumerate}
+
+\subsection*{Security Requirements}
+\begin{enumerate}
+  \item[SCR-1.] Interface shall prevent any modifications or injections of measurements from the user.
+  \item[SCR-2.] Only authorized users are allowed to mnodify concealed calculations, settings and/or parameters.
+\end{enumerate}
 
 \section{Roadmap}
 
