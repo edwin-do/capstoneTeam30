@@ -3,6 +3,11 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{array,ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -70,7 +75,7 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
   \item Interfaces between above devices and control computer
   \item The control computer
   \item The software application that will be installed on the control computer
-\end{enumerate}\\
+\end{enumerate}
 
 \noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the thermometer, the nano-voltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
 
@@ -81,9 +86,87 @@ minimize the number of assumptions that remove potential hazards.  For instance,
 you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
+
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\begin{landscape}
+\begin{table}[h]
+  \centering
+  \caption{FMEA Table}
+  \label{my-label}
+  \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
+    \rowcolor{gray!30}
+    \hline
+    \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
+    Current Source
+    & Current source does not provide current 
+    & Nanovoltmeter cannot measure voltage across sample
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot current source setup \newline
+      b. Replace current source
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-1      \\ \hline
+    Nanovoltmeter
+    & Nanovoltmeter does not read voltage across sample
+    & Voltage data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot nanovoltmeter \newline
+      b. Purchase new nanovoltmeter
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-2      \\ \hline
+    Serial Connection
+    & App does not receive data from hardware
+    & Data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot serial connection \newline
+      b. Replace serial connection cable
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-3      \\ \hline
+    \multirow{2}{*}{Windows App}
+    & App is not ergonomic for user
+    & User cannot utilise the App
+    & a. Graphics change brightness too rapidly \newline
+      b. Graphics contain colours that are too bright \newline
+    & a. App shall not change screen brightness unless the user chooses \newline
+      b. Graphics shall be designed with dimmed or neutral colours
+    & a. SFR1 \newline
+      b. SFR2 \newline
+    & H2 \\ \cline{2-7}
+    % Windows Application continued
+    & App does not receive data
+    & Resistivity of sample cannot be calculated
+    & a. Setup error \newline
+      b. Hardware failure \newline
+      c. Software connection error
+    & a. Refer to H1 \newline
+      b. Refer to H1 \newline
+      c. Check that software is accessing the correct serial port
+    & a. HWR1 \newline
+      b. HWR2 \newline
+      c. SWR1
+    & H3  \\ \cline{2-7}
+    %Windows Application continued
+    & Calculated values are not correct
+    & User receives inaccurate results
+    & a. User altered measurements through interface \newline
+      b. Software does not calculate values correctly
+    & a. Prevent user from altering measurements received from hardware \newline
+      b. Check that formulas for calculation used by software are correct
+    & a. SCR1 \newline
+      b. SWR2
+    & H4  \\ \hline 
+
+  \end{tabular}
+\end{table}
+\end{landscape}
+
+
 
 \section{Safety and Security Requirements}
 
