@@ -1,8 +1,14 @@
 \documentclass{article}
 
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{array,ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -37,6 +43,11 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Boundaries and Components\\
+Oct 14, 2022 & Edwin Do & Add introduction, scope and purpose of HA \\
+Oct 19, 2022 & Joseph Braun & Added Hardware and Software Requirements \\
+Oct 19, 2022 & Joseph Braun & Added FMEA Table\\
+Oct 19, 2022 & Edwin Do & Add roadmap \\
+
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -50,13 +61,22 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
+% \wss{You are free to modify this template.}
 
 \section{Introduction}
+This document is the hazard analysis for Team 30 (ReSprint) Capstone project. 
+This project collaborates with the Department of Materials Engineering to measure the microstructure changes of samples during thermal treatment.\\
 
-\wss{You can include your definition of what a hazard is here.}
+\noindent For this document, a hazard will be defined as 
+a scenario where the conditions of a system and environment constitutes the potential of harm to someone or something.
 
 \section{Scope and Purpose of Hazard Analysis}
+The purpose of this hazard analysis is to document any potential unsafe behaviour in this project. 
+This includes risks in this project that can arise from using either the software or hardware components.
+For each hazard identified, this document will outline one or more methods to help mitigate the hazard.\\
+
+\noindent The scope will be limited to identifying the possible hazards from the system's components, methods of mitigation, 
+potential causes, and any resulting security or safety requirements.
 
 \section{System Boundaries and Components}
 
@@ -65,14 +85,14 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
 \begin{enumerate}
   \item Thermally treated samples
   \item The current source
-  \item A thermometer
-  \item The nano-voltmeter
+  \item A temperature sensor
+  \item The nanovoltmeter
   \item Interfaces between above devices and control computer
   \item The control computer
   \item The software application that will be installed on the control computer
 \end{enumerate}
 
-\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the thermometer, the nano-voltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
+\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the temperature sensor, the nanovoltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
 
 \section{Critical Assumptions}
 
@@ -80,24 +100,187 @@ Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Bound
 
 \begin{itemize}
   \item Thermal treated samples will be contained in a safe area away from the control computer and operator. 
-  \item Curret source device will be used as intended and will not be misuse by the operator.
+  \item Current source device will be used as intended and will not be misuse by the operator.
   \item Wires will not come loose during operation by the operator.
-  \item Data collected from the samples will be saved correctly on the control device.
+  \item Data collected from the samples will be saved correctly on the control computer.
   \item Plugs and wires are attached correctly into the devices and control computer.
 \end{itemize}
 
-\section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\section{Failure Mode and Effect Analysis}
+The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
+
+\begin{landscape}
+\begin{table}[h]
+  \centering
+  \caption{FMEA Table}
+  \label{my-label}
+  \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
+    \rowcolor{gray!30}
+    \hline
+    \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
+    Current Source
+    & Current source does not provide current 
+    & Nanovoltmeter cannot measure voltage across sample
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot current source setup \newline
+      b. Replace current source
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-1      \\ \hline
+    Nanovoltmeter
+    & Nanovoltmeter does not read voltage across sample
+    & Voltage data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot nanovoltmeter \newline
+      b. Replace nanovoltmeter
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-2      \\ \hline
+    Temperature Sensor
+    & Temperature sensor does not read temperature of the sample
+    & Temperature data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot temperature sensor setup \newline
+      b. Replace temperature sensor 
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-3    \\ \hline
+    Serial Connection
+    & App does not receive data from hardware
+    & Data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot serial connection \newline
+      b. Replace serial connection cable
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-4      \\ \hline
+    \multirow{2}{*}{Windows App}
+    & App cannot be installed on control computer
+    & User cannot utilise the App
+    & a. Compatibility error
+    & a. App shall be designed to be compatible with the operating system on the control computer
+    & a. SWR1
+    & H2  \\ \cline{2-7}
+    %Windows Application continued
+    & App is not ergonomic for user
+    & User cannot utilise the App without causing harm
+    & a. Graphics change brightness too rapidly \newline
+      b. Graphics contain colours that are too bright \newline
+    & a. App shall not change screen brightness unless the user chooses \newline
+      b. Graphics shall be designed with dimmed or neutral colours
+    & a. SFR1 \newline
+      b. SFR2 \newline
+    & H3 \\ \hline
+  \end{tabular}
+\end{table}
+\end{landscape}
+
+%Continue table on next page
+\begin{landscape}
+\begin{table}[h]
+  \centering
+  \caption{FMEA Table continued}
+  \label{my-label}
+  \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
+    \rowcolor{gray!30}
+    \hline
+    \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
+    % Windows Application continued
+    \multirow{2}{*}{Windows App}
+    & App does not receive data
+    & Resistivity of sample cannot be calculated
+    & a. Setup error \newline
+      b. Hardware failure \newline
+      c. Software connection error
+    & a. Refer to H1 \newline
+      b. Refer to H1 \newline
+      c. Check that software is accessing the correct serial port
+    & a. HWR1 \newline
+      b. HWR2 \newline
+      c. SWR2
+    & H4  \\ \cline{2-7}
+    %Windows Application continued
+    & Calculated values are not correct
+    & User receives inaccurate results
+    & a. User altered measurements through interface \newline
+      b. Software does not calculate values correctly
+    & a. Prevent user from altering measurements received from hardware \newline
+      b. Check that formulas for calculation used by software are correct
+    & a. SCR1 \newline
+      b. SWR3
+    & H5  \\ \hline
+    \multirow{2}{*}{User}
+    & User sustains physical injury while interacting with hardware components
+    & User cannot utilise the App; Legal ramifications
+    & a. User is not trained to interact with hardware components
+    & a. Ensure that authorised users are properly trained to interact with hardware components safely
+    & a. SFR3
+    & H6  \\ \cline{2-7}
+    %User continued
+    & App is modified by unauthorised user
+    & App no longer functions as required
+    & a. Unauthorsied user has gained access to App
+    & a. Ensure that only authorised users are permitted to access the App
+    & a. SCR2
+    & H7    \\ \hline
+  \end{tabular}
+\end{table}
+\end{landscape}
+
+
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\subsection*{Safety Requirements}
+\begin{enumerate}
+  \item[SFR1.] Graphics shall avoid changing of brightness at rapid rate to take account for users prone to seizures.
+  \item[SFR2.] Colours should avoid brightness that can be damaging to users' eyes.
+  \item[SFR3.] Untrained users should not need to interact with any electronic equipment to avoid potential injury.\\
+\end{enumerate}
+
+\subsection*{Security Requirements}
+\begin{enumerate}
+  \item[SCR1.] Interface shall prevent any modifications or injections of data from the user. 
+  \item[SCR2.] Only authorized users are allowed to modify concealed calculations, settings and/or parameters. \\
+\end{enumerate}
+
+\subsection*{Hardware Requirements}
+\begin{enumerate}
+  \item[HWR1.] All hardware components must be properly setup and configured to perform their required functions. 
+  \item[HWR2.] All hardware components must be functioning properly i.e. not faulty. \\
+\end{enumerate} 
+
+\subsection*{Software Requirements}
+\begin{enumerate}
+  \item[SWR1.] The App must be designed to be compatible with the operating system running on the control computer. The operating system used may be changed over the course of the project. 
+  \item[SWR2.] The App must be able to identify and connect to the correct serial port so that it is able to receive data from the hardware. 
+  \item[SWR3.]  The App must perform the resistivity calculations and any other required calculations using the correct formulae. \\
+\end{enumerate}
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+As part of this project, the safety requirements that we will address
+includes not using any colours and/or graphics that may cause harm or discomfort to the users
+and that the application along with its equipments will be functional.
+In addition, hardware-related requirements mentioned in the table above will be addressed up to the day of the final deliverable for the scope of this project.
+Any other requirement may be included in the Proof of concept or the final deliverable 
+which are on November 14 2023 and March 20 2023 respectively. \\
+
+\noindent Certain requirements will not be included as part of the capstone timeline.
+These requirements include ensuring that any future users will have sufficient training before interacting with the project
+and that the app should not be modified by an unauthorized user. 
+They should be implemented in the future by whoever oversees the use of this capstone.
+
+
+
+% \wss{Which safety requirements will be implemented as part of the capstone timeline?
+% Which requirements will be implemented in the future?}
+
+
 
 \end{document}
