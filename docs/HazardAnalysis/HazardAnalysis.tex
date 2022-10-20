@@ -1,8 +1,14 @@
 \documentclass{article}
 
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{array,ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -38,6 +44,7 @@
 \midrule
 Oct 13, 2022 & Abdul Nour Seddiki & Integrated the Template + Added System Boundaries and Components\\
 Oct 14, 2022 & Edwin Do & Add introduction, scope and purpose of HA \\
+Oct 19, 2022 & Joseph Braun & Added FMEA Table\\
 Oct 19, 2022 & Edwin Do & Add roadmap \\
 
 ... & ... & ...\\
@@ -98,9 +105,132 @@ potential causes, and any resulting security or safety requirements.
   \item Plugs and wires are attached correctly into the devices and control computer.
 \end{itemize}
 
+
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\begin{landscape}
+\begin{table}[h]
+  \centering
+  \caption{FMEA Table}
+  \label{my-label}
+  \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
+    \rowcolor{gray!30}
+    \hline
+    \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
+    Current Source
+    & Current source does not provide current 
+    & Nanovoltmeter cannot measure voltage across sample
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot current source setup \newline
+      b. Replace current source
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-1      \\ \hline
+    Nanovoltmeter
+    & Nanovoltmeter does not read voltage across sample
+    & Voltage data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot nanovoltmeter \newline
+      b. Replace nanovoltmeter
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-2      \\ \hline
+    Temperature Sensor
+    & Temperature sensor does not read temperature of the sample
+    & Temperature data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot temperature sensor setup \newline
+      b. Replace temperature sensor 
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-3    \\ \hline
+    Serial Connection
+    & App does not receive data from hardware
+    & Data cannot be communicated to App
+    & a. Setup error \newline
+      b. Hardware failure
+    & a. Troubleshoot serial connection \newline
+      b. Replace serial connection cable
+    & a. HWR1 \newline
+      b. HWR2
+    & H1-4      \\ \hline
+    \multirow{2}{*}{Windows App}
+    & App cannot be installed on lab computer
+    & User cannot utilise the App
+    & a. Compatibility error
+    & a. App shall be designed to be compatible with the operating system on the lab computer
+    & a. SWR1
+    & H2  \\ \cline{2-7}
+    %Windows Application continued
+    & App is not ergonomic for user
+    & User cannot utilise the App without causing harm
+    & a. Graphics change brightness too rapidly \newline
+      b. Graphics contain colours that are too bright \newline
+    & a. App shall not change screen brightness unless the user chooses \newline
+      b. Graphics shall be designed with dimmed or neutral colours
+    & a. SFR1 \newline
+      b. SFR2 \newline
+    & H3 \\ \hline
+  \end{tabular}
+\end{table}
+\end{landscape}
+
+%Continue table on next page
+\begin{landscape}
+\begin{table}[h]
+  \centering
+  \caption{FMEA Table continued}
+  \label{my-label}
+  \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
+    \rowcolor{gray!30}
+    \hline
+    \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
+    % Windows Application continued
+    \multirow{2}{*}{Windows App}
+    & App does not receive data
+    & Resistivity of sample cannot be calculated
+    & a. Setup error \newline
+      b. Hardware failure \newline
+      c. Software connection error
+    & a. Refer to H1 \newline
+      b. Refer to H1 \newline
+      c. Check that software is accessing the correct serial port
+    & a. HWR1 \newline
+      b. HWR2 \newline
+      c. SWR2
+    & H4  \\ \cline{2-7}
+    %Windows Application continued
+    & Calculated values are not correct
+    & User receives inaccurate results
+    & a. User altered measurements through interface \newline
+      b. Software does not calculate values correctly
+    & a. Prevent user from altering measurements received from hardware \newline
+      b. Check that formulas for calculation used by software are correct
+    & a. SCR1 \newline
+      b. SWR3
+    & H5  \\ \hline
+    \multirow{2}{*}{User}
+    & User sustains physical injury while interacting with hardware components
+    & User cannot utilise the App; Legal ramifications
+    & a. User is not trained to interact with hardware components
+    & a. Ensure that authorised users are properly trained to interact with hardware components safely
+    & a. SFR3
+    & H6  \\ \cline{2-7}
+    %User continued
+    & App is modified by unauthorised user
+    & App no longer functions as required
+    & a. Unauthorsied user has gained access to App
+    & a. Ensure that only authorised users are permitted to access the App
+    & a. SCR2
+    & H7    \\ \hline
+  \end{tabular}
+\end{table}
+\end{landscape}
+
+
 
 \section{Safety and Security Requirements}
 
