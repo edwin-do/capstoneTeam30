@@ -85,14 +85,14 @@ potential causes, and any resulting security or safety requirements.
 \begin{enumerate}
   \item Thermally treated samples
   \item The current source
-  \item A thermometer
-  \item The nano-voltmeter
+  \item A temperature sensor
+  \item The nanovoltmeter
   \item Interfaces between above devices and control computer
   \item The control computer
   \item The software application that will be installed on the control computer
 \end{enumerate}
 
-\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the thermometer, the nano-voltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
+\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the temperature sensor, the nanovoltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
 
 \section{Critical Assumptions}
 
@@ -100,14 +100,15 @@ potential causes, and any resulting security or safety requirements.
 
 \begin{itemize}
   \item Thermal treated samples will be contained in a safe area away from the control computer and operator. 
-  \item Curret source device will be used as intended and will not be misuse by the operator.
+  \item Current source device will be used as intended and will not be misuse by the operator.
   \item Wires will not come loose during operation by the operator.
-  \item Data collected from the samples will be saved correctly on the control device.
+  \item Data collected from the samples will be saved correctly on the control computer.
   \item Plugs and wires are attached correctly into the devices and control computer.
 \end{itemize}
 
 
 \section{Failure Mode and Effect Analysis}
+The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
 
 \begin{landscape}
 \begin{table}[h]
@@ -159,10 +160,10 @@ potential causes, and any resulting security or safety requirements.
       b. HWR2
     & H1-4      \\ \hline
     \multirow{2}{*}{Windows App}
-    & App cannot be installed on lab computer
+    & App cannot be installed on control computer
     & User cannot utilise the App
     & a. Compatibility error
-    & a. App shall be designed to be compatible with the operating system on the lab computer
+    & a. App shall be designed to be compatible with the operating system on the control computer
     & a. SWR1
     & H2  \\ \cline{2-7}
     %Windows Application continued
@@ -256,7 +257,7 @@ potential causes, and any resulting security or safety requirements.
 
 \subsection*{Software Requirements}
 \begin{enumerate}
-  \item[SWR1.] The App must be designed to be compatible with the operating system running on the lab computer. The operating system used may be changed over the course of the project. 
+  \item[SWR1.] The App must be designed to be compatible with the operating system running on the control computer. The operating system used may be changed over the course of the project. 
   \item[SWR2.] The App must be able to identify and connect to the correct serial port so that it is able to receive data from the hardware. 
   \item[SWR3.]  The App must perform the resistivity calculations and any other required calculations using the correct formulae. \\
 \end{enumerate}
