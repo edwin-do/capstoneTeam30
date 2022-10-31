@@ -1,8 +1,14 @@
 \documentclass[12pt, titlepage]{article}
-
+\usepackage[shortlabels]{enumitem}
+\usepackage{comment}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{changepage}
+\usepackage{graphicx}
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -11,6 +17,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage[dvipsnames]{xcolor}
 
 \input{../Comments}
 \input{../Common}
@@ -25,15 +32,16 @@
 
 \pagenumbering{roman}
 
-\section{Revision History}
-
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{table}[H]
+  \caption{\bf Revision History}
+  \begin{tabularx}{\textwidth}{p{2.5cm}p{2.5cm}X}
+  \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
+  \midrule
+  Oct 31, 2022 & Timothy Chen & Added to 5.2, 5.3, 7.2\\
+  \bottomrule
+  \end{tabularx}
+  \end{table}
+  
 
 \newpage
 
@@ -206,50 +214,217 @@ How test will be performed:
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.}
+\subsubsection{Appearance Test}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
-
-\begin{enumerate}
-
-\item{test-id1\\}
-
-Type: 
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-AT}1.]
+    \item Type: Static \& Manual \\
+    Initial State: Application home screen will be open.\\
+    Input/Condition: Users will explore the application then take a survey.\\
+    Output/Result: Survey result will indicate 90 percent of users feel application is uncomplicated. \\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If 90 percent of users inidicate a 1 out of 5, it will be considered successful. (Appendix)
+    
+    \item Type: Static \& Manual\\
+    Initial State: Application home screen will be open.\\
+    Input/Condition: Developers will navigate the application and explore all sections.\\
+    Output/Result: Developers will ensure all section of the application is in English.\\
+    How test will be performed: Test will be performed by developers. 
 \end{enumerate}
+\end{adjustwidth}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Usability Test}
 
-...
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-UT}1.]
+    \item Type: Dynamic \& Manual\\
+    Initial State: Application home screen will be open.\\
+    Input/Condition: Users will be asked to perform a set of tasks.\\
+    Output/Result: Time to perform each task will be within 1 minute 90 percent of the time.\\
+    How test will be performed: Test will be performed by the users. Each task will be timed from the moment the user starts interacting with the application and end when the user complete the task.
+    
+    \item Type: Static \& Manual\\
+    Initial State: Application home screen will be open.\\
+    Input/Condition: Users will be asked to make any modifications to any parameters.\\
+    Output/Result: Time to perform the modifcation will take 5 seconds 90 percent of the time.\\
+    How test will be performed: Test will be performed by the users. Each task will be timed from the moment the user starts interacting with the application and end when the parameter has been modified.
+
+    \item Type: Dynamic \& Automated\\
+    Initial State: Application home screen will be open.\\
+    Input/Condition: Invalid and edge case parameters will be enter into the application.\\
+    Output/Result: Application will flag the parameters that are not accepted and prevent the program from running.\\
+    How test will be performed: Test will be performed by a script which will enter and check for the flag messages after parameters have been given.
+
+    \item Type: Dynamic \& Manual\\
+    Initial State: Application will be closed.\\
+    Input/Condition: Users will be ask to open the application and perform a task. User then will be asked to return the next day to perform the same task.\\
+    Output/Result: Time from the users opening the application to interacting with it should be within 5 seconds.\\
+    How test will be performed: Test will be performed by the users. The test will pass only if the time is within 5 seconds and the task the user is asked to complete is completed without any mistakes the second time.
+
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open.\\
+    Input/Condition: Developers will navigate and explore the application.\\
+    Output/Result: No calculations will be found when exploring the application. \\
+    How test will be performed: Test will be performed by the developers.
+
+    \item Type: Static \& Manual\\
+    Initial State: Research device will not have the application on it.\\
+    Input/Condition: Users will install the application on the device.\\
+    Output/Result: Application capacity on the device will be less than 8 GB.\\
+    How test will be performed: Test will be performed by the users.
+
+    \item Type: Staic \& Manual\\
+    Initial State: Application will be installed on the device.\\
+    Input/Condition: Users will set up the application with the measurement equipments according to instructions provided.\\
+    Output/Result: Application will not indicate further set up required after the initial set up of the measurement devices on the first uses.\\
+    How test will be performed: Test will be performed by users. User will be ask to set up the measurement equipment. The next time the user uses the appliaction, there will be no inidication that there will be a need to perform further set up. 
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Performance Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-PT}1.]
+    \item Type: Dynamic \& Automated\\
+    Initial State: Measurement devices will be connected to sample and to device with application open.\\
+    Input/Condition: Start thermal treatment of sample.\\
+    Output/Result: Should return 100 readings a second for 95 precent of the time with the lowest reading being 98 per second.\\
+    How test will be performed: Test will be performed by a script to start the treatment while measuring the readings per second. 
+    
+    \item Type: Dynamic \& Automated\\
+    Initial State: Application will have defualt parameters.\\
+    Input/Condition: Parameters will be changed\\
+    Output/Result: Application will relfect changes by within 1 second for 95 percent of the time with the longest time being 2 seconds.\\
+    How test will be performed: Test will be performed by a script where parameters will be changed and the change will be timed and verified.
+
+    \item Type: Dynamic \& Automated\\
+    Initial State: Measurement devies will be connected to device.\\
+    Input/Condition: Thermal treatment sample data will be read into the device.\\
+    Output/Result: The sample reading from the thermal treatment will be accurate to 3 decminal places 99.99 percent of the time.\\
+    How test will be performed: Test will be performed by a script where the data being read in will be compared to an exising data set of the same sample with the same parameters. The data will be identical for 99.99 percent of the readings.
+
+    \item Type: Dynamic \& Automated\\
+    Initial State: Application will be open with measuremnt devices connceted.\\
+    Input/Condition: Readings for thermal treatment sample.\\
+    Output/Result: The calculations displayed on the application will be accurate to 3 decimal places for 99.99 percent of the time.\\
+    How test will be performed: Test will be performed by a sscript performing the caluations and comparing the result to the result on the application.
+
+    \item Type: Dynamic \& Automated\\
+    Initial State: Application will be closed.\\
+    Input/Condition: Application will be opened and have modification applied to the it.\\
+    Output/Result: The application will be up and running 99 percent of the time.\\
+    How test will be performed: Test will be performed by a script making modifications on the application throughout 12 hours and seeing if the application gives a healthly response for 99 percent of the time.
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Operational Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-OT}1.]
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open with keyboard and mouse connected to the device.\\
+    Input/Condition: User will interact with the application with mouse and keyboard.\\
+    Output/Result: Application will reflect inputs provided by mouse and keyboard.\\
+    How test will be performed: Test will be performed by the users.
+    
+    \item Type: Static \& Manual\\
+    Initial State: Application will be uninstalled from the device.\\
+    Input/Condition: Users will be asked to installed the application.\\
+    Output/Result: Feedback surveys from the installtion should indicate the installation was simple for 90 percent of of the users.\\
+    How test will be performed: Test will be performed by the user. User will be given a survey a question where 1 being simple and 5 being difficult. If 90 percent of users answer 1, it will be considered a success.
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Maintainability/Support Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-MT}1.]
+    \item Type: Static \& Manual\\
+    Initial State: Application will be uninstalled for device.\\
+    Input/Condition: Application will be installed on the device and connected to measurement devices.\\
+    Output/Result: The applications functions will be verified and ensure it is performing smoothly on the device.\\
+    How test will be performed: Test will be performed by the developer installing the application onto the  lab computer running window 7.
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Security Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-ST}1.]
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open on device.\\
+    Input/Condition: User will attempt to inject data or modify parameters they do not have permission for.\\
+    Output/Result: Application will have a indicator inform user does not have permission.\\
+    How test will be performed: Test will be performed by users who do not have certain permissions.
+    
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open on device.\\
+    Input/Condition: User will be asked to change hidden settings and calculations.\\
+    Output/Result: Changes should be accepted and saved by the application. Will be reflected on the application interface.\\
+    How test will be performed: Test will be performed by users who have permission to access these settings/parameters.
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Cultural Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-CT}1.]
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open on device.\\
+    Input/Condition: Users will explore the appliaction then take a survey \\
+    Output/Result: Result from survey will return a score of 8.\\
+    How test will be performed: Test will be performed by users which will take a survey after interacting with the application, 1 being inappropriate and 10 being appropriate. 
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection{Health and Safety Test}
+
+\begin{adjustwidth}{2.2em}{0pt}
+\begin{enumerate}[{NF-HT}1.]
+    \item Type: Static \& Manual\\
+    Initial State: Application will be open on device.\\
+    Input/Condition: Users will explore the appliaction then take a survey \\
+    Output/Result: Result from survey will indicate application interface does not pose any health concerns.\\
+    How test will be performed: Test will be performed by the user which will take a survey regarding the interface's colour and design.  
+\end{enumerate}
+\end{adjustwidth}
 
 \subsection{Traceability Between Test Cases and Requirements}
+
+\begin{table}[H]
+	\centering
+	\caption{Requirements Traceability}
+	\label{my-label}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Requirements} & \textbf{Tests} \\ \hline
+		NFR-L1 & NF-AT1 \\ \hline
+    NFR-L2 & NF-AT2 \\ \hline
+    NFR-U1 & NF-UT1 \\ \hline
+    NFR-U2 & NF-UT2 \\ \hline
+    NFR-U3 & NF-UT3 \\ \hline
+    NFR-U4 & NF-UT4 \\ \hline
+    NFR-U5 & NF-UT5\\ \hline
+    NFR-U6 & NF-UT6 \\ \hline
+    NFR-U7 & NF-UT7 \\ \hline
+    NFR-P1 & NF-PT1 \\ \hline
+    NFR-P2 & NF-PT2 \\ \hline
+    NFR-P3 & NF-PT3 \\ \hline
+    NFR-P4 & NF-PT4 \\ \hline
+    NFR-P5 & NF-PT5 \\ \hline
+    NFR-O1 & NF-OT1 \\ \hline
+    NFR-O2 & NF-OT2 \\ \hline
+    NFR-O3 & N/A \\ \hline
+    NFR-M1 & N/A \\ \hline
+    NFR-M2 & NF-MT1 \\ \hline
+    NFR-M3 & NF-MT1 \\ \hline
+    NFR-S1 & NF-ST1 \\ \hline
+    NFR-S2 & NF-ST2 \\ \hline
+    NFR-C1 & NF-CT1 \\ \hline
+    NFR-H1 & NF-HT1 \\ \hline
+    NFR-H2 & NF-HT1 \\ \hline
+    NFR-I1 & NF-MT1 \\ \hline
+	\end{tabular}
+\end{table}
 
 \wss{Provide a table that shows which test cases are supporting which
   requirements.}
@@ -385,9 +560,13 @@ This is where you can place additional information.
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{figure}
+  \subsection{Survey Questions}
+  \centering
+  \includegraphics[width=1\textwidth]{User Experience Survey.pdf}
+\end{figure}
+
 
 \newpage{}
 \section*{Appendix --- Reflection}
