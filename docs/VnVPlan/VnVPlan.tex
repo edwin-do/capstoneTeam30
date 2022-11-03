@@ -38,6 +38,7 @@
   \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
   \midrule
   Oct 31, 2022 & Timothy Chen & Added to 5.2, 5.3, 7.2\\
+  Nov 1, 2022 & Abdul Nour Seddiki & Added to 5.1, 5.3\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -160,57 +161,42 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
-
-\begin{enumerate}
-
-\item{test-id1\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
-
+\begin{enumerate}[{FR-T}1.]
+    \item Control: Dynamic \& Manual \\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will set up a sample and demonstrate the main function of the application.\\
+    Output: The application shall display the voltage, the current, the temperature and measure the conductivity of sample materials in real-time. Updates to values on the measurement tools should match with updates on the application and changes to the value of conductivity. \\
+    Test Case Derivation: Since the measurement tools are using a unified communication bus with the control computer, measurements are expected to be synchronised and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the external measurement tools and the values in the application and observing for latency in the display and calculation.
+    
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will set up a sample and perform thermal treatment on it.\\
+    Output: The application shall make note of critical changes in conductivity.\\
+    Test Case Derivation: While the application is constantly monitoring the state of conductivity of samples in real-time, any major change in the conductivity indicates a transition in the phase of the material.\\
+    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing changes in conductivity as calculated by the application.
+    
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will modify the setting that controls the data sampling rate in the application.\\
+    Output: The sampling rate of inputs is modified. Therefore, the display rate of inputs and outputs is going to change.\\
+    Test Case Derivation: The application is expected to be able to sample the data at variable rates, either by changing the actual rate of data acquisition or by changing the interval at which the data is displayed and analysed.\\
+    How test will be performed: Test will be performed by developers, manually testing this function of the system. 
+    
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will set up a sample and perform thermal treatment on it.\\
+    Output: The application shall automatically calculate the slopes of resistivity-temperature in the phase change diagram, identify changes in these slopes and attributing slope changes to phase transitions. This information is highlighted with appropriate phase transition labels.\\
+    Test Case Derivation: While the application is constantly monitoring the resistivity of samples in real-time, major changes in the resistivity to temperature ratios correlate to phase changes of the material.\\
+    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing notifications and labels on graphs or logs made by the application.
+    
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will prompt a wireless connection to control computer and navigate the application.\\
+    Output: The application is able to be controlled using a proxy/web application.\\
+    Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
+    How test will be performed: Test will be performed by developers communicating remotely with the control computer.  
 \end{enumerate}
-
-\subsubsection{Area of Testing2}
-
-...
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -397,6 +383,11 @@ How test will be performed:
 	\begin{tabular}{|c|c|}
 		\hline
 		\textbf{Requirements} & \textbf{Tests} \\ \hline
+		FR1 & FR-T1 \\ \hline
+		FR2 & FR-T2 \\ \hline
+		FR3 & FR-T3 \\ \hline
+		FR4 & FR-T4 \\ \hline
+		FR5 & FR-T5 \\ \hline
 		NFR-L1 & NF-AT1 \\ \hline
     NFR-L2 & NF-AT2 \\ \hline
     NFR-U1 & NF-UT1 \\ \hline
@@ -426,8 +417,6 @@ How test will be performed:
 	\end{tabular}
 \end{table}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
 
 \section{Unit Test Description}
 
