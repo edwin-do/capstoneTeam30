@@ -244,8 +244,15 @@ Calculation
 \subsection{Uses}
 
 \subsubsection{Imported Types}
-HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
-UserInput: ( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+getHardwareInput(): HardwareInput \\
+getUserInput(): UserInput
 
 \subsection{Syntax}
 
@@ -255,7 +262,7 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
@@ -324,6 +331,90 @@ FindSampleArea(SampleLength, SampleWidth)
 \begin{itemize}
   \item transition: SampleArea := SampleLength x SampleWidth
   \end{itemize}
+\newpage
+
+\section{MIS of UserInputValidation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+\subsection{Module}
+
+UserInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getUserInput() & - & ADT & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+More Here
+
+\subsubsection{Access Routine Semantics}
+
+\noindent verifyFileData(Filename, Date, Name):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Filename.type \ne STRING \lor \\
+Date.type \ne STRING  \lor \\
+Name.type \ne STRING  \\
+\Rightarrow INVALID$
+\end{itemize}
+
+\noindent verifySampleData(SamplingRate, SampleLength, SampleWidth):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+SamplingRate \notin \mathbb{R} \lor SamplingRate < 0 \lor \\
+SampleLength \notin \mathbb{R} \lor SampleLength < 0  \lor \\
+SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
+\Rightarrow INVALID$
+\end{itemize}
+
+\noindent getUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\item exception: $exc:= 
+verifyFileData \ne TRUE  \lor\\
+verifySampleData \ne TRUE \\
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+N/A
 \newpage
 
 \bibliographystyle {plainnat}
