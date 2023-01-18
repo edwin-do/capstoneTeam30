@@ -241,17 +241,13 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
-
 \subsubsection{Communication Module}
+\begin{description}
+  \item[Secrets:] Format input and output data and manage remote connection communication.
+  \item[Services:]Converts the data into the appropriate data structure used by the
+    input/output parameters module. Controls communication for remote access. 
+  \item[Implemented By:] -
+  \end{description}
 
 \paragraph{Input Communication Module (\mref{mInput})}
 \begin{description}
@@ -276,6 +272,30 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Services:]Remote acces to the application for the user.
 \item[Implemented By:] RemoteAccess.cs
 \item[Type of Module:] Abstract Object Type
+\end{description}
+
+\subsubsection{Display Module}
+\begin{description}
+  \item[Secrets:] Display output data and and other information to the user.
+  \item[Services:]Receives data to be displayed and displays it on the screen for the user to see. 
+  \item[Implemented By:] -
+\end{description}
+
+\paragraph{Current State Module (\mref{mOutput})}
+\begin{description}
+\item[Secrets:]The contents of obtaining current system state.
+\item[Services:]Display state of hardware (current temp, current voltage, current sampling rate, etc.)
+\item[Implemented By:] CurrentState.cs
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{Output Module }
+\paragraph{File Output Module (\mref{mOutput})}
+\begin{description}
+\item[Secrets:]The contents of obtaining correct files for output.
+\item[Services:]Outputs the file the to screen for the user. 
+\item[Implemented By:] FileOutput.cs
+\item[Type of Module:] Record
 \end{description}
 
 \subsection{Software Decision Module}
