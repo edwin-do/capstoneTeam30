@@ -297,21 +297,40 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Implemented By:] FileOutput.cs
 \item[Type of Module:] Record
 \end{description}
+\paragraph{Graphical Output Module (\mref{mOutput})}
+\begin{description}
+\item[Secrets:]Obtaining the correct data to produce accurate graphs.
+\item[Services:]Displays the data in a graphical format. 
+\item[Implemented By:] Graph.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
 
 \subsection{Software Decision Module}
 
+\subsubsection{Calculation Module}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+  \item[Secrets:] The design decision based on mathematical theorems.
+  \item[Services:]Includes data structure and algorithms used in the system that
+  do not provide direct interaction with the user for use in data analysis.
+  \item[Implemented By:] -
 \end{description}
 
-\subsubsection{Etc.}
+\paragraph{Resistivity Module}
+\begin{description}
+  \item[Secrets:] The mathematical equation for calculating resistivity.
+  \item[Services:]Solve the equation and return the result.
+  \item[Implemented By:] Calculation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{Resistance Module}
+\begin{description}
+  \item[Secrets:] The mathematical equation for calculating resistance.
+  \item[Services:]Solve the equation and return the result.
+  \item[Implemented By:] Calculation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
 
 \section{Traceability Matrix} \label{SecTM}
 
