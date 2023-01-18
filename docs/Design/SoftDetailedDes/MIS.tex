@@ -229,6 +229,103 @@ The following table is taken directly from the Module Guide document for this pr
 
 \newpage
 
+
+\section{MIS of Calculation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+\subsection{Module}
+
+Calculation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+UserInput: ( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getResistance() & - & Real & INVALID \\
+getResistivity() & - & Real & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+Resistance : The calculated resistance value (real)\\
+Resistivity : The calculated resistivity value (real) \\
+SampleArea : The calculated area of sample based on the length and width from user's input
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception. This type of programmer error is also 
+captured in the UserInputValidation Module to improve redundancy.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent calcResistance(voltage, current):
+\begin{itemize}
+\item transition: Resistance := voltage/current 
+\item exception: $exc:= \\ 
+voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+\lor current \notin \mathbb{R} \lor current < 0\\
+ \Rightarrow INVALID$
+\end{itemize}
+
+\noindent calcResistivity(Resistance, SampleArea, SampleLength):
+\begin{itemize}
+\item transition: Resistance := voltage/current 
+\item exception: $exc:= \\ 
+voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+\lor current \notin \mathbb{R} \lor current < 0\\
+ \Rightarrow INVALID$
+\end{itemize}
+
+\noindent getResistance():
+\begin{itemize}
+\item transition: N/A
+\item output: out:= Resistance
+\item exception: $exc:= Resistance \notin \mathbb{R} \lor Resistance < 0  \Rightarrow INVALID$
+\end{itemize}
+
+\noindent getResistivity():
+\begin{itemize}
+\item transition: N/A
+\item output: out := Resistivity
+\item exception: $exc:= Resistivity \notin \mathbb{R} \lor Resistivity < 0  \Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+FindSampleArea(SampleLength, SampleWidth)
+\begin{itemize}
+  \item transition: SampleArea := SampleLength x SampleWidth
+  \end{itemize}
+\newpage
+
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
 
