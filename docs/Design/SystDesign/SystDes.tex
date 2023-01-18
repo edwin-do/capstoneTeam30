@@ -8,6 +8,10 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+
+
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -43,13 +47,20 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Jan 17, 2023 & Abdul Nour & Added Intro, Purpose, and Scope (3,4,5)\\
+Jan 17, 2023 & Abdul Nour & Added Project Overview (6)\\
+Jan 17, 2023 & Abdul Nour & Added Design of Hardware (9)\\
+
+... & ... & ...\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 \newpage
 
@@ -60,14 +71,28 @@ This section records information for easy reference.
 \subsection{Abbreviations and Acronyms}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
+\begin{table}[hp]
+\caption{Abbreviations and Acronyms} \label{TblAbbreviationsandAcronyms}
+\begin{tabular}{|p{2.75cm}|p{14cm}|}
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
+  FR & Functional Requirement\\
+  NFR & Non-functional Requirement\\
+  NFR-L & Non-functional Requirement: Look and Feel Requirement\\
+  NFR-U & Non-functional Requirement: Usability and Humanity Requirement\\
+  NFR-P & Non-functional Requirement: Performance Requirement\\
+  NFR-O & Non-functional Requirement: Operational and Environmental Requirement\\
+  NFR-M & Non-functional Requirement: Maintainability and Support Requirement\\
+  NFR-S & Non-functional Requirement: Security Requirement\\
+  NFR-C & Non-functional Requirement: Cultural Requirement\\
+  NFR-H & Non-functional Requirement: Health and Safety Requirement\\
+  NFR-I & Non-functional Requirement: Installability Requirement\\
   \progname & Explanation of program name\\
   \wss{...} & \wss{...}\\
   \bottomrule
-\end{tabular}\\
+\end{tabular}
+\end{table}
 
 \newpage
 
@@ -85,37 +110,112 @@ This section records information for easy reference.
 
 \section{Introduction}
 
-\wss{Include references to your other documentation}
+% [Include references to your other documentation —SS]
+
+\noindent This document outlines the design and implementation plan for ReSprint's system that would be measuring and analyzing data from thermally treated samples. The main risks identified for the project include insufficient data sampling rates from existing measurement hardware and compatibility issues with the outdated operating system on the control computer. To mitigate these risks, the system will aim to be compatible with newer versions of Windows, be able to read and parse data files, perform extensive calculations, and handle real-time data processing. The project will be developed using C\#\ and the Microsoft Visual Studio environment, with ESLint as the linting tool and MochaJS as the unit testing framework as found in the \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification \&\ Validation Plan}. The system boundaries and components found in the \href{https://github.com/edwin-do/capstoneTeam30/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} document include thermally treated samples, a current source, a temperature sensor, a nanovoltmeter, interfaces between the devices and control computer, the control computer, and the software application installed on the control computer. \\
 
 \section{Purpose}
 
-\wss{Purpose of your design documentation}
+% \wss{Purpose of your design documentation}
 
-\wss{Point to your other design documents}
+% \wss{Point to your other design documents}
+
+\noindent The purpose of the system design document for this project is to provide a detailed and comprehensive plan for the design and implementation of the hardware and electrical components of the project, following the successful completion of the proof of concept demonstration. As outlined in the \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{Software Requirements and Specification} document, this document will add details to the technical requirements and constraints of the system, including any necessary measurements and interfaces as mentioned in the \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} document. The document will serve as a guide for the development team in terms of the technical aspects of the project, including the necessary hardware and electrical components, and also acts as a reference for stakeholders, including any regulatory bodies, to understand the technical details of the project and ensure compliance with the \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} documentation. This document will be essential for the proper planning, development, and implementation of the hardware and electrical components of the project. \\
 
 \section{Scope}
 
-\wss{Include a figure that show the System Context (showing the boundary between
-your system and the environment around it.)}
+% \wss{Include a figure that show the System Context (showing the boundary between your system and the environment around it.)}
+
+\noindent The scope of this document includes a comprehensive design plan for the hardware and electrical components of the project. It covers the purpose and scope of the project, an overview of the normal behavior and handling of undesired events, a component diagram, and a connection between requirements and design. The document also includes details on the system variables, including monitored, controlled, and constant variables, as well as the design of the user interfaces. Additionally, the document covers the design of the hardware, electrical components, and communication protocols, with a timeline for the project, and appendices on the interface, hardware, electrical components, communication protocols, and reflection on the project. Overall, the scope of the document is to provide a detailed and technical guide for the development team and a reference for stakeholders to understand the technical aspects of the project and ensure proper planning, development and implementation of the hardware and electrical components of the project. \\
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.6]{ScopeDiagram.png}}
+\caption{System Context Diagram}
+\label{fig}
+\end{figure}
 
 \section{Project Overview}
 
 \subsection{Normal Behaviour}
 
+\noindent The normal behavior and operation of the system refers to how the system is expected to function under normal operating conditions. This includes the system's ability to collect, process, and analyze data from thermally treated samples using the existing hardware, such as the nanovoltmeter, current source, and temperature sensor. The system should also be able to communicate with these devices using the appropriate communication protocols and interfaces, and handle any data synchronization issues. Additionally, the system should be able to perform basic calculations on the data and display it in an easy-to-understand format for the user. The system should also be able to handle real-time data processing, allowing for real-time monitoring of the samples. Overall, the normal behavior of the system is to provide accurate and reliable data analysis of thermally treated samples in real-time, allowing the user to make informed decisions based on the data provided. \\
+
 \subsection{Undesired Event Handling}
 
-\wss{How you will approach undesired events}
+% \wss{How you will approach undesired events}
 
+\noindent In the event of an unexpected occurrence, the application should quickly transition to a safe state to prevent the acceptance of any invalid data by the system. This will avoid additional errors when the user accesses or alters corrupted or incorrect data. To ensure that all of the measurements expected are retrieved, the system shall make sure to notify the user to double-check the measurement devices and connectivity in case of failure. This approach will ensure that the system remains reliable and provides accurate data to the user. \\
+
+\begin{landscape}
 \subsection{Component Diagram}
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.5]{ComponentDiagram.png}}
+\caption{Component Diagram}
+\label{fig}
+\end{figure}
+\end{landscape}
 
 \subsection{Connection Between Requirements and Design} \label{SecConnection}
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+% \wss{The intention of this section is to document decisions that are made
+%  ``between'' the requirements and the design.  To satisfy some requirements,
+%  design decisions need to be made.  Rather than make these decisions implicit,
+%  they are explicitly recorded here.  For instance, if a program has security
+%  requirements, a specific design decision may be made to satisfy those
+%  requirements with a password.}
+
+\begin{table}[H]
+	\centering
+	\caption{Connection Between Requirements and Design}
+	\label{my-label}
+	\begin{tabular}{p{0.175\textwidth} p{0.8\textwidth}}
+		\hline
+		\textbf{\href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{Requirements}} & \textbf{Design Decisions} \\ \hline
+		FR1 & All software modules except the Remote Access module are used to satisfy this requirement along with the use of all hardware components \\ \hline
+		FR2 & Current State, and Output Communication modules contribute to this requirement \\ \hline
+		FR3 & Input Communication module and the use of a GPIB serial communication device shall control the sampling rate \\ \hline
+		FR4 & In addition to the modules mentioned for FR2, the Graphical Output module would contribute to this requirement \\ \hline
+		FR5 & The Remote Access module is responsible for satisfying this requirement \\ \hline
+		NFR-L1 & NF-AT1 \\ \hline
+		NFR-L2 & NF-AT2 \\ \hline
+		NFR-U1 & NF-UT1 \\ \hline
+		NFR-U2 & NF-UT2 \\ \hline
+		NFR-U3 & NF-UT3 \\ \hline
+	    NFR-U4 & NF-UT4 \\ \hline
+	    NFR-U5 & NF-UT5\\ \hline
+	    NFR-U6 & NF-UT6 \\ \hline
+	    NFR-U7 & NF-UT7 \\ \hline
+	    NFR-P1 & NF-PT1 \\ \hline
+	    NFR-P2 & NF-PT2 \\ \hline
+	    NFR-P3 & NF-PT3 \\ \hline
+	    NFR-P4 & NF-PT4 \\ \hline
+	    NFR-P5 & NF-PT5 \\ \hline
+	    NFR-O1 & NF-OT1 \\ \hline
+	    NFR-O2 & NF-OT2 \\ \hline
+	    NFR-O3 & N/A \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Connection Between Requirements and Design Continued}
+	\label{my-label}
+	\begin{tabular}{p{0.175\textwidth} p{0.8\textwidth}}
+		\hline
+		\textbf{\href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{Requirements}} & \textbf{Design Decisions} \\ \hline
+         NFR-M1 & N/A \\ \hline
+	    NFR-M2 & NF-MT1 \\ \hline
+	    NFR-M3 & NF-MT1 \\ \hline
+	    NFR-S1 & NF-ST1 \\ \hline
+	    NFR-S2 & NF-ST2 \\ \hline
+	    NFR-C1 & NF-CT1 \\ \hline
+	    NFR-H1 & NF-HT1 \\ \hline
+	    NFR-H2 & NF-HT1 \\ \hline
+	    NFR-I1 & NF-MT1 \\ \hline
+	\end{tabular}
+\end{table}
+
+\newpage
 
 \section{System Variables}
 
@@ -134,10 +234,23 @@ needed. Drawings, Sketches, Figma}
 
 \section{Design of Hardware}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+% \wss{Most relevant for mechatronics projects}
+% \wss{Show what will be acquired}
+% \wss{Show what will be built, with detail on fabrication and materials}
+% \wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+
+\noindent For this project, we are provided with all of the hardware. Starting with the thermally treated samples, these will be provided by the user and/or Dr. Zurob. The lab is responsible for providing them as they are specific materials that are treated with equipment outside of the scope of our project. The measurement devices along with the current source and the serial communication module are also provided by the lab as the following: 
+
+  \begin{itemize}
+    \item Nano-Voltmeter: Keithley 2182A
+    \item Multimeter: Hewlett-Packard 3478A
+    \item Precision Current Source: Keithley 6220
+    \item Serial Communication Module: National Instruments PCI-GPIB IEEE 488.2 Instrument Control Device
+  \end{itemize}
+
+\noindent Reference photos of listed components can be found in \hyperref[Apx.HWC]{Appendix B}. \\
+
+\noindent We are also provided with the control (lab) computer, which has the PCI-GPIB communication card built in. This computer was upgraded with additional RAM memory and an SSD storage by our mechatronics engineers. Further upgrades would be possible, such as the addition of a Wi-Fi card in case the lab does not provide continuous Ethernet connection to the internet. \\
 
 \section{Design of Electrical Components}
 
@@ -168,6 +281,31 @@ circuit diagrams, etc}
 interaction with, the user interface}
 
 \section{Mechanical Hardware}
+\label{Apx.HWC}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.5]{1.jpg}}
+\caption{Nano-Voltmeter: Keithley 2182A}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=1]{2.jpg}}
+\caption{Multimeter: Hewlett-Packard 3478A}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.5]{3.jpg}}
+\caption{Precision Current Source: Keithley 6220}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.25]{4.png}}
+\caption{National Instruments PCI-GPIB IEEE 488.2 Instrument Control Device}
+\label{fig}
+\end{figure}
 
 \section{Electrical Components}
 
@@ -186,5 +324,6 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   design?  From all the potential options, why did you select documented design?
   (LO\_Explores)
 \end{enumerate}
+
 
 \end{document}
