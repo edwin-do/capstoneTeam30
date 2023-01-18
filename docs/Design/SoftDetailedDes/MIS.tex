@@ -417,6 +417,77 @@ verifySampleData \ne TRUE \\
 N/A
 \newpage
 
+
+\section{MIS of HardwareInputValidation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\subsection{Module}
+
+HardwareInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getHardwareInput() & - & ADT & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+More Here
+
+\subsubsection{Access Routine Semantics}
+
+\noindent validateParameters(Voltage, Time, Current):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Voltage < 0 \lor \\
+Time < 0 \lor Current < 0 \\
+\Rightarrow INVALID$
+\end{itemize}
+
+\noindent getHardwareInput():
+\begin{itemize}
+\item output: out:= HardwareInput
+\item exception: $exc:= 
+validateParameters \ne TRUE \
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+N/A
+\newpage
+
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
 
