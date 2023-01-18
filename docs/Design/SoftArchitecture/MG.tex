@@ -251,19 +251,32 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Communication Module}
 
+\paragraph{Input Communication Module (\mref{mInput})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
+\item[Secrets:]The format and structure of the input data (temperature, etc.)
 \item[Services:]Converts the input data into the data structure used by the
   input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Implemented By:] Communication.cs
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\paragraph{Output Communication Module (\mref{mInput})}
+\begin{description}
+\item[Secrets:]The format and structure of the output data.
+\item[Services:]Converts the output data into the data structure used by the output parameters module. 
+\item[Implemented By:] Communication.cs
+\item[Type of Module:] Abstract Data Type
+\end{description}
 
+\paragraph{Remote Access Module (\mref{mInput})}
+\begin{description}
+\item[Secrets:]The implementation and algorithm of remote access. Login info and other credentials required for remote connection.
+\item[Services:]Remote acces to the application for the user.
+\item[Implemented By:] RemoteAccess.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
 
 \subsection{Software Decision Module}
 
