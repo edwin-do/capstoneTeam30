@@ -315,7 +315,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Implemented By:] -
 \end{description}
 
-\paragraph{Resistivity Module}
+\paragraph{Resistivity Module(\mref{mCalc})}
 \begin{description}
   \item[Secrets:] The mathematical equation for calculating resistivity.
   \item[Services:]Solve the equation and return the result.
@@ -323,7 +323,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Resistance Module}
+\paragraph{Resistance Module(\mref{mCalc})}
 \begin{description}
   \item[Secrets:] The mathematical equation for calculating resistance.
   \item[Services:]Solve the equation and return the result.
@@ -331,6 +331,28 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
+\subsubsection{Validation Module}
+\begin{description}
+  \item[Secrets:] Validation criteria for various input streams.
+  \item[Services:]Validates the correctness of provided input from the given stream.
+  \item[Implemented By:] -
+\end{description}
+
+\paragraph{User Input Validation Module (\mref{mVal})}
+\begin{description}
+  \item[Secrets:] The mathematical equation for calculating resistivity.
+  \item[Services:] Validates the input from the user.
+  \item[Implemented By:] UserValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{Hardware Input Validation Module(\mref{mVal})}
+\begin{description}
+  \item[Secrets:] The mathematical equation for calculating resistance.
+  \item[Services:] Validates the input from the hardware.
+  \item[Implemented By:] HardwareValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
