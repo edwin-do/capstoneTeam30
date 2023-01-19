@@ -57,6 +57,8 @@ Jan 17, 2023 & Timothy Chen & Added Modules to Module Decomposition\\
 Jan 18, 2023 & Timothy Chen & Added Current State Module \\
 Jan 18, 2023 & Timothy Chen & Added File Output Module \\
 Jan 18, 2023 & Timothy Chen & Added Graphical Output Module \\
+Jan 18 2023 & Edwin Do & Added MIS info for UserInputValidation, HardwareInputValidation, and Calculation Modules\\
+Jan 18 2023 & Edwin Do & Added state invariants\\
 \bottomrule
 \end{tabularx}
 
@@ -427,6 +429,272 @@ GraphInit() is called before any other access program
 
 N/A
 
+\newpage
+
+
+\section{MIS of Calculation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+\subsection{Module}
+
+Calculation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+getHardwareInput(): HardwareInput \\
+getUserInput(): UserInput
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getResistance() & - & Real & INVALID \\
+getResistivity() & - & Real & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+Resistance : The calculated resistance value (real)\\
+Resistivity : The calculated resistivity value (real) \\
+SampleArea : The calculated area of sample based on the length and width from user's input
+
+\subsubsection{State Invariants}
+
+Resistance $\geq 0$ \\
+Resistivity $\geq 0$ \\
+SampleArea $\geq 0$
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception. This type of programmer error is also 
+captured in the UserInputValidation Module to improve redundancy.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getResistance():
+\begin{itemize}
+\item transition: N/A
+\item output: out:= Resistance
+\item exception: $exc:= Resistance \notin \mathbb{R} \lor Resistance < 0  \Rightarrow INVALID$
+\end{itemize}
+
+\noindent getResistivity():
+\begin{itemize}
+\item transition: N/A
+\item output: out := Resistivity
+\item exception: $exc:= Resistivity \notin \mathbb{R} \lor Resistivity < 0  \Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+findSampleArea(SampleLength, SampleWidth)
+\begin{itemize}
+  \item transition: SampleArea := SampleLength x SampleWidth
+  \end{itemize}
+
+  \noindent calcResistance(voltage, current):
+  \begin{itemize}
+  \item transition: Resistance := voltage/current 
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
+  \end{itemize}
+  
+  \noindent calcResistivity(Resistance, SampleArea, SampleLength):
+  \begin{itemize}
+  \item transition: Resistivity := (resistance x SampleArea)/SampleLength
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
+  \end{itemize}
+\newpage
+
+\section{MIS of UserInputValidation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+
+\subsection{Module}
+
+UserInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getUserInput() & - & ADT (UserInput) & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{State Invariants}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\item exception: $exc:= 
+validateFileData \ne TRUE  \lor\\
+validateSampleData \ne TRUE \\
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+\noindent valdiateFileData(Filename, Date, Name):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Filename.type \ne STRING \lor \\
+Date.type \ne STRING  \lor \\
+Name.type \ne STRING  \\
+\Rightarrow INVALID$
+\end{itemize}
+
+\noindent validateSampleData(SamplingRate, SampleLength, SampleWidth):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+SamplingRate \notin \mathbb{R} \lor SamplingRate < 0 \lor \\
+SampleLength \notin \mathbb{R} \lor SampleLength < 0  \lor \\
+SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
+\Rightarrow INVALID$
+\end{itemize}
+\newpage
+
+
+\section{MIS of HardwareInputValidation Module} \label{Module} \wss{Use labels for
+  cross-referencing}
+
+\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
+
+\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\subsection{Module}
+
+HardwareInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getHardwareInput() & - & ADT (HardwareInput) & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{State Invariants}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getHardwareInput():
+\begin{itemize}
+\item output: out:= HardwareInput
+\item exception: $exc:= 
+validateParameters \ne TRUE \
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+\noindent validateParameters(Voltage, Time, Current):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Voltage < 0 \lor \\
+Time < 0 \lor Current < 0 \\
+\Rightarrow INVALID$
+\end{itemize}
 \newpage
 
 \bibliographystyle {plainnat}
