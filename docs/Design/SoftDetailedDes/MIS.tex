@@ -292,24 +292,6 @@ captured in the UserInputValidation Module to improve redundancy.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent calcResistance(voltage, current):
-\begin{itemize}
-\item transition: Resistance := voltage/current 
-\item exception: $exc:= \\ 
-voltage \notin \mathbb{R} \lor voltage < 0 \\ 
-\lor current \notin \mathbb{R} \lor current < 0\\
- \Rightarrow INVALID$
-\end{itemize}
-
-\noindent calcResistivity(Resistance, SampleArea, SampleLength):
-\begin{itemize}
-\item transition: Resistance := voltage/current 
-\item exception: $exc:= \\ 
-voltage \notin \mathbb{R} \lor voltage < 0 \\ 
-\lor current \notin \mathbb{R} \lor current < 0\\
- \Rightarrow INVALID$
-\end{itemize}
-
 \noindent getResistance():
 \begin{itemize}
 \item transition: N/A
@@ -327,9 +309,27 @@ voltage \notin \mathbb{R} \lor voltage < 0 \\
 
 \subsubsection{Local Functions}
 
-FindSampleArea(SampleLength, SampleWidth)
+findSampleArea(SampleLength, SampleWidth)
 \begin{itemize}
   \item transition: SampleArea := SampleLength x SampleWidth
+  \end{itemize}
+
+  \noindent calcResistance(voltage, current):
+  \begin{itemize}
+  \item transition: Resistance := voltage/current 
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
+  \end{itemize}
+  
+  \noindent calcResistivity(Resistance, SampleArea, SampleLength):
+  \begin{itemize}
+  \item transition: Resistivity := (resistance x SampleArea)/SampleLength
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
   \end{itemize}
 \newpage
 
@@ -359,11 +359,11 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getUserInput() & - & ADT & INVALID \\
+getUserInput() & - & ADT (UserInput) & INVALID \\
 \hline
 \end{tabular}
 \end{center}
@@ -378,12 +378,23 @@ N/A
 N/A
 
 \subsubsection{Assumptions}
-
-More Here
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent verifyFileData(Filename, Date, Name):
+\noindent getUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\item exception: $exc:= 
+validateFileData \ne TRUE  \lor\\
+validateSampleData \ne TRUE \\
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+\noindent valdiateFileData(Filename, Date, Name):
 \begin{itemize}
 \item output: out:= TRUE
 \item exception: $exc:= 
@@ -393,7 +404,7 @@ Name.type \ne STRING  \\
 \Rightarrow INVALID$
 \end{itemize}
 
-\noindent verifySampleData(SamplingRate, SampleLength, SampleWidth):
+\noindent validateSampleData(SamplingRate, SampleLength, SampleWidth):
 \begin{itemize}
 \item output: out:= TRUE
 \item exception: $exc:= 
@@ -402,19 +413,6 @@ SampleLength \notin \mathbb{R} \lor SampleLength < 0  \lor \\
 SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
 \Rightarrow INVALID$
 \end{itemize}
-
-\noindent getUserInput():
-\begin{itemize}
-\item output: out:= UserInput
-\item exception: $exc:= 
-verifyFileData \ne TRUE  \lor\\
-verifySampleData \ne TRUE \\
-\Rightarrow INVALID$
-\end{itemize}
-
-
-\subsubsection{Local Functions}
-N/A
 \newpage
 
 
@@ -442,11 +440,11 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getHardwareInput() & - & ADT & INVALID \\
+getHardwareInput() & - & ADT (HardwareInput) & INVALID \\
 \hline
 \end{tabular}
 \end{center}
@@ -461,19 +459,9 @@ N/A
 N/A
 
 \subsubsection{Assumptions}
-
-More Here
+N/A
 
 \subsubsection{Access Routine Semantics}
-
-\noindent validateParameters(Voltage, Time, Current):
-\begin{itemize}
-\item output: out:= TRUE
-\item exception: $exc:= 
-Voltage < 0 \lor \\
-Time < 0 \lor Current < 0 \\
-\Rightarrow INVALID$
-\end{itemize}
 
 \noindent getHardwareInput():
 \begin{itemize}
@@ -485,7 +473,14 @@ validateParameters \ne TRUE \
 
 
 \subsubsection{Local Functions}
-N/A
+\noindent validateParameters(Voltage, Time, Current):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Voltage < 0 \lor \\
+Time < 0 \lor Current < 0 \\
+\Rightarrow INVALID$
+\end{itemize}
 \newpage
 
 \bibliographystyle {plainnat}
