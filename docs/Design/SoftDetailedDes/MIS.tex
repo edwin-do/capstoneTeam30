@@ -160,7 +160,227 @@ The following table is taken directly from the Module Guide document for this pr
 
 \newpage
 ~\newpage
+\section{MIS of Input Communication Module} \label{Module} 
 
+\subsection{Module}
+
+Input Communication Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+UserInput: ( $SamplingRate: real$; $SampleLengthgth: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{5cm} p{1cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+passUserInput() &  & UserInput (ADT) & \\
+passHardwareInput()& & HardwareInput(ADT) & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{State Invariant}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+\subsubsection{Assumptions}
+
+The UserInput and HardwareInput are received correctly and are going to be validated by the validation modules.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent passUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\end{itemize}
+
+\noindent passHardwareInput():
+\begin{itemize}
+\item output: out:= HardwareInput
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\section{MIS of Output Communication Module} \label{Module} 
+
+\subsection{Module}
+
+Output Communication Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+UserInput: ( $SamplingRate: real$; $SampleLengthgth: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+  GetResistivity(): Real\\
+  GetResistance(): Real\\
+  GetUserInput(): UserInput\\
+  GetHardwareInput(): HardwareInput
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{5cm} p{1cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+passUserInput() &  & UserInput (ADT) & \\
+passHardwareInput()& & HardwareInput(ADT) & \\
+passResistivity() & & Real & \\
+passResistance() & & Real & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{State Invariant}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+\subsubsection{Assumptions}
+
+The values have been validated by the validation module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent passUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\end{itemize}
+
+\noindent passHardwareInput():
+\begin{itemize}
+\item output: out:= HardwareInput
+\end{itemize}
+
+\noindent passResistivity():
+\begin{itemize}
+\item output: out:= resisitivity (real)
+\end{itemize}
+
+\noindent passResistance():
+\begin{itemize}
+\item output: out:= resistance (real)
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\section{MIS of Remote Access Module} \label{Module} 
+
+\subsection{Module}
+
+Remote Access Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+userNameInput: string
+passwordInput: string
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{5cm} p{1cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+connect() & string, string & & INVALID \\
+disconnect() & & & \\
+stop() & & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+userName: string
+password: string
+
+\subsubsection{State Invariant}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+\subsubsection{Assumptions}
+connect() is called before any other routine
+
+\subsubsection{Access Routine Semantics}
+\noindent connect():
+\begin{itemize}
+\item transition: Connects to the application and user can view the ApplicationWindow
+\item exception: $exc:= userNameInput \ne userName \lor passwordInput \ne password \Rightarrow INVALID$
+\end{itemize}
+
+\noindent disconnect():
+\begin{itemize}
+\item transition: Display message informing that the user has been disconnected from the application.
+\item exception: none
+\end{itemize}
+
+\noindent stop():
+\begin{itemize}
+\item transition: Display message that the stop was performed.
+\item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent checkUserName(userNameInput):
+\begin{itemize}
+\item output: out := TRUE
+\item exception: none
+\end{itemize}
+
+\noindent checkUserName(passwordInput):
+\begin{itemize}
+\item output: out := TRUE
+\item exception: none
+\end{itemize}
+
+\newpage
 \section{MIS of Current State Module} \label{Module} 
 
 \subsection{Module}
