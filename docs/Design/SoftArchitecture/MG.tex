@@ -44,10 +44,14 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikey Cahnges (4)\\
+Jan 15, 2023 & Timothy & Added Module Hierarchy (5)\\
+Jan 16, 2023 & Edwin Do & Add use hierarchy diagram \\
+Jan 18, 2023 & Edwin Do & Add traceability matrices \\
+Jan 18, 2023 & Tyler Magarelli & Added Module Decomposition \\
+
 \bottomrule
 \end{tabularx}
 
@@ -74,7 +78,6 @@ This section records information for easy reference.
   SRS & Software Requirements Specification\\
   \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -160,8 +163,11 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  input data from the user and hardware.
+\item[\refstepcounter{acnum} \actheacnum \label{acCalculation}:] The number of calculations the application will peform.
+\item[\refstepcounter{acnum} \actheacnum \label{acGraph}:] The number and type of graphs displayed.
+\item[\refstepcounter{acnum} \actheacnum \label{acNumInput}:] The number of inputs the user can provide.
+\item[\refstepcounter{acnum} \actheacnum \label{acValidation}:] The criteria for validing data within the application.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -175,8 +181,9 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen, Measurement Equipment).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucOS}:] Operating system (Windows 10).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucCalculation}:] Calculation equation formulas (Resistance equation and Resistivity equation).
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -188,7 +195,14 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
+\item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGO}:] Graphical Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mC}:] Calculation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Input Validation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHI}:] Hardware Input Validation Module
 \end{description}
 
 
@@ -202,19 +216,18 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& Input Communication Module\\
+& Remote Access Module\\
+& Current State Module\\
+& FileOutput Module\\
+& Graphical Output Module\\ 
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module}
+& Calculation Module\\
+& User Input Validation Module \\
+& Hardware Input Validation Module\\ 
 \bottomrule
 
 \end{tabular}
@@ -229,7 +242,6 @@ the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
 
 \section{Module Decomposition} \label{SecMD}
-
 Modules are decomposed according to the principle of ``information hiding''
 proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
 decomposition is a brief statement of the design decision hidden by the
@@ -239,62 +251,106 @@ implementing software is given under the \emph{Implemented By} title. If the
 entry is \emph{OS}, this means that the module is provided by the operating
 system or by standard programming language libraries.  \emph{\progname{}} means the
 module will be implemented by the \progname{} software.
-
 Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
-
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
+\item[Secrets:]The data structure and algorithm used to implement the hardware.
+\item[Services:]This module provides the interface between the hardware and the
   software. So, the system can use it to display outputs or to accept inputs.
 \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
+\subsubsection{Communication Module}
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+  \item[Secrets:] Format input and output data and manage remote connection communication.
+  \item[Services:]Converts the data into the appropriate data structure used by the
+    input/output parameters module. Controls communication for remote access. 
+  \item[Implemented By:] -
+  \end{description}
+
+\paragraph{Input Communication Module (\mref{mIC})}
+\begin{description}
+\item[Secrets:]The format and structure of the data from user input and hardware input.
+\item[Services:]Converts the input data into the data structure used by other modules.
+\item[Implemented By:] Communication.cs
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\paragraph{Remote Access Module (\mref{mRA})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:]The implementation and algorithm of remote access. Login info and other credentials required for remote connection.
+\item[Services:]Remote acces to the application for the user.
+\item[Implemented By:] RemoteAccess.cs
+\item[Type of Module:] Abstract Object Type
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Display Module}
+\begin{description}
+  \item[Secrets:] Display output data and and other information to the user.
+  \item[Services:]Receives data to be displayed and displays it on the screen for the user to see. 
+  \item[Implemented By:] -
+\end{description}
 
+\paragraph{Current State Module (\mref{mCS})}
+\begin{description}
+\item[Secrets:]The contents of obtaining current system state.
+\item[Services:]Display state of hardware (current temp, current voltage, current sampling rate, etc.)
+\item[Implemented By:] CurrentState.cs
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{File Output Module (\mref{mFO})}
+\begin{description}
+\item[Secrets:]The contents of obtaining correct files for output.
+\item[Services:]Outputs the file the to screen for the user. 
+\item[Implemented By:] FileOutput.cs
+\item[Type of Module:] Record
+\end{description}
+\paragraph{Graphical Output Module (\mref{mGO})}
+\begin{description}
+\item[Secrets:]Obtaining the correct data to produce accurate graphs.
+\item[Services:]Displays the data in a graphical format. 
+\item[Implemented By:] Graph.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
 
 \subsection{Software Decision Module}
 
+\paragraph{Calculation Module (\mref{mC})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+  \item[Secrets:] The mathematical equation for calculating resistivity and resistance.
+  \item[Services:]Solve the equation for resistivity and resistance respectively and return the result.
+  \item[Implemented By:] Calculation.cs 
+  \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Validation Module}
+\begin{description}
+  \item[Secrets:] Validation criteria for various input streams.
+  \item[Services:]Validates the correctness of provided input from the given stream.
+  \item[Implemented By:] -
+\end{description}
+
+\paragraph{User Input Validation Module (\mref{mUI})}
+\begin{description}
+  \item[Secrets:] Validation criteria for user input.
+  \item[Services:] Validates the input from the user.
+  \item[Implemented By:] UserValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{Hardware Input Validation Module(\mref{mHI})}
+\begin{description}
+  \item[Secrets:] Validation criteria for hardware input.
+  \item[Services:] Validates the input from the hardware.
+  \item[Implemented By:] HardwareValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -309,17 +365,11 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{mRA}, \mref{mCS}\\
+R2 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
+R3 & \mref{mIC}\\
+R4 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
+R5 & \mref{mRA}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -333,17 +383,11 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \textbf{AC} & \textbf{Modules}\\
 \midrule
 \acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInput} & \mref{mIC}\\
+\acref{acCalculation} & \mref{mC}\\
+\acref{acGraph} & \mref{mGO}\\
+\acref{acNumInput} & \mref{mIC}\\
+\acref{acValidation} & \mref{mUI}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -363,9 +407,10 @@ the modules. It can be seen that the graph is a directed acyclic graph
 system, and modules in the higher level of the hierarchy are essentially simpler
 because they use modules from the lower levels.
 
+
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
