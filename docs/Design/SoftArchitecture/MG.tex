@@ -44,10 +44,13 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikey Cahnges (4)\\
+Jan 15, 2023 & Timothy & Added Module Hierarchy (5)\\
+Jan 16 2023 & Edwin Do & Add use hierarchy diagram \\
+Jan 18 2023 & Edwin Do & Add traceability matrices \\
+
 \bottomrule
 \end{tabularx}
 
@@ -74,7 +77,6 @@ This section records information for easy reference.
   SRS & Software Requirements Specification\\
   \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -160,8 +162,12 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  input data from the user.
+\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] The format of the output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acCalculation}:] The number of calculations the application will peform.
+\item[\refstepcounter{acnum} \actheacnum \label{acGraph}:] The number and type of graphs displayed.
+\item[\refstepcounter{acnum} \actheacnum \label{acNumInput}:] The number of inputs the user can provide.
+\item[\refstepcounter{acnum} \actheacnum \label{acValidation}:] The criteria for validing data within the application.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -175,8 +181,9 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen, Measurement Equipment).
+\item[\refstepcounter{acnum} \actheacnum \label{ucOS}:] Operating system (Winodws 10).
+\item[\refstepcounter{acnum} \actheacnum \label{ucCalculation}:] Calculation equation formulas (Resistence equation and Resistivity equation).
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -210,19 +217,19 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& Input Cummication Module\\
+& Output Communication Module\\
+& Remote Access Module\\
+& Current State Module\\
+& FileOutput Module\\
+& Graphical Output Module\\ 
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module}
+& Calculation Module\\
+& User Input Validation Module \\
+& Hardware Input Validation Module\\ 
 \bottomrule
 
 \end{tabular}
@@ -358,17 +365,11 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{mRA}, \mref{mCS}\\
+R2 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
+R3 & \mref{mIC}\\
+R4 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
+R5 & \mref{mRA}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -382,17 +383,12 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \textbf{AC} & \textbf{Modules}\\
 \midrule
 \acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInput} & \mref{mIC}\\
+\acref{acOutput} & \mref{mOC}\\
+\acref{acCalculation} & \mref{mC}\\
+\acref{acGraph} & \mref{mGO}\\
+\acref{acNumInput} & \mref{mIC}\\
+\acref{acValidation} & \mref{mUI}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -412,9 +408,10 @@ the modules. It can be seen that the graph is a directed acyclic graph
 system, and modules in the higher level of the hierarchy are essentially simpler
 because they use modules from the lower levels.
 
+
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
