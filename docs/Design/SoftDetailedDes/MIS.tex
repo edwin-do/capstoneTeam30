@@ -55,6 +55,7 @@ urlcolor=cyan          % color of external links
 \midrule
 Date 1 & 1.0 & Notes\\
 Jan 18 2023 & 1.1 & Added MIS info for UserInputValidation, HardwareInputValidation, and Calculation Modules\\
+Jan 18 2023 & 1.2 & Added state invariants\\
 \bottomrule
 \end{tabularx}
 
@@ -280,6 +281,12 @@ Resistance : The calculated resistance value (real)\\
 Resistivity : The calculated resistivity value (real) \\
 SampleArea : The calculated area of sample based on the length and width from user's input
 
+\subsubsection{State Invariants}
+
+Resistance $\geq 0$ \\
+Resistivity $\geq 0$ \\
+SampleArea $\geq 0$
+
 \subsubsection{Environment Variables}
 
 N/A
@@ -373,6 +380,9 @@ getUserInput() & - & ADT (UserInput) & INVALID \\
 \subsubsection{State Variables}
 N/A
 
+\subsubsection{State Invariants}
+N/A
+
 \subsubsection{Environment Variables}
 
 N/A
@@ -452,6 +462,9 @@ getHardwareInput() & - & ADT (HardwareInput) & INVALID \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
+N/A
+
+\subsubsection{State Invariants}
 N/A
 
 \subsubsection{Environment Variables}
