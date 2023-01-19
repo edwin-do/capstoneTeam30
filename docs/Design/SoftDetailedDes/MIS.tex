@@ -59,6 +59,9 @@ Jan 18, 2023 & Timothy Chen & Added File Output Module \\
 Jan 18, 2023 & Timothy Chen & Added Graphical Output Module \\
 Jan 18 2023 & Edwin Do & Added MIS info for UserInputValidation, HardwareInputValidation, and Calculation Modules\\
 Jan 18 2023 & Edwin Do & Added state invariants\\
+Jan 18 2023 & Tyler Magarelli & Added Input Communication Module\\
+Jan 18 2023 & Tyler Magarelli & Added Output Communication Module\\
+Jan 18 2023 & Tyler Magarelli & Added Remote Access Module\\
 \bottomrule
 \end{tabularx}
 
@@ -153,7 +156,164 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 ~\newpage
+\section{MIS of Input Communication Module} \label{IC} 
 
+\subsection{Module}
+
+Input Communication Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+% HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+% UserInput: ( $SamplingRate: real$; $SampleLengthgth: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{2cm} p{5cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getUserInput() & - & UserInput (ADT) & NULL\\ 
+getHardwareInput() & - & HardwareInput (ADT) & NULL\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+SamplingRate: real \\
+SampleLength: real \\
+SampleWidth: real \\
+Filename: string \\ 
+Name: string \\ 
+SampleName: string \\ 
+Date: string \\
+
+\subsubsection{State Invariant}
+
+N/A
+
+\subsubsection{Environment Variables}
+Voltage: real \\
+Time: real \\
+Temperature: real \\
+Current: real 
+
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\item exception: $exc:= userInput == EMPTY \Rightarrow NULL$
+\end{itemize}
+
+\noindent getHardwareInput():
+\begin{itemize}
+  \item output: out:= HardwareInput
+  \item exception: $exc:= HardwareInput == EMPTY \Rightarrow NULL$
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+createUserInput(): 
+\begin{itemize}
+  \item transition: UserInput:= new UserInput($SamplingRate: real$; $SampleLengthgth: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+  \item exception: $exc:= UserInput == EMPTY \Rightarrow NULL$
+\end{itemize}
+
+\noindent{createHardwareInput(): }
+\begin{itemize}
+  \item transition: HardwareInput:= new HardwareInput( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )
+  \item exception: $exc:= HardwareInput == EMPTY \Rightarrow NULL$
+\end{itemize}
+
+\section{MIS of Remote Access Module} \label{Module} 
+
+\subsection{Module}
+
+Remote Access Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+N/A
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{7cm} p{3cm} p{1cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+connect(userName, password) & string, string & - & INVALID \\
+disconnect() & -  & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+userName: string \\
+password: string
+
+\subsubsection{State Invariant}
+
+N/A
+
+\subsubsection{Environment Variables}
+connectionStatus : bool
+
+\subsubsection{Assumptions}
+connect() is called before any other routine
+
+\subsubsection{Access Routine Semantics}
+\noindent connect():
+\begin{itemize}
+\item transition: if userName $\land$ password === EXISTS $\rightarrow$ connectionStatus := TRUE
+\item exception: $exc:= userName \lor password \ne EXISTS \Rightarrow INVALID$
+\end{itemize}
+
+\noindent disconnect():
+\begin{itemize}
+  \item transition: connectionStatus := FALSE
+\item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+% \noindent checkUserName(userNameInput):
+% \begin{itemize}
+% \item output: out := TRUE
+% \item exception: none
+% \end{itemize}
+
+% \noindent checkUserName(passwordInput):
+% \begin{itemize}
+% \item output: out := TRUE
+% \item exception: none
+% \end{itemize}
+
+\newpage
 \section{MIS of Current State Module} \label{CS} 
 
 \subsection{Module}
