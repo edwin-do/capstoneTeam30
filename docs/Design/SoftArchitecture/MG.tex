@@ -188,7 +188,15 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mOC}:] Output Communication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
+\item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGO}:] Graphical Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mC}:] Calculation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Input Validation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHI}:] Hardware Input Validation Module
 \end{description}
 
 
@@ -249,7 +257,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Implemented By:] -
   \end{description}
 
-\paragraph{Input Communication Module (\mref{mInput})}
+\paragraph{Input Communication Module (\mref{mIC})}
 \begin{description}
 \item[Secrets:]The format and structure of the input data (temperature, etc.)
 \item[Services:]Converts the input data into the data structure used by the
@@ -258,7 +266,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Output Communication Module (\mref{mInput})}
+\paragraph{Output Communication Module (\mref{mOC})}
 \begin{description}
 \item[Secrets:]The format and structure of the output data.
 \item[Services:]Converts the output data into the data structure used by the output parameters module. 
@@ -266,7 +274,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Remote Access Module (\mref{mInput})}
+\paragraph{Remote Access Module (\mref{mRA})}
 \begin{description}
 \item[Secrets:]The implementation and algorithm of remote access. Login info and other credentials required for remote connection.
 \item[Services:]Remote acces to the application for the user.
@@ -281,7 +289,7 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Implemented By:] -
 \end{description}
 
-\paragraph{Current State Module (\mref{mOutput})}
+\paragraph{Current State Module (\mref{mCS})}
 \begin{description}
 \item[Secrets:]The contents of obtaining current system state.
 \item[Services:]Display state of hardware (current temp, current voltage, current sampling rate, etc.)
@@ -289,15 +297,14 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Output Module }
-\paragraph{File Output Module (\mref{mOutput})}
+\paragraph{File Output Module (\mref{mFO})}
 \begin{description}
 \item[Secrets:]The contents of obtaining correct files for output.
 \item[Services:]Outputs the file the to screen for the user. 
 \item[Implemented By:] FileOutput.cs
 \item[Type of Module:] Record
 \end{description}
-\paragraph{Graphical Output Module (\mref{mOutput})}
+\paragraph{Graphical Output Module (\mref{mGO})}
 \begin{description}
 \item[Secrets:]Obtaining the correct data to produce accurate graphs.
 \item[Services:]Displays the data in a graphical format. 
@@ -307,26 +314,10 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 
 \subsection{Software Decision Module}
 
-\subsubsection{Calculation Module}
+\paragraph{Calculation Module (\mref{mC})}
 \begin{description}
-  \item[Secrets:] The design decision based on mathematical theorems.
-  \item[Services:]Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user for use in data analysis.
-  \item[Implemented By:] -
-\end{description}
-
-\paragraph{Resistivity Module(\mref{mCalc})}
-\begin{description}
-  \item[Secrets:] The mathematical equation for calculating resistivity.
-  \item[Services:]Solve the equation and return the result.
-  \item[Implemented By:] Calculation.cs 
-  \item[Type of Module:] Abstract Data Type
-\end{description}
-
-\paragraph{Resistance Module(\mref{mCalc})}
-\begin{description}
-  \item[Secrets:] The mathematical equation for calculating resistance.
-  \item[Services:]Solve the equation and return the result.
+  \item[Secrets:] The mathematical equation for calculating resistivity and resistance.
+  \item[Services:]Solve the equation for resistivity and resistance respectively and return the result.
   \item[Implemented By:] Calculation.cs 
   \item[Type of Module:] Abstract Data Type
 \end{description}
@@ -338,17 +329,17 @@ between requirements and modules is listed in Table~\ref{TblRT}.
   \item[Implemented By:] -
 \end{description}
 
-\paragraph{User Input Validation Module (\mref{mVal})}
+\paragraph{User Input Validation Module (\mref{mUI})}
 \begin{description}
-  \item[Secrets:] The mathematical equation for calculating resistivity.
+  \item[Secrets:] Validation criteria for user input.
   \item[Services:] Validates the input from the user.
   \item[Implemented By:] UserValidation.cs 
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Hardware Input Validation Module(\mref{mVal})}
+\paragraph{Hardware Input Validation Module(\mref{mHI})}
 \begin{description}
-  \item[Secrets:] The mathematical equation for calculating resistance.
+  \item[Secrets:] Validation criteria for hardware input.
   \item[Services:] Validates the input from the hardware.
   \item[Implemented By:] HardwareValidation.cs 
   \item[Type of Module:] Abstract Data Type
