@@ -77,7 +77,6 @@ This section records information for easy reference.
   SRS & Software Requirements Specification\\
   \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -196,7 +195,15 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item [\refstepcounter{mnum} \mthemnum \label{mIH}:] Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mOC}:] Output Communication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
+\item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
+\item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mGO}:] Graphical Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mC}:] Calculation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Input Validation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHI}:] Hardware Input Validation Module
 \end{description}
 
 
@@ -238,71 +245,112 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  \emph{\progname{}} means the
-module will be implemented by the \progname{} software.
-
-Only the leaf modules in the hierarchy have to be implemented. If a dash
-(\emph{--}) is shown, this means that the module is not a leaf and will not have
-to be implemented.
-
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
+\item[Secrets:]The data structure and algorithm used to implement the hardware.
+\item[Services:]This module provides the interface between the hardware and the
   software. So, the system can use it to display outputs or to accept inputs.
 \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
+\subsubsection{Communication Module}
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
+  \item[Secrets:] Format input and output data and manage remote connection communication.
+  \item[Services:]Converts the data into the appropriate data structure used by the
+    input/output parameters module. Controls communication for remote access. 
+  \item[Implemented By:] -
+  \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
-
+\paragraph{Input Communication Module (\mref{mIC})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
+\item[Secrets:]The format and structure of the input data (temperature, etc.)
 \item[Services:]Converts the input data into the data structure used by the
   input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Implemented By:] Communication.cs
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\paragraph{Output Communication Module (\mref{mOC})}
+\begin{description}
+\item[Secrets:]The format and structure of the output data.
+\item[Services:]Converts the output data into the data structure used by the output parameters module. 
+\item[Implemented By:] Communication.cs
+\item[Type of Module:] Abstract Data Type
+\end{description}
 
+\paragraph{Remote Access Module (\mref{mRA})}
+\begin{description}
+\item[Secrets:]The implementation and algorithm of remote access. Login info and other credentials required for remote connection.
+\item[Services:]Remote acces to the application for the user.
+\item[Implemented By:] RemoteAccess.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
+
+\subsubsection{Display Module}
+\begin{description}
+  \item[Secrets:] Display output data and and other information to the user.
+  \item[Services:]Receives data to be displayed and displays it on the screen for the user to see. 
+  \item[Implemented By:] -
+\end{description}
+
+\paragraph{Current State Module (\mref{mCS})}
+\begin{description}
+\item[Secrets:]The contents of obtaining current system state.
+\item[Services:]Display state of hardware (current temp, current voltage, current sampling rate, etc.)
+\item[Implemented By:] CurrentState.cs
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{File Output Module (\mref{mFO})}
+\begin{description}
+\item[Secrets:]The contents of obtaining correct files for output.
+\item[Services:]Outputs the file the to screen for the user. 
+\item[Implemented By:] FileOutput.cs
+\item[Type of Module:] Record
+\end{description}
+\paragraph{Graphical Output Module (\mref{mGO})}
+\begin{description}
+\item[Secrets:]Obtaining the correct data to produce accurate graphs.
+\item[Services:]Displays the data in a graphical format. 
+\item[Implemented By:] Graph.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
 
 \subsection{Software Decision Module}
 
+\paragraph{Calculation Module (\mref{mC})}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+  \item[Secrets:] The mathematical equation for calculating resistivity and resistance.
+  \item[Services:]Solve the equation for resistivity and resistance respectively and return the result.
+  \item[Implemented By:] Calculation.cs 
+  \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Validation Module}
+\begin{description}
+  \item[Secrets:] Validation criteria for various input streams.
+  \item[Services:]Validates the correctness of provided input from the given stream.
+  \item[Implemented By:] -
+\end{description}
+
+\paragraph{User Input Validation Module (\mref{mUI})}
+\begin{description}
+  \item[Secrets:] Validation criteria for user input.
+  \item[Services:] Validates the input from the user.
+  \item[Implemented By:] UserValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\paragraph{Hardware Input Validation Module(\mref{mHI})}
+\begin{description}
+  \item[Secrets:] Validation criteria for hardware input.
+  \item[Services:] Validates the input from the hardware.
+  \item[Implemented By:] HardwareValidation.cs 
+  \item[Type of Module:] Abstract Data Type
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -318,9 +366,9 @@ requirements and between the modules and the anticipated changes.
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
 R1 & \mref{mRA}, \mref{mCS}\\
-R2 & \mref{mFO}, \mref{GO}, \mref{mC}\\
+R2 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
 R3 & \mref{mIC}\\
-R4 & \mref{mFO}, \mref{GO}, \mref{mC}\\
+R4 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
 R5 & \mref{mRA}\\
 \bottomrule
 \end{tabular}
