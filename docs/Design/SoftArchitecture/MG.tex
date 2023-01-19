@@ -163,8 +163,7 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  input data from the user.
-\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] The format of the output data.
+  input data from the user and hardware.
 \item[\refstepcounter{acnum} \actheacnum \label{acCalculation}:] The number of calculations the application will peform.
 \item[\refstepcounter{acnum} \actheacnum \label{acGraph}:] The number and type of graphs displayed.
 \item[\refstepcounter{acnum} \actheacnum \label{acNumInput}:] The number of inputs the user can provide.
@@ -197,7 +196,6 @@ actually be implemented.
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mOC}:] Output Communication Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
 \item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
 \item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
@@ -220,7 +218,6 @@ actually be implemented.
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Input Cummication Module\\
-& Output Communication Module\\
 & Remote Access Module\\
 & Current State Module\\
 & FileOutput Module\\
@@ -278,17 +275,8 @@ to be implemented.
 
 \paragraph{Input Communication Module (\mref{mIC})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data (temperature, etc.)
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] Communication.cs
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-\paragraph{Output Communication Module (\mref{mOC})}
-\begin{description}
-\item[Secrets:]The format and structure of the output data.
-\item[Services:]Converts the output data into the data structure used by the output parameters module. 
+\item[Secrets:]The format and structure of the data from user input and hardware input.
+\item[Services:]Converts the input data into the data structure used by other modules.
 \item[Implemented By:] Communication.cs
 \item[Type of Module:] Abstract Data Type
 \end{description}
@@ -396,7 +384,6 @@ R5 & \mref{mRA}\\
 \midrule
 \acref{acHardware} & \mref{mHH}\\
 \acref{acInput} & \mref{mIC}\\
-\acref{acOutput} & \mref{mOC}\\
 \acref{acCalculation} & \mref{mC}\\
 \acref{acGraph} & \mref{mGO}\\
 \acref{acNumInput} & \mref{mIC}\\
