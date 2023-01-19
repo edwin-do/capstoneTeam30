@@ -51,7 +51,7 @@ urlcolor=cyan          % color of external links
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Name} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes}\\
 \midrule
 Jan 17, 2023 & Timothy Chen & Added Modules to Module Decomposition\\
 Jan 18, 2023 & Timothy Chen & Added Current State Module \\
@@ -66,9 +66,9 @@ Jan 18 2023 & Edwin Do & Added state invariants\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{here}.
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+% \wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -80,12 +80,9 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+\noindent The following document details the Module Interface Specifications for Measuring Microstructure Changes During Thermal Treatment. This project will allow the Materials Engineering lab at McMaster University, led by Dr. Zurob, to use a software capable of providing data on thermally treated metals. The data includes measurements of resistivity of the material as well as graphical representations and analysis. \\
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+\noindent Complementary documents include the System Requirement Specifications and Module Guide. The full documentation and implementation can be found at our \href{https://github.com/edwin-do/capstoneTeam30}{GitHub repository}.
 
 \section{Notation}
 
@@ -159,7 +156,6 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of Current State Module} \label{CS} 
 
@@ -432,11 +428,7 @@ N/A
 \newpage
 
 
-\section{MIS of Calculation Module} \label{C}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of Calculation Module} \label{Module} 
 
 \subsection{Module}
 
@@ -540,12 +532,9 @@ findSampleArea(SampleLength, SampleWidth)
   \end{itemize}
 \newpage
 
-\section{MIS of UserInputValidation Module} \label{UI} \wss{Use labels for
-  cross-referencing}
+\section{MIS of UserInputValidation Module} \label{Module} 
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
 
 \subsection{Module}
 
@@ -626,12 +615,7 @@ SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
 \newpage
 
 
-\section{MIS of HardwareInputValidation Module} \label{HI} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of HardwareInputValidation Module} \label{Module}
 \subsection{Module}
 
 HardwareInputValidation
