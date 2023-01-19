@@ -51,7 +51,7 @@ urlcolor=cyan          % color of external links
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Name} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes}\\
 \midrule
 Jan 17, 2023 & Timothy Chen & Added Modules to Module Decomposition\\
 Jan 18, 2023 & Timothy Chen & Added Current State Module \\
@@ -69,9 +69,9 @@ Jan 18 2023 & Tyler Magarelli & Added Remote Access Module\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{here}.
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+% \wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -83,17 +83,11 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+\noindent The following document details the Module Interface Specifications for Measuring Microstructure Changes During Thermal Treatment. This project will allow the Materials Engineering lab at McMaster University, led by Dr. Zurob, to use a software capable of providing data on thermally treated metals. The data includes measurements of resistivity of the material as well as graphical representations and analysis. \\
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+\noindent Complementary documents include the System Requirement Specifications and Module Guide. The full documentation and implementation can be found at our \href{https://github.com/edwin-do/capstoneTeam30}{GitHub repository}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -142,18 +136,18 @@ The following table is taken directly from the Module Guide document for this pr
 \midrule
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding}
-& Input Communication Module\\
-& Output Communication Module\\
-& Remote Access Module\\
-& Current State Module\\ 
-& FileOutput Module\\
-& Graphical Output Module\\
+& Input Communication Module (\ref{IC})\\
+& Output Communication Module (\ref{OC})\\
+& Remote Access Module (\ref{RA})\\
+& Current State Module (\ref{CS})\\ 
+& FileOutput Module (\ref{FO})\\
+& Graphical Output Module (\ref{GO})\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision} 
-& Calculation Module\\
-& User Input Validation Module \\
-& Hardware Input Validation Module \\
+& Calculation Module (\ref{C})\\
+& User Input Validation Module (\ref{UI})\\
+& Hardware Input Validation Module (\ref{HI})\\
 \bottomrule
 
 \end{tabular}
@@ -161,7 +155,6 @@ The following table is taken directly from the Module Guide document for this pr
 \label{TblMH}
 \end{table}
 
-\newpage
 ~\newpage
 \section{MIS of Input Communication Module} \label{IC} 
 
@@ -321,7 +314,7 @@ N/A
 % \end{itemize}
 
 \newpage
-\section{MIS of Current State Module} \label{Module} 
+\section{MIS of Current State Module} \label{CS} 
 
 \subsection{Module}
 
@@ -402,7 +395,7 @@ N/A
 
 \newpage
 
-\section{MIS of FileOutput Module} \label{Module} 
+\section{MIS of FileOutput Module} \label{FO} 
 
 \subsection{Module}
 
@@ -484,7 +477,7 @@ N/A
 
 \newpage
 
-\section{MIS of Graphical Output Module} \label{Module} 
+\section{MIS of Graphical Output Module} \label{GO} 
 
 \subsection{Module}
 
@@ -592,12 +585,7 @@ N/A
 \newpage
 
 
-\section{MIS of Calculation Module} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of Calculation Module} \label{C} 
 
 \subsection{Module}
 
@@ -701,12 +689,9 @@ findSampleArea(SampleLength, SampleWidth)
   \end{itemize}
 \newpage
 
-\section{MIS of UserInputValidation Module} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of UserInputValidation Module} \label{UI} 
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
 
 \subsection{Module}
 
@@ -787,12 +772,7 @@ SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
 \newpage
 
 
-\section{MIS of HardwareInputValidation Module} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of HardwareInputValidation Module} \label{HI}
 \subsection{Module}
 
 HardwareInputValidation
@@ -863,7 +843,5 @@ Time < 0 \lor Current < 0 \\
 \newpage
 
 \section{Appendix} \label{Appendix}
-
-\wss{Extra information if required}
 
 \end{document}

@@ -48,8 +48,9 @@
 \midrule
 Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikey Cahnges (4)\\
 Jan 15, 2023 & Timothy & Added Module Hierarchy (5)\\
-Jan 16 2023 & Edwin Do & Add use hierarchy diagram \\
-Jan 18 2023 & Edwin Do & Add traceability matrices \\
+Jan 16, 2023 & Edwin Do & Add use hierarchy diagram \\
+Jan 18, 2023 & Edwin Do & Add traceability matrices \\
+Jan 18, 2023 & Tyler Magarelli & Added Module Decomposition \\
 
 \bottomrule
 \end{tabularx}
@@ -162,8 +163,7 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  input data from the user.
-\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] The format of the output data.
+  input data from the user and hardware.
 \item[\refstepcounter{acnum} \actheacnum \label{acCalculation}:] The number of calculations the application will peform.
 \item[\refstepcounter{acnum} \actheacnum \label{acGraph}:] The number and type of graphs displayed.
 \item[\refstepcounter{acnum} \actheacnum \label{acNumInput}:] The number of inputs the user can provide.
@@ -196,7 +196,6 @@ actually be implemented.
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mOC}:] Output Communication Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
 \item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
 \item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
@@ -219,7 +218,6 @@ actually be implemented.
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Input Cummication Module\\
-& Output Communication Module\\
 & Remote Access Module\\
 & Current State Module\\
 & FileOutput Module\\
@@ -244,7 +242,18 @@ the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
 
 \section{Module Decomposition} \label{SecMD}
-
+Modules are decomposed according to the principle of ``information hiding''
+proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
+decomposition is a brief statement of the design decision hidden by the
+module. The \emph{Services} field specifies \emph{what} the module will do
+without documenting \emph{how} to do it. For each module, a suggestion for the
+implementing software is given under the \emph{Implemented By} title. If the
+entry is \emph{OS}, this means that the module is provided by the operating
+system or by standard programming language libraries.  \emph{\progname{}} means the
+module will be implemented by the \progname{} software.
+Only the leaf modules in the hierarchy have to be implemented. If a dash
+(\emph{--}) is shown, this means that the module is not a leaf and will not have
+to be implemented.
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
@@ -266,17 +275,8 @@ between requirements and modules is listed in Table~\ref{TblRT}.
 
 \paragraph{Input Communication Module (\mref{mIC})}
 \begin{description}
-\item[Secrets:]The format and structure of the input data (temperature, etc.)
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] Communication.cs
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-\paragraph{Output Communication Module (\mref{mOC})}
-\begin{description}
-\item[Secrets:]The format and structure of the output data.
-\item[Services:]Converts the output data into the data structure used by the output parameters module. 
+\item[Secrets:]The format and structure of the data from user input and hardware input.
+\item[Services:]Converts the input data into the data structure used by other modules.
 \item[Implemented By:] Communication.cs
 \item[Type of Module:] Abstract Data Type
 \end{description}
@@ -384,7 +384,6 @@ R5 & \mref{mRA}\\
 \midrule
 \acref{acHardware} & \mref{mHH}\\
 \acref{acInput} & \mref{mIC}\\
-\acref{acOutput} & \mref{mOC}\\
 \acref{acCalculation} & \mref{mC}\\
 \acref{acGraph} & \mref{mGO}\\
 \acref{acNumInput} & \mref{mIC}\\
