@@ -50,10 +50,15 @@ urlcolor=cyan          % color of external links
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{2.5cm}p{2.5cm}X}
-\toprule {\bf Date} & {\bf Developer(s)} & {\bf Notes/Changes}\\
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes}\\
 \midrule
-Jan 18 2023 & Abdul Nour & Added Introduction (3) \\
+Jan 17, 2023 & Timothy Chen & Added Modules to Module Decomposition\\
+Jan 18, 2023 & Timothy Chen & Added Current State Module \\
+Jan 18, 2023 & Timothy Chen & Added File Output Module \\
+Jan 18, 2023 & Timothy Chen & Added Graphical Output Module \\
+Jan 18 2023 & Edwin Do & Added MIS info for UserInputValidation, HardwareInputValidation, and Calculation Modules\\
+Jan 18 2023 & Edwin Do & Added state invariants\\
 \bottomrule
 \end{tabularx}
 
@@ -61,9 +66,9 @@ Jan 18 2023 & Abdul Nour & Added Introduction (3) \\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation at \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{here}.
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+% \wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -130,18 +135,19 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding}
+& Input Communication Module\\
+& Output Communication Module\\
+& Remote Access Module\\
+& Current State Module\\ 
+& FileOutput Module\\
+& Graphical Output Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision} 
+& Calculation Module\\
+& User Input Validation Module \\
+& Hardware Input Validation Module \\
 \bottomrule
 
 \end{tabular}
@@ -150,34 +156,41 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of Current State Module} \label{Module} 
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Current State Module
 
 \subsection{Uses}
+
+\subsubsection{Imported Types}
+
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+UserInput: ( $SamplingRate: real$; $SampleLengthgth: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+
+GetUserInput(): UserInput\\
+GetHardwareInput(): HardwareInput\\ 
 
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
+N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{5cm} p{5cm} p{1cm} p{3cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+StateInit() & &  &  \\
+DisplayUserInfo() & string, string, string, string, real, real, real &  & INVALID \\
+DisplayHardwareState() & real, real, real, real&  & INVALID \\
 \hline
 \end{tabular}
 \end{center}
@@ -186,43 +199,485 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+N/A
+
+\subsubsection{State Invariant}
+
+N/A
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+ApplicationWindow: the screen inferface where the information displayed to the user
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+StateInit() is called before any other access program
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent StateInit():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: State Display is initialized on ApplicationWindow
+\item exception: none
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent DisplayUserInfo(Name, SampleName, Date, Filename, SamplingRate, SampleLength, SampleWidth):
+\begin{itemize}
+\item transition: Display Name, SampleName Date, Filename, SamplingRate, SampleLength, and SampleWidth on the ApplicationWindow
+\item exception: $exc:= SamplingRate \notin \mathbb{R} \lor SamplingRate < 0 \lor SampleLength \notin \mathbb{R} \lor SampleLength < 0 \lor SampleWidth \notin \mathbb{R} \lor SampleWidth < 0 \Rightarrow INVALID$
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent DisplayHardwareState(Voltage, Current, Time, Temperature):
+\begin{itemize}
+\item transition: Display Voltage, Current, and Time on the ApplicationWindow
+\item exception: $exc:= Voltage \notin  \mathbb{R} \lor Voltage < 0 \lor  Current \notin  \mathbb{R} \lor Current < 0 \lor  Time \notin  \mathbb{R} \lor Time < 0 \lor  Temperature \notin  \mathbb{R} \Rightarrow INVALID$
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+
+\section{MIS of FileOutput Module} \label{Module} 
+
+\subsection{Module}
+
+FileOutput Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+UserInput: ( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$ $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+  GetResistivity(): Real\\
+  GetResistance(): Real\\
+  GetUserInput(): UserInput\\
+  GetHardwareInput(): HardwareInput
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{6cm} p{2cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+FileInit() & &  &  \\
+WriteUserInput() & string, string, string, real real, real&  & INVALID \\
+WriteSampleOutput()& real, real, real, real, real, real & record & INVALID \\
+
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+\subsubsection{State Invariant}
+
+N/A
+\subsubsection{Environment Variables}
+
+OutputFile: a file used to store data such as the user inputs and hardware outputs
+
+\subsubsection{Assumptions}
+
+FileInit() is called before any other access program. 
+
+\subsubsection{Access Routine Semantics}
+
+\noindent FileInit():
+\begin{itemize}
+\item transition: Initializes an empty file
+\item exception: none
+\end{itemize}
+
+\noindent WriteUserInput(Name, SampleName, Date, SamplingRate, SampleLength, SampleWidth):
+\begin{itemize}
+\item transition: Write user input into the first line of the OutputFile 
+\item exception: $exc:= SamplingRate \notin \mathbb{R} \lor SamplingRate < 0 \lor SampleLength \notin \mathbb{R} \lor SampleLength < 0 lor SampleWidth \notin \mathbb{R} \lor SampleWidth < 0 \Rightarrow INVALID$
+\end{itemize}
+
+\noindent WriteSampleOutput(Time, Temperature, Voltage, Current, Resistance, Resistivity):
+\begin{itemize}
+\item transition: Write each data set into the OutputFile at each time interval
+\item exception: $exc:= Time \notin  \mathbb{R} \lor Time < 0 \lor  Temperature \notin  \mathbb{R} \lor Voltage < 0 \lor  Voltage \notin  \mathbb{R} \lor Current < 0 \lor  Current \notin  \mathbb{R} \lor Resistance < 0 \lor  Resistance \notin  \mathbb{R} \lor Resistivity < 0\lor  Resistance \notin  \mathbb{R} \lor Resistivity < 0\Rightarrow INVALID$
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
 
+\newpage
+
+\section{MIS of Graphical Output Module} \label{Module} 
+
+\subsection{Module}
+
+File Output Module
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+HardwareInput: ( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+
+\subsubsection{Imported Access Programs}
+
+  GetResistivity(): Real
+  GetResistance(): Real
+  GetHardwareInput(): HardwareInput
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{6cm} p{2cm} p{2cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GraphInit() & &  &  \\
+GraphTimeVResistance() & real, real &  & INVALID \\
+GraphTimeVResistivity() & real, real &  & INVALID \\
+GraphVoltageVResistence() & real, real &  & INVALID \\
+GraphVoltageVResistivity() & real, real &  & INVALID \\
+GraphTemperatureVResistence() & real, real &  & INVALID \\
+GraphTemperatureVResistivity() & real, real &  & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{State Invariant}
+
+N/A
+\subsubsection{Environment Variables}
+
+ApplicationWindow: the screen inferface where the information displayed to the user
+
+\subsubsection{Assumptions}
+
+GraphInit() is called before any other access program
+
+\subsubsection{Access Routine Semantics}
+
+\noindent GraphInit():
+\begin{itemize}
+\item transition: Graph is initialized on ApplicationWindow
+\item exception: none
+\end{itemize}
+
+\noindent GraphTimeVResistance(Time, Resistance):
+\begin{itemize}
+\item transition: Disaply graph of Time versus Resistance on ApplicationWindow 
+\item exception: $exc:= Time \notin  \mathbb{R} \lor Time < 0 \lor  Resistance \notin  \mathbb{R} \lor Resistance < 0\Rightarrow INVALID$
+\end{itemize}
+
+\noindent GraphTimeVResistivity(Time, Resistivity):
+\begin{itemize}
+\item transition: Display graph of Time versus Resistivity on ApplicationWindow
+\item exception: $exc:= Time \notin  \mathbb{R} \lor Time < 0 \lor  Resistivity \notin  \mathbb{R} \lor Resistivity < 0\Rightarrow INVALID$
+\end{itemize}
+
+\noindent GraphVoltageVResistance(Voltage, Resistance):
+\begin{itemize}
+\item transition: Display graph of Voltage versus Resistance on ApplicationWindow
+\item exception: $exc:= Voltage\notin  \mathbb{R} \lor Voltage < 0 \lor  Resistance \notin  \mathbb{R} \lor Resistance < 0\Rightarrow INVALID$
+\end{itemize}
+
+\noindent GraphVoltageVResistivity(Voltage, Resistivity):
+\begin{itemize}
+\item transition: Display graph of Voltage versus Resistivity on ApplicationWindow
+\item exception: $exc:= Voltage \notin  \mathbb{R} \lor Voltage < 0 \lor  Resistivity \notin  \mathbb{R} \lor Resistivity< 0\Rightarrow INVALID$
+\end{itemize}
+
+\noindent GraphTemperatureVResistance(Temperature, Resistance):
+\begin{itemize}
+\item transition: Display graph of Temperature versus Resistance on ApplicationWindow
+\item exception: $exc:= Temperature \notin  \mathbb{R} \lor  Resistance \notin  \mathbb{R} \lor Resistance < 0\Rightarrow INVALID$
+\end{itemize}
+
+\noindent GraphTemperatureVResistivity(Temperature, Resistivity):
+\begin{itemize}
+\item transition: Display graph of Temperature versus Resistivity on ApplicationWindow
+\item exception: $exc:= Temperature \notin  \mathbb{R} <  Resistivity \notin  \mathbb{R} \lor Resistivity < 0\Rightarrow INVALID$
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+
+\section{MIS of Calculation Module} \label{Module} 
+
+\subsection{Module}
+
+Calculation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )\\
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsubsection{Imported Access Programs}
+getHardwareInput(): HardwareInput \\
+getUserInput(): UserInput
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getResistance() & - & Real & INVALID \\
+getResistivity() & - & Real & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+Resistance : The calculated resistance value (real)\\
+Resistivity : The calculated resistivity value (real) \\
+SampleArea : The calculated area of sample based on the length and width from user's input
+
+\subsubsection{State Invariants}
+
+Resistance $\geq 0$ \\
+Resistivity $\geq 0$ \\
+SampleArea $\geq 0$
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception. This type of programmer error is also 
+captured in the UserInputValidation Module to improve redundancy.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getResistance():
+\begin{itemize}
+\item transition: N/A
+\item output: out:= Resistance
+\item exception: $exc:= Resistance \notin \mathbb{R} \lor Resistance < 0  \Rightarrow INVALID$
+\end{itemize}
+
+\noindent getResistivity():
+\begin{itemize}
+\item transition: N/A
+\item output: out := Resistivity
+\item exception: $exc:= Resistivity \notin \mathbb{R} \lor Resistivity < 0  \Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+findSampleArea(SampleLength, SampleWidth)
+\begin{itemize}
+  \item transition: SampleArea := SampleLength x SampleWidth
+  \end{itemize}
+
+  \noindent calcResistance(voltage, current):
+  \begin{itemize}
+  \item transition: Resistance := voltage/current 
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
+  \end{itemize}
+  
+  \noindent calcResistivity(Resistance, SampleArea, SampleLength):
+  \begin{itemize}
+  \item transition: Resistivity := (resistance x SampleArea)/SampleLength
+  \item exception: $exc:= \\ 
+  voltage \notin \mathbb{R} \lor voltage < 0 \\ 
+  \lor current \notin \mathbb{R} \lor current < 0\\
+   \Rightarrow INVALID$
+  \end{itemize}
+\newpage
+
+\section{MIS of UserInputValidation Module} \label{Module} 
+
+
+
+\subsection{Module}
+
+UserInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+
+\noindent{UserInput:} \\
+( $SamplingRate: real$; $SampleLength: real$; $SampleWidth: real$; $Filename: string$; $Name: string$; $SampleName: string$; $Date: string$)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getUserInput() & - & ADT (UserInput) & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{State Invariants}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+We assume that the user may enter invalid values for inputs such as characters, empty spaces etc..
+This will cause the program to throw and INVALID exception.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getUserInput():
+\begin{itemize}
+\item output: out:= UserInput
+\item exception: $exc:= 
+validateFileData \ne TRUE  \lor\\
+validateSampleData \ne TRUE \\
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+\noindent valdiateFileData(Filename, Date, Name):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Filename.type \ne STRING \lor \\
+Date.type \ne STRING  \lor \\
+Name.type \ne STRING  \\
+\Rightarrow INVALID$
+\end{itemize}
+
+\noindent validateSampleData(SamplingRate, SampleLength, SampleWidth):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+SamplingRate \notin \mathbb{R} \lor SamplingRate < 0 \lor \\
+SampleLength \notin \mathbb{R} \lor SampleLength < 0  \lor \\
+SampleWidth \notin \mathbb{R} \lor SampleWidth < 0  \\
+\Rightarrow INVALID$
+\end{itemize}
+\newpage
+
+
+\section{MIS of HardwareInputValidation Module} \label{Module}
+\subsection{Module}
+
+HardwareInputValidation
+
+\subsection{Uses}
+
+\subsubsection{Imported Types}
+HardwareInput: \\
+( $Voltage: real $ ; $Time: real$; $Temperature: real$; $Current: real$ )
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{2cm} p{6cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getHardwareInput() & - & ADT (HardwareInput) & INVALID \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{State Invariants}
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getHardwareInput():
+\begin{itemize}
+\item output: out:= HardwareInput
+\item exception: $exc:= 
+validateParameters \ne TRUE \
+\Rightarrow INVALID$
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+\noindent validateParameters(Voltage, Time, Current):
+\begin{itemize}
+\item output: out:= TRUE
+\item exception: $exc:= 
+Voltage < 0 \lor \\
+Time < 0 \lor Current < 0 \\
+\Rightarrow INVALID$
+\end{itemize}
 \newpage
 
 \bibliographystyle {plainnat}
