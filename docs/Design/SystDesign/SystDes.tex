@@ -58,6 +58,8 @@ Jan 17, 2023 & Abdul Nour & Added Project Overview (6)\\
 Jan 17, 2023 & Abdul Nour & Added Design of Hardware (9)\\
 Jan 18, 2023 & Joseph Braun & Added System Variables (7)\\
 Jan 18, 2023 & Joseph Braun & Added Timeline (12)\\
+Jan 18, 2023 & Joseph Braun & Added User Interfaces (8)\\
+Jan 18, 2023 & Joseph Braun & Added Communication Protocols (11)\\
 
 ... & ... & ...\\
 \bottomrule
@@ -222,6 +224,7 @@ This section records information for easy reference.
 \section{System Variables}
 
 %\wss{Include this section for Mechatronics projects}
+\noindent Our system contains three main variables: the current being provided from the Current Source, the voltage measured across the sample with the Nano-Voltmeter, and the temperature measured from the sample.
 
 \subsection{Monitored Variables}
 	\begin{itemize}
@@ -240,16 +243,19 @@ No constant variables used in this project.
 
 \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+%\wss{Design of user interface for software and hardware.  Attach an appendix if
+%needed. Drawings, Sketches, Figma}
+
+\noindent A user interface will be designed for the Windows application. Dr. Zurob has provided the team with the previous version of the application, which can be seen in \hyperref[Apx.A]{Appendix A}. We will design our user interface with the same basic layout as the previous version in order to keep the design familar to the user. Updates from the previous design will include changes to the colour scheme, font, and graphics. 
 
 \section{Design of Hardware}
 
-\wss{Most relevant for mechatronics projects}
-\wss{Show what will be acquired}
-\wss{Show what will be built, with detail on fabrication and materials}
-\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
+%\wss{Most relevant for mechatronics projects}
+%\wss{Show what will be acquired}
+%\wss{Show what will be built, with detail on fabrication and materials}
+%\wss{Include appendices as appropriate, possibly with sketches, drawings, CAD, etc}
 
+\noindent There are no mechanical hardware components used in this design. 
 
 \section{Design of Electrical Components}
 
@@ -268,13 +274,20 @@ needed. Drawings, Sketches, Figma}
     \item Serial Communication Module: National Instruments PCI-GPIB IEEE 488.2 Instrument Control Device
   \end{itemize}
 
-\noindent Reference photos of listed components can be found in \hyperref[Apx.HWC]{Appendix B}. \\
+\noindent Reference photos of listed components can be found in \hyperref[Apx.C]{Appendix C}. \\
 
 \noindent We are also provided with the control (lab) computer, which has the PCI-GPIB communication card built in. This computer was upgraded with additional RAM memory and an SSD storage by our mechatronics engineers. Further upgrades would be possible, such as the addition of a Wi-Fi card in case the lab does not provide continuous Ethernet connection to the internet. \\
 
 \section{Design of Communication Protocols}
 
-\wss{If appropriate}
+%\wss{If appropriate}
+\noindent The hardware will communicate with the application through the PCI-GPIB card. The protocol used by the card is IEEE 488.2. This is an extension of the IEEE 488 protocol, also known as GPIB, which is a short-range digital communications 8-bit parallel multi-master interface bus specification developed by Hewlett-Packard. Some key features of GPIB are:
+\begin{itemize}
+	\item One bus can support up to 15 devices
+	\item Message transactions are hardware handshaked
+	\item Data rates may be up to 1 MB/s
+\end{itemize}
+\noindent The specifications for the particular PCI-GPIB card used in this system (installed on the lab computer) are shown in \hyperref[Apx.D]{Appendix D}. The specifications include information about IEEE 488 compatibility and bus transfer rates.
 
 \section{Timeline}
 
@@ -282,7 +295,7 @@ Below is a gantt chart showing the timeline for the remainder of the project.
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=1]{gantt.png}}
-\caption{System Context Diagram}
+\caption{Project Timeline}
 \label{fig}
 \end{figure}
 
@@ -296,12 +309,19 @@ Below is a gantt chart showing the timeline for the remainder of the project.
 \appendix
 
 \section{Interface}
+\label{Apx.A}
 
-\wss{Include additional information related to the appearance of, and
-interaction with, the user interface}
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.2]{app.png}}
+\caption{Previous software user interface design}
+\label{fig}
+\end{figure}
 
 \section{Mechanical Hardware}
-\label{Apx.HWC}
+\hfill
+
+\section{Electrical Components}
+\label{Apx.C}
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.5]{1.jpg}}
@@ -327,9 +347,14 @@ interaction with, the user interface}
 \label{fig}
 \end{figure}
 
-\section{Electrical Components}
-
 \section{Communication Protocols}
+\label{Apx.D}
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=1]{specs.png}}
+\caption{PCI-GPIB Card Specifications}
+\label{fig}
+\end{figure}
 
 \section{Reflection}
 
