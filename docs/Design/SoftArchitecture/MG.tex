@@ -44,11 +44,13 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
+Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikey Cahnges (4)\\
+Jan 15, 2023 & Timothy & Added Module Hierarchy (5)\\
 Jan 16 2023 & Edwin Do & Add use hierarchy diagram \\
 Jan 18 2023 & Edwin Do & Add traceability matrices \\
+
 \bottomrule
 \end{tabularx}
 
@@ -161,8 +163,12 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
   hardware on which the software is running.
 \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  input data from the user.
+\item[\refstepcounter{acnum} \actheacnum \label{acOutput}:] The format of the output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acCalculation}:] The number of calculations the application will peform.
+\item[\refstepcounter{acnum} \actheacnum \label{acGraph}:] The number and type of graphs displayed.
+\item[\refstepcounter{acnum} \actheacnum \label{acNumInput}:] The number of inputs the user can provide.
+\item[\refstepcounter{acnum} \actheacnum \label{acValidation}:] The criteria for validing data within the application.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -176,8 +182,9 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen, Measurement Equipment).
+\item[\refstepcounter{acnum} \actheacnum \label{ucOS}:] Operating system (Winodws 10).
+\item[\refstepcounter{acnum} \actheacnum \label{ucCalculation}:] Calculation equation formulas (Resistence equation and Resistivity equation).
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -203,19 +210,19 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& Input Cummication Module\\
+& Output Communication Module\\
+& Remote Access Module\\
+& Current State Module\\
+& FileOutput Module\\
+& Graphical Output Module\\ 
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module}
+& Calculation Module\\
+& User Input Validation Module \\
+& Hardware Input Validation Module\\ 
 \bottomrule
 
 \end{tabular}
