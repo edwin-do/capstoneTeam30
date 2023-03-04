@@ -41,6 +41,7 @@
   Nov 1, 2022 & Abdul Nour Seddiki & Added to 5.1, 5.3\\
   Nov 2, 2022 & Joseph Braun & Added Section 3\\
   Nov 2, 2022 & Edwin Do & Added more content to section 4 \\
+  Mar 4, 2022 & Edwin Do & Revised tests for non functional requirements\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -69,6 +70,7 @@
   SRS & Software Requirements Specifications \\
   VS & Visual Studio\\
   UWP & Universal Windows Platform\\
+  MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
   \bottomrule
 \end{tabular}\\
 
@@ -328,16 +330,16 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-AT}1.]
     \item Type: Static \& Manual \\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Users will explore the application then take a survey.\\
-    Output/Result: Survey result will indicate 90 percent of users feel application is uncomplicated. \\
-    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If 90 percent of users inidicate a 1 out of 5, it will be considered successful. (Appendix)
+    Initial State: Application is opened and ready for use.\\
+    Input/Condition: User will follow a simple set of instructions to explore application, followed by a survey\\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application is uncomplicated. \\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree, then it will be considered successful. (Refer to Appendix for Sample Survey)
     
     \item Type: Static \& Manual\\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Developers will navigate the application and explore all sections.\\
-    Output/Result: Developers will ensure all section of the application is in English.\\
-    How test will be performed: Test will be performed by developers. 
+    Initial State: Application is opened and ready for use.\\
+    Input/Condition: Developers will navigate the application by exploring every screen and state.\\
+    Output/Result: If all sections of the applications is in English, then this test is considered a pass. Otherwise, it is considered a fail.\\
+    How test will be performed: Different sets of instructions are used to cover a subset of the application screens and states, each set of instruction is to be carried out by a developer to verify the result. 
   \end{enumerate}
 \end{adjustwidth}
 
@@ -421,16 +423,17 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-OT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open with keyboard and mouse connected to the device.\\
+    Initial State: Application is opened and ready with keyboard and mouse connected to the device.\\
     Input/Condition: User will interact with the application with mouse and keyboard.\\
-    Output/Result: Application will reflect inputs provided by mouse and keyboard.\\
-    How test will be performed: Test will be performed by the users.
+    Output/Result: Application will accurately and correctly reflect the inputs from the mouse and keyboard provided by the user.\\
+    How test will be performed: User will be asked to perform a simple set of instructions using the mouse and keyboard such as clicking and typing.
     
     \item Type: Static \& Manual\\
-    Initial State: Application will be uninstalled from the device.\\
-    Input/Condition: Users will be asked to installed the application.\\
-    Output/Result: Feedback surveys from the installtion should indicate the installation was simple for 90 percent of of the users.\\
-    How test will be performed: Test will be performed by the user. User will be given a survey a question where 1 being simple and 5 being difficult. If 90 percent of users answer 1, it will be considered a success.
+    Initial State: A machine/computer that does not have the application installed.\\
+    Input/Condition: Users will be asked to install the application on the machine/computer.\\
+    Output/Result: Survey results should indicate that the installation was easy to follow for MIN\_USER\_ACCEPT\_RATE of the users.\\
+    How test will be performed: Test will be performed by the user. User will be given a survey including a question where 5 indicates easy to use, straightforward, and 1 indicating confusing, and/or difficult. If MIN\_USER\_ACCEPT\_RATE of users respond with 5, 
+    the test will be considered a pass.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -439,10 +442,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-MT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be uninstalled for device.\\
-    Input/Condition: Application will be installed on the device and connected to measurement devices.\\
-    Output/Result: The applications functions will be verified and ensure it is performing smoothly on the device.\\
-    How test will be performed: Test will be performed by the developer installing the application onto the  lab computer running window 7.
+    Initial State: A machine/computer that does not have the application installed.\\
+    Input/Condition: Application will be installed on the device and connected to the required measurement devices.\\
+    Output/Result: The application is able to operate smoothly without error with the connected measuring devices.\\
+    How test will be performed: Test will be performed by a developer installing the application onto a lab computer running Windows 10.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -451,16 +454,16 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-ST}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: User will attempt to inject data or modify parameters they do not have permission for.\\
-    Output/Result: Application will have a indicator inform user does not have permission.\\
-    How test will be performed: Test will be performed by users who do not have certain permissions.
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: User will attempt to enter or modify data/parameters that they currently do not have permission for.\\
+    Output/Result: Application will display a message informing the user that they do not have permission.\\
+    How test will be performed: Test will be performed by users with missing permissions, or a test account by a developer.
     
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: User will be asked to change hidden settings and calculations.\\
-    Output/Result: Changes should be accepted and saved by the application. Will be reflected on the application interface.\\
-    How test will be performed: Test will be performed by users who have permission to access these settings/parameters.
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: User will be asked to change protected/hidden settings given the appropriate permissions.\\
+    Output/Result: The changes are accepted and saved by the application. Settings are also accurately reflected on the application's interface.\\
+    How test will be performed: Test will be performed by users who have been granted permission to access these settings, or test account by a developer.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -469,10 +472,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-CT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: Users will explore the appliaction then take a survey \\
-    Output/Result: Result from survey will return a score of 8.\\
-    How test will be performed: Test will be performed by users which will take a survey after interacting with the application, 1 being inappropriate and 10 being appropriate. 
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: Users will explore the application through a demo/test account. \\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application is appropriate.\\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree that application is appropriate, then it will be considered successful. (Refer to Appendix for Sample Survey)
 \end{enumerate}
 \end{adjustwidth}
 
@@ -481,10 +484,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-HT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: Users will explore the appliaction then take a survey \\
-    Output/Result: Result from survey will indicate application interface does not pose any health concerns.\\
-    How test will be performed: Test will be performed by the user which will take a survey regarding the interface's colour and design.  
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: Users will explore the application through a demo/test account. \\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application does not cause/pose any noticeable health concerns.\\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree that application is free from health and safety concerns, then it will be considered successful. (Refer to Appendix for Sample Survey).  
 \end{enumerate}
 \end{adjustwidth}
 
