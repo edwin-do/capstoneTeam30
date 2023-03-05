@@ -42,6 +42,7 @@
   Nov 2, 2022 & Joseph Braun & Added Section 3\\
   Nov 2, 2022 & Edwin Do & Added more content to section 4 \\
   Mar 4, 2022 & Edwin Do & Revised tests for non functional requirements\\
+  Mar 4, 2022 & Timothy Chen & Revised Usability and Performance NFR test\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -71,6 +72,17 @@
   VS & Visual Studio\\
   UWP & Universal Windows Platform\\
   MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
+  target\_time & 60 seconds \\
+  target\_percentage & 90\% \\
+  interact\_time & 5 seconds \\
+  max\_mistake & 1\% \\
+  observed\_months & 4\% \\
+  number\_of\_para & 10 \\ 
+  max\_capacity & 8GB\% \\ 
+  min\_sample\_rate & 60 \\
+  accepted\_percentage & 95\% \\
+  time\_accepted & 1 second \\
+  accepted\_sigfig & 3 decimals \\
   \bottomrule
 \end{tabular}\\
 
@@ -347,38 +359,47 @@ results are outside a reasonable range, then the team shall conclude that the re
 
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-UT}1.]
+  \item Type: Dynamic \& Manual\\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: The users with no prior experience with the product.\\
+  Output/Result: At least \textsl{target\_percentage} of users with no prior experience  can successfully complete each task within \textsl{target\_time}.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if at least \textsl{target\_percentage} users complete the task within \textsl{target\_time}.
 
-How test will be performed: 
+  \item Type: Dynamic \& Manual\\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: User will be asked to modify the voltage and current parameters of the application to match a sample experiment we provide.\\
+  Output/Result: The user takes no more than \textsl{interact\_time} from the time they interact with the application to when they start modifying the voltage and current parameters to match a sample experiment provided.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{interact\_time}.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Invalid and edge case parameters will be enter into the application.\\
-    Output/Result: Application will flag the parameters that are not accepted and prevent the program from running.\\
-    How test will be performed: Test will be performed by a script which will enter and check for the flag messages after parameters have been given.
+  \item Type: Dynamic \& Manual \\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: User will use the application for at \textsl{observed\_months}.\\
+  Output/Result: The total number of mistakes made by the user when inteacting with the application should be no more than \textsl{max\_mistake} during the  \textsl{observed\_months}.\\
+  How test will be performed: The user will be asked to record the number of mistakes which will be defined to them before the test for the whole duration of \textsl{observed\_months}.  The test will pass if the number of mistakes record is no more than \textsl{max\_mistake} during the  \textsl{observed\_months}.
 
-    \item Type: Dynamic \& Manual\\
-    Initial State: Application will be closed.\\
-    Input/Condition: Users will be ask to open the application and perform a task. User then will be asked to return the next day to perform the same task.\\
-    Output/Result: Time from the users opening the application to interacting with it should be within 5 seconds.\\
-    How test will be performed: Test will be performed by the users. The test will pass only if the time is within 5 seconds and the task the user is asked to complete is completed without any mistakes the second time.
+  \item Type: Dynamic \& Manual\\
+  Initial State: Application will be closed.\\
+  Input/Condition: Users will open the application and perform a task listed for a sample experiment. User then will be asked to return the next day to perform the same task.\\
+  Output/Result:  The user takes no more than \textsl{interact\_time} from when the user intract with the application to when they start modifying the parameters.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{interact\_time} the next day and completes the task accurately.
 
-    \item Type: Static \& Manual\\
-    Initial State: Application will be open.\\
-    Input/Condition: Developers will navigate and explore the application.\\
-    Output/Result: No calculations will be found when exploring the application. \\
-    How test will be performed: Test will be performed by the developers.
+  \item Type: Static \& Automated\\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: \textsl{number\_of\_para} parameters will be entered or modified in the application.\\
+  Output/Result: The  application should not show any calculation used to return outputs when entering or modifying parameters. \\
+  How test will be performed: An automated test will be used to enter or modify \textsl{number\_of\_para} parameters in the application. No calculations or processing willl be visable to the user.
 
-    \item Type: Static \& Manual\\
-    Initial State: Research device will not have the application on it.\\
-    Input/Condition: Users will install the application on the device.\\
-    Output/Result: Application capacity on the device will be less than 8 GB.\\
-    How test will be performed: Test will be performed by the users.
+  \item Type: Static \& Automated\\
+  Initial State: The application will be instatlled on the research device\\
+  Input/Condition: The size of the applicationwill be checked\\
+  Output/Result: Application capacity on the device will be no more than \textsl{max\_capacity}. \\
+  How test will be performed: An automated test will be used to verify the size of the application is no more than \textsl{max\_capacity}.
 
-    \item Type: Staic \& Manual\\
-    Initial State: Application will be installed on the device.\\
-    Input/Condition: Users will set up the application with the measurement equipments according to instructions provided.\\
-    Output/Result: Application will not indicate further set up required after the initial set up of the measurement devices on the first uses.\\
-    How test will be performed: Test will be performed by users. User will be ask to set up the measurement equipment. The next time the user uses the appliaction, there will be no inidication that there will be a need to perform further set up. 
+  \item Type: Dynamic \& Manual\\
+  Initial State: Application will be installed on the research device.\\
+  Input/Condition: User will set up the application based on instructions give.\\
+  Output/Result: Application will not indicate further set up required after the initial set up.\\
+  How test will be performed: The user will be observed while completing the task. The  test will pass if  the application does not indicate any further set up after the inital set up.  
 \end{enumerate}
 \end{adjustwidth}
 
@@ -386,35 +407,36 @@ How test will be performed:
 
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-PT}1.]
-    \item Type: Dynamic \& Automated\\
-    Initial State: Measurement devices will be connected to sample and to device with application open.\\
-    Input/Condition: Start thermal treatment of sample.\\
-    Output/Result: Should return 100 readings a second for 95 precent of the time with the lowest reading being 98 per second.\\
-    How test will be performed: Test will be performed by a script to start the treatment while measuring the readings per second. 
-    
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will have defualt parameters.\\
-    Input/Condition: Parameters will be changed\\
-    Output/Result: Application will relfect changes by within 1 second for 95 percent of the time with the longest time being 2 seconds.\\
-    How test will be performed: Test will be performed by a script where parameters will be changed and the change will be timed and verified.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Set \textsl{min\_sample\_rate} and start thermal treatment of sample.\\
+  Output/Result: The application should return at least \textsl{min\_sample\_rate} a second for \textsl{accepted\_percentage} of the time.\\
+  How test will be performed: An automated test will be used to measure the sampling rate per second. The test will pass if the evaulated sampling rate is \textsl{min\_sample\_rate} a second for \textsl{accpted\_percentage} of the time.
+  
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running.\\
+  Input/Condition: User will be given parameters to change.\\
+  Output/Result: Application will relfect changes by within \textsl{time\_accepted} for \textsl{accepted\_percentage} of the time.\\
+  How test will be performed: An automated test will be used to measure the time it takes the changes to reflect while the user is changing the parameters.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Measurement devies will be connected to device.\\
-    Input/Condition: Thermal treatment sample data will be read into the device.\\
-    Output/Result: The sample reading from the thermal treatment will be accurate to 3 decminal places 99.99 percent of the time.\\
-    How test will be performed: Test will be performed by a script where the data being read in will be compared to an exising data set of the same sample with the same parameters. The data will be identical for 99.99 percent of the readings.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Thermal treatment sample data will be read into the device.\\
+  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{accepted\_sigfig} for at least  \textsl{accepted\_percentage} of the time.\\
+  How test will be performed: An automated test will be used to compare the expected values to the measured values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{accepted\_percentage}.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will be open with measuremnt devices connceted.\\
-    Input/Condition: Readings for thermal treatment sample.\\
-    Output/Result: The calculations displayed on the application will be accurate to 3 decimal places for 99.99 percent of the time.\\
-    How test will be performed: Test will be performed by a sscript performing the caluations and comparing the result to the result on the application.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Calcilations will be perfrmed on readings.\\
+  Output/Result: The calculations displayed on the application will be accurate to \textsl{accepted\_sigfig} for  \textsl{accepted\_percentage} of the time.\\
+  How test will be performed: An automated test will be used to compare the expected values to the calculated values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{accepted\_percentage}.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will be closed.\\
-    Input/Condition: Application will be opened and have modification applied to the it.\\
-    Output/Result: The application will be up and running 99 percent of the time.\\
-    How test will be performed: Test will be performed by a script making modifications on the application throughout 12 hours and seeing if the application gives a healthly response for 99 percent of the time.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Application will be opened and user woll interact with it.\\
+  Output/Result: The application will be up and running for at least \textsl{accepted\_percentage} of the time during the task given to the user to perform.\\
+  How test will be performed: An sutomated test will be used to measure the uptime of the application. The evaulated percentage will be found after the duration of the give task and will be compared to the \textsl{accepted\_percentage}.
+
 \end{enumerate}
 \end{adjustwidth}
 
