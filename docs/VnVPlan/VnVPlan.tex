@@ -41,8 +41,9 @@
   Nov 1, 2022 & Abdul Nour Seddiki & Added to 5.1, 5.3\\
   Nov 2, 2022 & Joseph Braun & Added Section 3\\
   Nov 2, 2022 & Edwin Do & Added more content to section 4 \\
-  Mar 4, 2022 & Edwin Do & Revised tests for non functional requirements\\
-  Mar 4, 2022 & Timothy Chen & Revised Usability and Performance NFR test\\
+  Mar 4, 2023 & Edwin Do & Revised tests for non functional requirements\\
+  Mar 4, 2023 & Timothy Chen & Revised Usability and Performance NFR test\\
+  Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -53,10 +54,10 @@
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
+%\wss{Remove this section if it isn't needed}
 
-\listoffigures
-\wss{Remove this section if it isn't needed}
+%\listoffigures
+%\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -299,40 +300,55 @@ results are outside a reasonable range, then the team shall conclude that the re
 \subsection{Tests for Functional Requirements}
 
 \begin{enumerate}[{FR-T}1.]
-    \item Control: Dynamic \& Manual \\
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will initialize the current source with supply parameters.\\
+    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately.\\
+    Test Case Derivation: Since the current source is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
+    
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up and the application is running.\\
+    Input: Developers will initialize the nanovoltmeter and capture measurements.\\
+    Output: The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.\\
+    Test Case Derivation: Since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. By checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Simultaneously monitoring both the values displayed on the nanovoltmeter and the ones displayed in the application while observing for latency.
+    
+    \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
     Input: Developers will set up a sample and demonstrate the main function of the application.\\
-    Output: The application shall display the voltage, the current, the temperature and measure the conductivity of sample materials in real-time. Updates to values on the measurement tools should match with updates on the application and changes to the value of conductivity. \\
-    Test Case Derivation: Since the measurement tools are using a unified communication bus with the control computer, measurements are expected to be synchronised and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the external measurement tools and the values in the application and observing for latency in the display and calculation.
+    Output: The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
+    Test Case Derivation: Since the measurement devices are connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency. They will take a random sample of the mentioned measurements and conduct a manual analysis of the resistivity of said sample and compare the results to what is expected.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
     Input: Developers will set up a sample and perform thermal treatment on it.\\
-    Output: The application shall make note of critical changes in conductivity.\\
-    Test Case Derivation: While the application is constantly monitoring the state of conductivity of samples in real-time, any major change in the conductivity indicates a transition in the phase of the material.\\
-    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing changes in conductivity as calculated by the application.
+    Output: The application shall monitor and take note of critical changes in resistivity.\\
+    Test Case Derivation: While the application is constantly monitoring the state of resistivity of samples in real-time, any major change in the resistivity indicates a transition in the phase of the material.\\
+How test will be performed: Test will be performed by developers. Performing thermal treatment and observing changes in resistivity as calculated by the application.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will modify the setting that controls the data sampling rate in the application.\\
-    Output: The sampling rate of inputs is modified. Therefore, the display rate of inputs and outputs is going to change.\\
-    Test Case Derivation: The application is expected to be able to sample the data at variable rates, either by changing the actual rate of data acquisition or by changing the interval at which the data is displayed and analysed.\\
-    How test will be performed: Test will be performed by developers, manually testing this function of the system. 
-    
+    Input: Developers will control the sampling rate of the voltage measurement.\\
+    Output: The nanovoltmeter shall display measurements at a rate faster or slower than the default rate, and the application shall follow suit when displaying measurements and calculations.\\
+    Test Case Derivation: The application is expected to be able to sample the data at variable rates, by changing the ‘integration rate’ of the nanovoltmeter through Powerline Cycles per calculation (PLC) and since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. By choosing an integration rate from the drop-down menu and starting capture. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency in the display and calculation.
+
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
     Input: Developers will set up a sample and perform thermal treatment on it.\\
     Output: The application shall automatically calculate the slopes of resistivity-temperature in the phase change diagram, identify changes in these slopes and attributing slope changes to phase transitions. This information is highlighted with appropriate phase transition labels.\\
     Test Case Derivation: While the application is constantly monitoring the resistivity of samples in real-time, major changes in the resistivity to temperature ratios correlate to phase changes of the material.\\
-    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing notifications and labels on graphs or logs made by the application.
-    
+How test will be performed: Test will be performed by developers. Performing thermal treatment, capturing measurements, and observing notifications and labels on graphs or logs made by the application.
+
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will prompt a wireless connection to control computer and navigate the application.\\
+    Input: Developers will prompt a wireless connection to control computer and stop an experiment.\\
     Output: The application is able to be controlled using a proxy/web application.\\
     Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
-    How test will be performed: Test will be performed by developers communicating remotely with the control computer.  
+    How test will be performed: Test will be performed by developers communicating remotely with the control computer through a web app. The main application is already capturing measurements and making calculations. Remotely, the testing developer will click “Stop Experiment” button on the web app and that will prompt the main app to stop capturing data and turn the current supply off.
+
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -522,11 +538,11 @@ results are outside a reasonable range, then the team shall conclude that the re
 	\begin{tabular}{|c|c|}
 		\hline
 		\textbf{Requirements} & \textbf{Tests} \\ \hline
-		FR1 & FR-T1 \\ \hline
-		FR2 & FR-T2 \\ \hline
-		FR3 & FR-T3 \\ \hline
-		FR4 & FR-T4 \\ \hline
-		FR5 & FR-T5 \\ \hline
+		FR1 & FR-T1, FR-T2, FR-T3 \\ \hline
+		FR2 & FR-T4 \\ \hline
+		FR3 & FR-T5 \\ \hline
+		FR4 & FR-T6 \\ \hline
+		FR5 & FR-T7 \\ \hline
 		NFR-L1 & NF-AT1 \\ \hline
     NFR-L2 & NF-AT2 \\ \hline
     NFR-U1 & NF-UT1 \\ \hline
@@ -548,6 +564,16 @@ results are outside a reasonable range, then the team shall conclude that the re
     NFR-M2 & NF-MT1 \\ \hline
     NFR-M3 & NF-MT1 \\ \hline
     NFR-S1 & NF-ST1 \\ \hline
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Requirements} & \textbf{Tests} \\ \hline
     NFR-S2 & NF-ST2 \\ \hline
     NFR-C1 & NF-CT1 \\ \hline
     NFR-H1 & NF-HT1 \\ \hline
@@ -556,6 +582,7 @@ results are outside a reasonable range, then the team shall conclude that the re
 	\end{tabular}
 \end{table}
 
+\newpage
 
 \section{Unit Test Description}
 
