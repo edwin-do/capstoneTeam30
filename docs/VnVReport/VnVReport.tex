@@ -1,8 +1,14 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage[shortlabels]{enumitem}
+\usepackage{comment}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{changepage}
+\usepackage{graphicx}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -27,13 +33,16 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{table}[H]
+  \caption{\bf Revision History}
+  \begin{tabularx}{\textwidth}{p{2.5cm}p{2.5cm}X}
+  \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
+  \midrule
+  Mar 7, 2023 & Abdul Nour & Updated template\\
+  Mar 8, 2023 & Abdul Nour & Added Functional Requirements Evaluation \& Trace to Requirements\\
+  \bottomrule
+  \end{tabularx}
+  \end{table}
 
 ~\newpage
 
@@ -62,9 +71,48 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+%This document ...
 
 \section{Functional Requirements Evaluation}
+
+\noindent The following table suggests examples of system level tests that were executed in order to verify that the functional requirements of the system were met.
+
+\begin{table}[H]
+	\centering
+	\caption{Test Cases for Functional Requirements}
+	\label{my-label}
+%	\begin{tabular}{|l|l|l|l|l|}
+	\begin{tabular}{|p{0.85cm}|p{3.5cm}|p{3.5cm}|p{1.3cm}|p{3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}  & \textbf{Notes}  \\ \hline
+		ST1 & Check "Current Source" radio button & Current Source is reset & PASS &\\ \hline
+		ST2 & Type an integer (1) in the "Current Supply" textbox and click "Set" button & Current Supply is set to 1mA and displayed & PASS &\\ \hline
+		ST3 & Type an integer (10) in the "Compliance" textbox and click "Set" button & Compliance voltage is set to 10V & PASS & Compliance voltage is shown on the Keithley current source display \\ \hline
+		ST4 & Click "Current ON" button & Current Source is supplying current & PASS & Current Source blue LED turns on \\ \hline
+		ST4 & Click "Current OFF" button & Current Source stops supplying current & PASS & Current Source blue LED turns off \\ \hline
+		ST6 & Check "Nano-Voltmeter" radio button & Nano-Voltmeter is reset & PASS &\\ \hline
+	\end{tabular}
+\end{table}
+
+%\newpage
+
+\begin{table}[H]
+	\centering
+%	\begin{tabular}{|l|l|l|l|l|}
+	\begin{tabular}{|p{0.85cm}|p{3.5cm}|p{3.5cm}|p{1.3cm}|p{3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}  & \textbf{Notes}  \\ \hline
+		ST7 & Click "Start Capture" button & Values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS & \\ \hline
+		ST8 & Click "Stop Capture" button & Values and calcualtions stop generating, latest batch remains visible & PASS &\\ \hline
+		ST9 & Current supply is set up and capture is started & Accurate calculations of resistivity are displayed continuously & PASS &\\ \hline
+		ST10 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL & Not yet implemented, needs component added to calculation module\\ \hline
+		ST11 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS & Obsereved on Keithley Nano-voltmeter\\ \hline
+		ST12 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL & Not yet implemented, calculation module \& notification system additions needed\\ \hline
+		ST13 & Current supply is set up and capture is started, "Stop Experiment" button is clicked on remote interface & Capture and current supply are turned off & FAIL & Remote interface is yet to be implemented\\ \hline
+	\end{tabular}
+\end{table}
+
+\newpage
 
 \section{Nonfunctional Requirements Evaluation}
 
@@ -90,6 +138,29 @@ should be highlighted.}
 \section{Automated Testing}
 		
 \section{Trace to Requirements}
+
+\begin{table}[H]
+	\centering
+	\caption{Requirements Traceability}
+	\label{my-label}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Test} & \textbf{Requirement} & \textbf{Plan} \\ \hline
+		ST1 & FR1 &FR-T1 \\ \hline
+		ST2 & FR1 &FR-T1\\ \hline
+		ST3 & FR1 &FR-T1\\ \hline
+		ST4 & FR1 &FR-T1\\ \hline
+		ST5 & FR1 &FR-T1\\ \hline
+		ST6 & FR1 &FR-T2\\ \hline
+		ST7 & FR1 &FR-T2\\ \hline
+		ST8 & FR1 &FR-T2\\ \hline
+		ST9 & FR1 &FR-T3\\ \hline
+		ST10 & FR2 &FR-T4\\ \hline
+		ST11 & FR3 &FR-T5\\ \hline
+		ST12 & FR4 &FR-T6\\ \hline
+		ST13 & FR5 & FR-T7\\ \hline
+	\end{tabular}
+\end{table}
 		
 \section{Trace to Modules}		
 
