@@ -29,16 +29,16 @@
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & {\bf Name} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Mar 8 2023 & Edwin Do & Added usability test results\\
 \bottomrule
 \end{tabularx}
 
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
+change capacity to size
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -64,24 +64,36 @@ Date 2 & 1.1 & Notes\\
 \pagenumbering{arabic}
 
 This document ...
+Section 11 Code Coverage Metrics is removed.
 
 \section{Functional Requirements Evaluation}
 
 \section{Nonfunctional Requirements Evaluation}
 
+In the section
+
+\pagebreak
 \subsection{Usability}
-\begin{tabular}{ |p{3cm}||p{2cm}|p{3cm}|p{4cm}|p{2cm}| }
+The table below shows the results of our usability tests based on the tests in the V\&V plan based on the requirements mentioned in the SRS.
+Each requirement can be traced to multiple unit tests and the usability survey used can be found in the Appendix.\\
+\\
+\begin{tabular}{ |p{2.5cm}||p{2cm}|p{4cm}|p{4cm}|p{1.5cm}| }
   \hline
   \multicolumn{5}{|c|}{Usability Tests} \\
   \hline
   Requirement & Related Unit Tests & Description & Expected Result & Result\\
   \hline
-  NF-UT1   & AF  & Entering invalid and edge case parameters as inputs & User will be notified and application does not crash & PASS\\
+  NF-UT1   & AF  & Completing tasks without additional assistance. & User will be complete tasks successfully & PASS\\
   \hline
-  NF-UT2   & AX  & ALA &  248 &\\
-  NF-UT3   & AL  & ALB &  008 &\\
-  NF-UT4   & DZ  & DZA &  012 &\\
-  NF-UT5   & AS  & ASM &  016 &\\
+  NF-UT2   & AX  & Interact with interace to modify parameters. & User will be able to modify the parameters accurately and quickly.& PASS\\
+  \hline
+  NF-UT3   & AL  & Completing all tasks with limited number of mistakes & User will be able to complete all tasks with \textsl{MAX\_MISTAKE} & PASS\\
+  \hline
+  NF-UT3   & AL  & Verifying if interacting with the application previously improves ease of use (learnability)  & User will be able to complete the tasks more quickly and accurately the second time & PASS\\
+  \hline
+  NF-UT5   & AS  & Verifying how calculations are performed is hidden &  User will not know how calculations are performed after doing the set of tasks & PASS\\
+  \hline
+  NF-UT6   & AS  & Verifying appropriate application size upon installation&  User will install application onto computer and verify that the application size is less than or equal to \textsl{MAX\_SIZE} & PASS\\
   \hline
  \end{tabular}
 		
@@ -102,8 +114,6 @@ This section will not be appropriate for every project.
 \section{Trace to Requirements}
 		
 \section{Trace to Modules}		
-
-\section{Code Coverage Metrics}
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
