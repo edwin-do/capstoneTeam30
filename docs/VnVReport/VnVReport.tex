@@ -11,6 +11,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{multirow}
 
 \input{../Comments}
 \input{../Common}
@@ -69,6 +70,21 @@ This document ...
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Usability}
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|p{2cm}| }
+  \hline
+  \multicolumn{5}{|c|}{Usability Tests} \\
+  \hline
+  Requirement & Related Unit Tests & Description & Expected Result & Result\\
+  \hline
+  Afghanistan   & AF    &AFG&   004 & PASS\\
+  Aland Islands&   AX  & ALA   &248 &\\
+  Albania &AL & ALB&  008 &\\
+  Algeria    &DZ & DZA&  012 &\\
+  American Samoa&   AS  & ASM&016 &\\
+  Andorra& AD  & AND   &020 &\\
+  Angola& AO  & AGO&024 &\\
+  \hline
+ \end{tabular}
 		
 \subsection{Performance}
 
