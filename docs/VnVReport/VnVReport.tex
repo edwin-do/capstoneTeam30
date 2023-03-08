@@ -41,6 +41,7 @@
 \midrule
 Date 1 & 1.0 & Notes\\
 Mar. 8, 2023 & Joseph Braun & Added Section 5 \\
+Mar. 8, 2023 & Joseph Braun & Added Section 8 \\
 \bottomrule
 \end{tabularx}
 
@@ -116,13 +117,18 @@ This document ...
   \item Readout: includes graphical output and listed output of relevant values (current, voltage, resistance, etc.)
 \end{itemize}
 
-\noindent The primary difference between the existing implementation and our implementaion is the appearance of the GUI. The exisiting implementation was developed for Windows XP and in its current state is non-functional. Our implementation is developed for Windows 10. 
+\noindent The primary difference between the existing implementation and our implementaion is the appearance of the GUI. The exisiting implementation was developed for Windows XP whereas our implementation is developed for Windows 10, which gives it an updated look.\\
 
 \section{Unit Testing}
 
 \section{Changes Due to Testing}
 
+
 \section{Automated Testing}
+
+\noindent We acheived automated unit testing through the use of the NUnit testing framework in Visual Studio. NUnit is one of the most popular test frameworks used for running tests on a .NET project.\\
+
+\noindent NUnit tests are setup by first creating a new project file in Visual Studio and adding it to the solution file for your project (in our case, the application). In the new project file, a new class is created. Each unit test we want to carry out is written as a method of the test class. Since the project file for the test class is inlcuded in the same solution file as our application, we are able to call the test methods from our main application to run the tests.\\
 		
 \section{Trace to Requirements}
 		
