@@ -44,6 +44,7 @@
   Mar 4, 2023 & Edwin Do & Revised tests for non functional requirements\\
   Mar 4, 2023 & Timothy Chen & Revised Usability and Performance NFR test\\
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
+  Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -74,14 +75,10 @@
   UWP & Universal Windows Platform\\
   MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
   TARGET\_TIME & 60 seconds \\
-  TARGET\_PERCENTAGE & 90\% \\
   INTERACT\_TIME & 5 seconds \\
-  MAX\_MISTAKE & 1\% \\
-  OBSERVED\_MONTHS & 4\% \\
-  NUMBER\_OF\_PARA & 10 \\ 
+  MAX\_MISTAKE & 2 \\
   MAX\_CAPACITY & 8GB\% \\ 
-  MIN\_SAMPLE\_RATE & 60 \\
-  ACCEPTED\_PERCENTAGE & 95\% \\
+  MIN\_SAMPLE\_RATE & 60 samples per second\\
   TIME\_ACCEPTED & 1 second \\
   ACCEPTED\_SIGFIG & 3 decimals \\
   \bottomrule
@@ -378,44 +375,38 @@ How test will be performed: Test will be performed by developers. Performing the
   \item Type: Dynamic \& Manual\\
   Initial State: The application is open to home screen  and ready to use.\\
   Input/Condition: The users with no prior experience with the product.\\
-  Output/Result: At least \textsl{TARGET\_PERCENTAGE} of users with no prior experience  can successfully complete each task within \textsl{TARGET\_TIME}.\\
-  How test will be performed: The users will be observed while completing the task. The test will pass if at least \textsl{TARGET\_PERCENTAGE} users complete the task within \textsl{TARGET\_TIME}.
+  Output/Result: At least \textsl{MIN\_USER\_ACCEPT\_RATE} of users with no prior experience can successfully complete each task without additional assistance\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if users complete the task without additional assistance.
 
   \item Type: Dynamic \& Manual\\
   Initial State: The application is open to home screen  and ready to use.\\
   Input/Condition: User will be asked to modify the voltage and current parameters of the application to match a sample experiment we provide.\\
-  Output/Result: The user takes no more than \textsl{INTERACT\_TIME} from the time they interact with the application to when they start modifying the voltage and current parameters to match a sample experiment provided.\\
+  Output/Result: The user takes no more than \textsl{INTERACT\_TIME} to interact with the application and make the modifications to the voltage and current parameters matching the sample experiment provided.\\
   How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{INTERACT\_TIME}.
 
   \item Type: Dynamic \& Manual \\
   Initial State: The application is open to home screen  and ready to use.\\
-  Input/Condition: User will use the application for at \textsl{OBSERVED\_MONTHS}.\\
-  Output/Result: The total number of mistakes made by the user when inteacting with the application should be no more than \textsl{MAX\_MISTAKE} during the  \textsl{OBSERVED\_MONTHS}.\\
-  How test will be performed: The user will be asked to record the number of mistakes which will be defined to them befomax\_mistakere the test for the whole duration of \textsl{OBSERVED\_MONTHS}.  The test will pass if the number of mistakes record is no more than \textsl{} during the  \textsl{OBSERVED\_MONTHS}.
+  Input/Condition: User will use the application by following a predefined set of tasks.\\
+  Output/Result: The total number of mistakes made by the user when completing the tasks by interacting with application should be no more than \textsl{MAX\_MISTAKE}.\\
+  How test will be performed: The observer will record the number of mistakes that they observe as the user completes the set of tasks.
 
   \item Type: Dynamic \& Manual\\
   Initial State: Application will be closed.\\
-  Input/Condition: Users will open the application and perform a task listed for a sample experiment. User then will be asked to return the next day to perform the same task.\\
-  Output/Result:  The user takes no more than \textsl{INTERACT\_TIME} from when the user intract with the application to when they start modifying the parameters.\\
-  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{INTERACT\_TIME} the next day and completes the task accurately.
+  Input/Condition: Users will open the application and perform a set of tasks listed for a sample experiment. User then will be asked to return the next day to perform the same set of tasks.\\
+  Output/Result:  The time that the user takes to complete the set of tasks for the second time will be less than the time taken for the first time.\\
+  How test will be performed: The users will be observed and timed while completing the set of tasks both times. The test will pass if the user completes the set of tasks in the same or less amount of time in the next day.
 
-  \item Type: Static \& Automated\\
-  Initial State: The application is open to home screen  and ready to use.\\
-  Input/Condition: \textsl{NUMBER\_OF\_PARA} parameters will be entered or modified in the application.\\
-  Output/Result: The  application should not show any calculation used to return outputs when entering or modifying parameters. \\
-  How test will be performed: An automated test will be used to enter or modify \textsl{NUMBER\_OF\_PARA} parameters in the application. No calculations or processing willl be visable to the user.
+  \item Type: Static \& Manual\\
+  Initial State: The application is open to home screen and ready to use.\\
+  Input/Condition: User will input sample parameters and application will perform calculations.\\
+  Output/Result: The application will display the result of the application and the user will not know how the calculations are performed \\
+  How test will be performed: User will be observed while performing the task and asked to fill out an usuablity survey question. If the user is unaware of how the calculations were performed, the test will pass.
 
-  \item Type: Static \& Automated\\
-  Initial State: The application will be instatlled on the research device\\
-  Input/Condition: The size of the applicationwill be checked\\
+  \item Type: Static \& Manual\\
+  Initial State: The application will be installed on the research device\\
+  Input/Condition: The size of the application will be checked manually\\
   Output/Result: Application capacity on the device will be no more than \textsl{MAX\_CAPACITY}. \\
-  How test will be performed: An automated test will be used to verify the size of the application is no more than \textsl{MAX\_CAPACITY}.
-
-  \item Type: Dynamic \& Manual\\
-  Initial State: Application will be installed on the research device.\\
-  Input/Condition: User will set up the application based on instructions give.\\
-  Output/Result: Application will not indicate further set up required after the initial set up.\\
-  How test will be performed: The user will be observed while completing the task. The  test will pass if  the application does not indicate any further set up after the inital set up.  
+  How test will be performed: We will open the file properties of the application and verify that the size of the application is less than or equal to \textsl{MAX\_CAPACITY}.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -426,33 +417,26 @@ How test will be performed: Test will be performed by developers. Performing the
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
   Input/Condition: Set \textsl{MIN\_SAMPLE\_RATE} and start thermal treatment of sample.\\
-  Output/Result: The application should return at least \textsl{MIN\_SAMPLE\_RATE} a second for \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
-  How test will be performed: An automated test will be used to measure the sampling rate per second. The test will pass if the evaulated sampling rate is \textsl{MIN\_SAMPLE\_RATE} a second for \textsl{accpted\_percentage} of the time.
+  Output/Result: Calculate and output the application's sample rate and check to see if it is greater or equal to \textsl{MIN\_SAMPLE\_RATE}.\\
+  How test will be performed: Using the parameters of the devices, we will calculate the observed sample rate and compare it with the inputted sample rate by the user. The test will pass if the observed sample rate is \textsl{MIN\_SAMPLE\_RATE} or greater.
   
-  \item Type: Dynamic \& Automated\\
+  \item Type: Dynamic \& Manual\\
   Initial State: Application is installed and running.\\
   Input/Condition: User will be given parameters to change.\\
-  Output/Result: Application will relfect changes by within \textsl{TIME\_ACCEPTED} for \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
-  How test will be performed: An automated test will be used to measure the time it takes the changes to reflect while the user is changing the parameters.
+  Output/Result: Application will reflect changes by within \textsl{TIME\_ACCEPTED}.\\
+  How test will be performed: User will make modifications, we will observe how long the application takes to reflect changes. 
 
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
   Input/Condition: Thermal treatment sample data will be read into the device.\\
-  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{ACCEPTED\_SIGFIG} for at least  \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
-  How test will be performed: An automated test will be used to compare the expected values to the measured values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
+  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{ACCEPTED\_SIGFIG} number of significant digits.\\
+  How test will be performed: An automated test will be used to compare the expected values to the measured values. The test will pass if the result is correct up to the number of {ACCEPTED\_SIGFIG} significant digits.
 
-  \item Type: Dynamic \& Automated\\
+  \item Type: Dynamic \& Manual\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
-  Input/Condition: Calcilations will be perfrmed on readings.\\
-  Output/Result: The calculations displayed on the application will be accurate to \textsl{ACCEPTED\_SIGFIG} for  \textsl{ACCEPTED\_PERCENTAGE
-  } of the time.\\
-  How test will be performed: An automated test will be used to compare the expected values to the calculated values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
-
-  \item Type: Dynamic \& Automated\\
-  Initial State: Application is installed and running with measurement devices connected to a sample.\\
-  Input/Condition: Application will be opened and user woll interact with it.\\
-  Output/Result: The application will be up and running for at least \textsl{ACCEPTED\_PERCENTAGE} of the time during the task given to the user to perform.\\
-  How test will be performed: An sutomated test will be used to measure the uptime of the application. The evaulated percentage will be found after the duration of the give task and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
+  Input/Condition: Application will be opened and user will interact with it.\\
+  Output/Result: The application will be up and running for at least \textsl{MIN\_UPTIME} and for the entire duration of the task given to the user to perform.\\
+  How test will be performed: User will complete a set of tasks using the application and the application will be left running for at least \textsl{MIN\_UPTIME} afterwards.
 
 \end{enumerate}
 \end{adjustwidth}
@@ -552,12 +536,10 @@ How test will be performed: Test will be performed by developers. Performing the
     NFR-U4 & NF-UT4 \\ \hline
     NFR-U5 & NF-UT5\\ \hline
     NFR-U6 & NF-UT6 \\ \hline
-    NFR-U7 & NF-UT7 \\ \hline
     NFR-P1 & NF-PT1 \\ \hline
     NFR-P2 & NF-PT2 \\ \hline
     NFR-P3 & NF-PT3 \\ \hline
     NFR-P4 & NF-PT4 \\ \hline
-    NFR-P5 & NF-PT5 \\ \hline
     NFR-O1 & NF-OT1 \\ \hline
     NFR-O2 & NF-OT2 \\ \hline
     NFR-O3 & N/A \\ \hline
