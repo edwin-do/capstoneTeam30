@@ -1,8 +1,16 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -28,11 +36,11 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{tabularx}{\textwidth}{p{3cm}p{3cm}X}
+\toprule {\bf Date} & {\bf Developer} & {\bf Change}\\
 \midrule
 Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Mar. 8, 2023 & Joseph Braun & Added Section 5 \\
 \bottomrule
 \end{tabularx}
 
@@ -90,9 +98,25 @@ This document ...
 
 \subsection{etc.}
 	
+
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+\noindent Below is an image of the exisiting implementation's GUI.
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.2]{app.png}}
+\caption{Previous software user interface design}
+\label{fig}
+\end{figure}
+
+\noindent The key elememts of the existing implementation will also be included in our implementation. This is so that the application will be familiar to the user and as intuitive as possible. These elements are listed below:
+\begin{itemize}
+  \item Method Panel: controls which device to read data from (tempertaure or voltage), and which file to save the data in
+  \item Device Settings Panel: used to send SCPI commands directly to a device
+  \item Readout: includes graphical output and listed output of relevant values (current, voltage, resistance, etc.)
+\end{itemize}
+
+\noindent The primary difference between the existing implementation and our implementaion is the appearance of the GUI. The exisiting implementation was developed for Windows XP and in its current state is non-functional. Our implementation is developed for Windows 10. 
 
 \section{Unit Testing}
 
