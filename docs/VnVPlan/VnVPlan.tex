@@ -72,17 +72,17 @@
   VS & Visual Studio\\
   UWP & Universal Windows Platform\\
   MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
-  target\_time & 60 seconds \\
-  target\_percentage & 90\% \\
-  interact\_time & 5 seconds \\
-  max\_mistake & 1\% \\
-  observed\_months & 4\% \\
-  number\_of\_para & 10 \\ 
-  max\_capacity & 8GB\% \\ 
-  min\_sample\_rate & 60 \\
-  accepted\_percentage & 95\% \\
-  time\_accepted & 1 second \\
-  accepted\_sigfig & 3 decimals \\
+  TARGET\_TIME & 60 seconds \\
+  TARGET\_PERCENTAGE & 90\% \\
+  INTERACT\_TIME & 5 seconds \\
+  MAX\_MISTAKE & 1\% \\
+  OBSERVED\_MONTHS & 4\% \\
+  NUMBER\_OF\_PARA & 10 \\ 
+  MAX\_CAPACITY & 8GB\% \\ 
+  MIN\_SAMPLE\_RATE & 60 \\
+  ACCEPTED\_PERCENTAGE & 95\% \\
+  TIME\_ACCEPTED & 1 second \\
+  ACCEPTED\_SIGFIG & 3 decimals \\
   \bottomrule
 \end{tabular}\\
 
@@ -362,38 +362,38 @@ results are outside a reasonable range, then the team shall conclude that the re
   \item Type: Dynamic \& Manual\\
   Initial State: The application is open to home screen  and ready to use.\\
   Input/Condition: The users with no prior experience with the product.\\
-  Output/Result: At least \textsl{target\_percentage} of users with no prior experience  can successfully complete each task within \textsl{target\_time}.\\
-  How test will be performed: The users will be observed while completing the task. The test will pass if at least \textsl{target\_percentage} users complete the task within \textsl{target\_time}.
+  Output/Result: At least \textsl{TARGET\_PERCENTAGE} of users with no prior experience  can successfully complete each task within \textsl{TARGET\_TIME}.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if at least \textsl{TARGET\_PERCENTAGE} users complete the task within \textsl{TARGET\_TIME}.
 
   \item Type: Dynamic \& Manual\\
   Initial State: The application is open to home screen  and ready to use.\\
   Input/Condition: User will be asked to modify the voltage and current parameters of the application to match a sample experiment we provide.\\
-  Output/Result: The user takes no more than \textsl{interact\_time} from the time they interact with the application to when they start modifying the voltage and current parameters to match a sample experiment provided.\\
-  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{interact\_time}.
+  Output/Result: The user takes no more than \textsl{INTERACT\_TIME} from the time they interact with the application to when they start modifying the voltage and current parameters to match a sample experiment provided.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{INTERACT\_TIME}.
 
   \item Type: Dynamic \& Manual \\
   Initial State: The application is open to home screen  and ready to use.\\
-  Input/Condition: User will use the application for at \textsl{observed\_months}.\\
-  Output/Result: The total number of mistakes made by the user when inteacting with the application should be no more than \textsl{max\_mistake} during the  \textsl{observed\_months}.\\
-  How test will be performed: The user will be asked to record the number of mistakes which will be defined to them before the test for the whole duration of \textsl{observed\_months}.  The test will pass if the number of mistakes record is no more than \textsl{max\_mistake} during the  \textsl{observed\_months}.
+  Input/Condition: User will use the application for at \textsl{OBSERVED\_MONTHS}.\\
+  Output/Result: The total number of mistakes made by the user when inteacting with the application should be no more than \textsl{MAX\_MISTAKE} during the  \textsl{OBSERVED\_MONTHS}.\\
+  How test will be performed: The user will be asked to record the number of mistakes which will be defined to them befomax\_mistakere the test for the whole duration of \textsl{OBSERVED\_MONTHS}.  The test will pass if the number of mistakes record is no more than \textsl{} during the  \textsl{OBSERVED\_MONTHS}.
 
   \item Type: Dynamic \& Manual\\
   Initial State: Application will be closed.\\
   Input/Condition: Users will open the application and perform a task listed for a sample experiment. User then will be asked to return the next day to perform the same task.\\
-  Output/Result:  The user takes no more than \textsl{interact\_time} from when the user intract with the application to when they start modifying the parameters.\\
-  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{interact\_time} the next day and completes the task accurately.
+  Output/Result:  The user takes no more than \textsl{INTERACT\_TIME} from when the user intract with the application to when they start modifying the parameters.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{INTERACT\_TIME} the next day and completes the task accurately.
 
   \item Type: Static \& Automated\\
   Initial State: The application is open to home screen  and ready to use.\\
-  Input/Condition: \textsl{number\_of\_para} parameters will be entered or modified in the application.\\
+  Input/Condition: \textsl{NUMBER\_OF\_PARA} parameters will be entered or modified in the application.\\
   Output/Result: The  application should not show any calculation used to return outputs when entering or modifying parameters. \\
-  How test will be performed: An automated test will be used to enter or modify \textsl{number\_of\_para} parameters in the application. No calculations or processing willl be visable to the user.
+  How test will be performed: An automated test will be used to enter or modify \textsl{NUMBER\_OF\_PARA} parameters in the application. No calculations or processing willl be visable to the user.
 
   \item Type: Static \& Automated\\
   Initial State: The application will be instatlled on the research device\\
   Input/Condition: The size of the applicationwill be checked\\
-  Output/Result: Application capacity on the device will be no more than \textsl{max\_capacity}. \\
-  How test will be performed: An automated test will be used to verify the size of the application is no more than \textsl{max\_capacity}.
+  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_CAPACITY}. \\
+  How test will be performed: An automated test will be used to verify the size of the application is no more than \textsl{MAX\_CAPACITY}.
 
   \item Type: Dynamic \& Manual\\
   Initial State: Application will be installed on the research device.\\
@@ -409,33 +409,34 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{enumerate}[{NF-PT}1.]
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
-  Input/Condition: Set \textsl{min\_sample\_rate} and start thermal treatment of sample.\\
-  Output/Result: The application should return at least \textsl{min\_sample\_rate} a second for \textsl{accepted\_percentage} of the time.\\
-  How test will be performed: An automated test will be used to measure the sampling rate per second. The test will pass if the evaulated sampling rate is \textsl{min\_sample\_rate} a second for \textsl{accpted\_percentage} of the time.
+  Input/Condition: Set \textsl{MIN\_SAMPLE\_RATE} and start thermal treatment of sample.\\
+  Output/Result: The application should return at least \textsl{MIN\_SAMPLE\_RATE} a second for \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
+  How test will be performed: An automated test will be used to measure the sampling rate per second. The test will pass if the evaulated sampling rate is \textsl{MIN\_SAMPLE\_RATE} a second for \textsl{accpted\_percentage} of the time.
   
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running.\\
   Input/Condition: User will be given parameters to change.\\
-  Output/Result: Application will relfect changes by within \textsl{time\_accepted} for \textsl{accepted\_percentage} of the time.\\
+  Output/Result: Application will relfect changes by within \textsl{TIME\_ACCEPTED} for \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
   How test will be performed: An automated test will be used to measure the time it takes the changes to reflect while the user is changing the parameters.
 
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
   Input/Condition: Thermal treatment sample data will be read into the device.\\
-  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{accepted\_sigfig} for at least  \textsl{accepted\_percentage} of the time.\\
-  How test will be performed: An automated test will be used to compare the expected values to the measured values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{accepted\_percentage}.
+  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{ACCEPTED\_SIGFIG} for at least  \textsl{ACCEPTED\_PERCENTAGE} of the time.\\
+  How test will be performed: An automated test will be used to compare the expected values to the measured values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
 
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
   Input/Condition: Calcilations will be perfrmed on readings.\\
-  Output/Result: The calculations displayed on the application will be accurate to \textsl{accepted\_sigfig} for  \textsl{accepted\_percentage} of the time.\\
-  How test will be performed: An automated test will be used to compare the expected values to the calculated values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{accepted\_percentage}.
+  Output/Result: The calculations displayed on the application will be accurate to \textsl{ACCEPTED\_SIGFIG} for  \textsl{ACCEPTED\_PERCENTAGE
+  } of the time.\\
+  How test will be performed: An automated test will be used to compare the expected values to the calculated values. The evaulated percentage will be found after the duration of the treatment and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
 
   \item Type: Dynamic \& Automated\\
   Initial State: Application is installed and running with measurement devices connected to a sample.\\
   Input/Condition: Application will be opened and user woll interact with it.\\
-  Output/Result: The application will be up and running for at least \textsl{accepted\_percentage} of the time during the task given to the user to perform.\\
-  How test will be performed: An sutomated test will be used to measure the uptime of the application. The evaulated percentage will be found after the duration of the give task and will be compared to the \textsl{accepted\_percentage}.
+  Output/Result: The application will be up and running for at least \textsl{ACCEPTED\_PERCENTAGE} of the time during the task given to the user to perform.\\
+  How test will be performed: An sutomated test will be used to measure the uptime of the application. The evaulated percentage will be found after the duration of the give task and will be compared to the \textsl{ACCEPTED\_PERCENTAGE}.
 
 \end{enumerate}
 \end{adjustwidth}
