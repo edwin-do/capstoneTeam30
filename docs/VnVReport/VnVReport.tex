@@ -28,10 +28,10 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{tabularx}{\textwidth}{p{2.5cm}p{3cm}X}
+\toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
+Mar 8, 2023 & Timothy Chen & Added performance to the Nonfunctional Test Evaluation\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -46,6 +46,15 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
+  TARGET\_TIME & 60 seconds \\
+  INTERACT\_TIME & 5 seconds \\
+  MAX\_MISTAKE & 2 \\
+  MAX\_CAPACITY & 8GB \\ 
+  MIN\_UPTIME & 30 minutes \\ 
+  MIN\_SAMPLE\_RATE & 60 samples per second\\
+  TIME\_ACCEPTED & 1 second \\
+  ACCEPTED\_SIGFIG & 3 decimals \\
   \bottomrule
 \end{tabular}\\
 
@@ -87,13 +96,20 @@ This document ...
  \end{tabular}
 		
 \subsection{Performance}
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|p{2cm}| }
+The following is the list of Non-functional Test performed on the application to evaluate the performance of the application in respect to the test requirement. Each test will be mapped to unit test that are related to the corresponding requirement.\\
+\begin{tabular}{ |p{2.3cm}||p{2cm}|p{3cm}|p{4cm}|p{2cm}| }
   \hline
-  \multicolumn{5}{|c|}{Usability Tests} \\
+  \multicolumn{5}{|c|}{Performance Tests} \\
   \hline
-  Requirement & Related Unit Tests & Description & Expected Result & Result\\
+  Test Requirement & Related Unit Tests & Description & Expected Result & Result\\
   \hline
-  Afghanistan   & AF    &AFG&   004 & PASS\\
+  NF-PT1   & - & Checking the minimum sampling rate of the application.  & The sampling rate of the application will be equal or greater than \textsl{MIN\_SAMPLE\_RATE} & PASS\\
+  \hline
+  NF-PT2   & - & Checking the time required for parameters to reflect in the application.  & The parameters will reflect in the application by within \textsl{TIME\_ACCEPTED} & PASS\\
+  \hline
+  NF-PT3   & - & Checking the significant digits used for calculations and display in the application.  &  The significant digits seen and used in the application is accurate to \textsl{ACCEPTED\_SIGFIG}. & PASS\\
+  \hline
+  NF-PT4   & - & Checking the up-time of the application during and after usage.  &  The application will have a up-time equal to or more than \textsl{MIN\_UPTIME} after the user completes a set of tasks. & PASS\\
   \hline
  \end{tabular}
 
