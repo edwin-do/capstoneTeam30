@@ -31,7 +31,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Name} & {\bf Notes}\\
 \midrule
-Mar 8 2023 & Edwin Do & Added usability test results\\
+Mar 8 2023 & Edwin Do & Added usability test results \\
+Mar 8 2023 & Edwin Do & Added Traceability matrices \\
 \bottomrule
 \end{tabularx}
 
@@ -81,7 +82,7 @@ Each requirement can be traced to multiple unit tests and the usability survey u
   \hline
   \multicolumn{5}{|c|}{Usability Tests} \\
   \hline
-  Requirement & Related Unit Tests & Description & Expected Result & Result\\
+  Test Requirement & Related Unit Tests & Description & Expected Result & Result\\
   \hline
   NF-UT1   & AF  & Completing tasks without additional assistance. & User will be complete tasks successfully & PASS\\
   \hline
@@ -112,6 +113,35 @@ This section will not be appropriate for every project.
 \section{Automated Testing}
 		
 \section{Trace to Requirements}
+\begin{tabular}{ |p{3cm}||p{4cm}|p{4cm}|p{4cm}|p{4cm}| }
+  \hline
+  \multicolumn{4}{|c|}{Traceability Matrix to Non Functional Requirements} \\
+  \hline
+  Requirement Type & Requirement(SRS) & Test Requirement & Related Unit Tests \\
+  \hline
+  Non Functional   & NFR-U1  & NF-UT1 & U \\ \hline
+  Non Functional   & NFR-U2  & NF-UT2 & U \\ \hline
+  Non Functional   & NFR-U3  & NF-UT3 & U \\ \hline
+  Non Functional   & NFR-U4  & NF-UT4 & U \\ \hline
+  Non Functional   & NFR-U5  & NF-UT5 & U \\ \hline
+  Non Functional   & NFR-U6  & NF-UT6 & U \\ \hline
+  
+ \end{tabular}
+
+ \begin{tabular}{ |p{3cm}||p{4cm}|p{4cm}|p{4cm}|p{4cm}| }
+  \hline
+  \multicolumn{4}{|c|}{Traceability Matrix to Functional Requirements} \\
+  \hline
+  Requirement Type & Requirement(SRS) & Test Requirement & Related Unit Tests \\
+  \hline
+  Functional   & FR1  & FR-T1 & U \\ \hline
+  Functional   & FR2  & FR-T2 & U \\ \hline
+  Functional   & FR3  & FR-T3 & U \\ \hline
+  Functional   & FR4  & FR-T4 & U \\ \hline
+  Functional   & FR5  & FR-T5 & U \\ \hline
+  Functional   & FR6  & FR-T6 & U \\ \hline
+  
+ \end{tabular}
 		
 \section{Trace to Modules}		
 
