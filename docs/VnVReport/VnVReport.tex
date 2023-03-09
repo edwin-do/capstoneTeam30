@@ -50,7 +50,6 @@ Mar 8, 2023 & Joseph Braun & Added Reflection \\
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
-change capacity to size
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -82,7 +81,11 @@ Section 11 Code Coverage Metrics is removed.
 
 \section{Nonfunctional Requirements Evaluation}
 
+<<<<<<< HEAD
 In the section
+=======
+In the section, the test results for the most important non functional requirements are shown. The team decided to focus testing primarily on Usability and Performance since they are key qualities to the success of this project.
+>>>>>>> 01c88ed942368a0c67af8051fe6a8b782f30397e
 
 \pagebreak
 \subsection{Usability}
@@ -110,6 +113,26 @@ Each requirement can be traced to multiple unit tests and the usability survey u
  \end{tabular}
 		
 \subsection{Performance}
+<<<<<<< HEAD
+=======
+The following is the list of Non-functional tests performed on the application to evaluate the performance of the application with respect to the test requirement. Each test will be mapped to unit tests that are related to the corresponding requirement.\\
+\\
+\begin{tabular}{ |p{2.3cm}||p{2cm}|p{3cm}|p{4cm}|p{2cm}| }
+  \hline
+  \multicolumn{5}{|c|}{Performance Tests} \\
+  \hline
+  Test Requirement & Related Unit Tests & Description & Expected Result & Result\\
+  \hline
+  NF-PT1   & - & Checking the minimum sampling rate of the application.  & The sampling rate of the application will be equal or greater than \textsl{MIN\_SAMPLE\_RATE} & PASS\\
+  \hline
+  NF-PT2   & - & Checking the time required for parameters to reflect in the application.  & The parameters will reflect in the application by within \textsl{TIME\_ACCEPTED} & PASS\\
+  \hline
+  NF-PT3   & - & Checking the significant digits used for calculations and display in the application.  &  The significant digits seen and used in the application is accurate to \textsl{ACCEPTED\_SIGFIG}. & PASS\\
+  \hline
+  NF-PT4   & - & Checking the up-time of the application during and after usage.  &  The application will have a up-time equal to or more than \textsl{MIN\_UPTIME} after the user completes a set of tasks. & PASS\\
+  \hline
+ \end{tabular}
+>>>>>>> 01c88ed942368a0c67af8051fe6a8b782f30397e
 
 \subsection{etc.}
 	
@@ -300,6 +323,7 @@ Each requirement can be traced to multiple unit tests and the usability survey u
   
  \end{tabular}
 
+<<<<<<< HEAD
  \begin{tabular}{ |p{3cm}||p{4cm}|p{4cm}|p{4cm}|p{4cm}| }
   \hline
   \multicolumn{4}{|c|}{Traceability Matrix to Functional Requirements} \\
@@ -314,6 +338,27 @@ Each requirement can be traced to multiple unit tests and the usability survey u
   Functional   & FR6  & FR-T6 & U \\ \hline
   
  \end{tabular}
+=======
+ The table below shows the traceability between each functional requirement from the SRS, and the test requirement in this report.\\
+\\
+
+\begin{table}[H]
+	\centering
+	\caption{Requirements Traceability}
+	\label{my-label}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{System Test} & \textbf{Requirement} & \textbf{Plan} \\ \hline
+		ST1  & FR1 &FR-T1 \\ \hline
+		ST2  & FR2 &FR-T2\\ \hline
+		ST3  & FR3 &FR-T3\\ \hline
+		ST4  & FR4 &FR-T4\\ \hline
+		ST5  & FR5 &FR-T5\\ \hline
+		ST6  & FR6 &FR-T6\\ \hline
+		ST7  & FR7 &FR-T7\\ \hline
+	\end{tabular}
+\end{table}
+>>>>>>> 01c88ed942368a0c67af8051fe6a8b782f30397e
 		
 \section{Trace to Modules}		
 
