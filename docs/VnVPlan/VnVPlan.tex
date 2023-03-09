@@ -46,6 +46,7 @@
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
   Mar 8, 2023 & Tyler Magarelli & Updated user experience survey for section 6.2\\
+  Mar 8, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -301,24 +302,10 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{enumerate}[{FR-T}1.]
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the current source with supply parameters.\\
-    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately.\\
-    Test Case Derivation: Since the current source is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the nanovoltmeter and capture measurements.\\
-    Output: The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.\\
-    Test Case Derivation: Since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Simultaneously monitoring both the values displayed on the nanovoltmeter and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will set up a sample and demonstrate the main function of the application.\\
-    Output: The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
+    Input: Developers will initialize the current source with supply parameters, initialize the nanovoltmeter and capture measurements, and set up a sample and demonstrate the main function of the application.\\
+    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately. The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
     Test Case Derivation: Since the measurement devices are connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency. They will take a random sample of the mentioned measurements and conduct a manual analysis of the resistivity of said sample and compare the results to what is expected.
+    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Then verify the resistivity calculations by taking samples from the logs and doing a manual calculation. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
@@ -347,6 +334,21 @@ How test will be performed: Test will be performed by developers. Performing the
     Output: The application is able to be controlled using a proxy/web application.\\
     Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
     How test will be performed: Test will be performed by developers communicating remotely with the control computer through a web app. The main application is already capturing measurements and making calculations. Remotely, the testing developer will click “Stop Experiment” button on the web app and that will prompt the main app to stop capturing data and turn the current supply off.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment.\\
+    Output: The application displays a graph that shows real-time values and calculations.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a graph will be able to follow these values and display them in a visual representation.\\
+    How test will be performed: Test will be performed by developers. By initializing the current source and voltmeter, then turning current supply on and starting capture. Then observing the graph in the application window.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment then stop it.\\
+    Output: The application shall save a file on the control computer containing the measurements and calculations of the experiment.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a file system will be able to follow these values and write them to a data file outside of the application.\\
+    How test will be performed: Test will be performed by developers. By inputting information about the experiment and the personnel involved, then initializing the current source and voltmeter, and turning current supply on and starting capture. When enough data has been captured, they shall stop the experiment and check the generated file.
+
 
 \end{enumerate}
 
