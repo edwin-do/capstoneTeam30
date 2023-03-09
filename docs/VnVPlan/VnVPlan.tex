@@ -45,8 +45,9 @@
   Mar 4, 2023 & Timothy Chen & Revised Usability and Performance NFR test\\
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
+  Mar 8, 2023 & Edwin Do & Added unit tests for calculation and validation\\
   Mar 8, 2023 & Tyler Magarelli & Updated user experience survey for section 6.2\\
-  Mar 8, 2023 & Timothy Chen & Added Unit Test Plan for Input Communication and Remote Access\\
+  Mar 8, 2023 & Timothy Chen & Added Unit Test Plan for Input Communication, Remote Access, Current State\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -302,24 +303,10 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{enumerate}[{FR-T}1.]
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the current source with supply parameters.\\
-    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately.\\
-    Test Case Derivation: Since the current source is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the nanovoltmeter and capture measurements.\\
-    Output: The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.\\
-    Test Case Derivation: Since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Simultaneously monitoring both the values displayed on the nanovoltmeter and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will set up a sample and demonstrate the main function of the application.\\
-    Output: The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
+    Input: Developers will initialize the current source with supply parameters, initialize the nanovoltmeter and capture measurements, and set up a sample and demonstrate the main function of the application.\\
+    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately. The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
     Test Case Derivation: Since the measurement devices are connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency. They will take a random sample of the mentioned measurements and conduct a manual analysis of the resistivity of said sample and compare the results to what is expected.
+    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Then verify the resistivity calculations by taking samples from the logs and doing a manual calculation. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
@@ -348,6 +335,21 @@ How test will be performed: Test will be performed by developers. Performing the
     Output: The application is able to be controlled using a proxy/web application.\\
     Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
     How test will be performed: Test will be performed by developers communicating remotely with the control computer through a web app. The main application is already capturing measurements and making calculations. Remotely, the testing developer will click “Stop Experiment” button on the web app and that will prompt the main app to stop capturing data and turn the current supply off.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment.\\
+    Output: The application displays a graph that shows real-time values and calculations.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a graph will be able to follow these values and display them in a visual representation.\\
+    How test will be performed: Test will be performed by developers. By initializing the current source and voltmeter, then turning current supply on and starting capture. Then observing the graph in the application window.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment then stop it.\\
+    Output: The application shall save a file on the control computer containing the measurements and calculations of the experiment.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a file system will be able to follow these values and write them to a data file outside of the application.\\
+    How test will be performed: Test will be performed by developers. By inputting information about the experiment and the personnel involved, then initializing the current source and voltmeter, and turning current supply on and starting capture. When enough data has been captured, they shall stop the experiment and check the generated file.
+
 
 \end{enumerate}
 
@@ -526,11 +528,13 @@ How test will be performed: Test will be performed by developers. Performing the
 	\begin{tabular}{|c|c|}
 		\hline
 		\textbf{Requirements} & \textbf{Tests} \\ \hline
-		FR1 & FR-T1, FR-T2, FR-T3 \\ \hline
-		FR2 & FR-T4 \\ \hline
-		FR3 & FR-T5 \\ \hline
-		FR4 & FR-T6 \\ \hline
-		FR5 & FR-T7 \\ \hline
+		FR1 & FR-T1 \\ \hline
+		FR2 & FR-T2 \\ \hline
+		FR3 & FR-T3 \\ \hline
+		FR4 & FR-T4 \\ \hline
+		FR5 & FR-T5 \\ \hline
+		FR6 & FR-T6 \\ \hline
+		FR7 & FR-T7 \\ \hline
 		NFR-L1 & NF-AT1 \\ \hline
     NFR-L2 & NF-AT2 \\ \hline
     NFR-U1 & NF-UT1 \\ \hline
@@ -579,6 +583,7 @@ How test will be performed: Test will be performed by developers. Performing the
 
 \subsection{Unit Testing Scope}
 
+No individual module correspond to any non functional requirements so section for non functional unit tests are removed.
 \wss{What modules are outside of the scope.  If there are modules that are
   developed by someone else, then you would say here if you aren't planning on
   verifying them.  There may also be modules that are part of your software, but
@@ -598,25 +603,12 @@ The following test will be used to verify if the module stores and returns the p
 
 \begin{enumerate}[{UT-IC}1.]
 
-\item
+\item{test-id1\\}
 
-Type: Static, Automatic
+Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+  be automatic}
 					
-Initial State: Object has been instantiated with properties from user inputs and stored in input variable.
-					
-Input: input.getUserInput() method will be called.
-					
-Output: UserInput ADT
-
-Test Case Derivation: When input.getUserInput() is called the UserInput ADT should be returned.
-
-How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing.
-					
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated with properties from user inputs and stored to input variable.
+Initial State: 
 					
 Input: input.getHardwareInput() will be called.
 					
@@ -624,6 +616,35 @@ Output: NULL
 
 Test Case Derivation: When input.getHardwareInput() is called, NULL exception will be returned as properties has not been given.
 
+How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getHardwareInput() will be called.
+					
+Output: HardwareInput ADT
+
+Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
+
+\item
+
+Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+  be automatic}
+					
+Initial State: 
+					
+Input: input.getUserInput() will be called.
+					
+Output: NULL
+
+Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
 
 How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
 
@@ -965,53 +986,194 @@ How test will be performed: Object will be instantiated and verified using Autom
     
 \end{enumerate}
 
-\subsubsection{Module 2}
+\subsubsection{Calculation Module }
 
-...
+\begin{enumerate}[{UT-C}1.]
 
-\subsection{Tests for Nonfunctional Requirements}
+  \item
+  
+  Type: Automatic, Static 
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+  Initial State: State varaible Resistance has a value of zero
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+  Input: The method getResistance() is called and assigned to the variable Resistance  
 
-\subsubsection{Module ?}
-		
-\begin{enumerate}
+  Output: Resistance has a value greater than zero and matches the calculated value.
 
-\item{test-id1\\}
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value correctly, then the value of resistance should be non zero and match the calculated value.
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  \item
+  
+  Type: Automatic, Static 
 
+  Initial State: State varaible Resistance has a value of zero
+
+  Input: The method getResistance() is called and results in a value less than zero.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value less than zero, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
+            
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and assigned to the variable Resistivity
+
+  Output: Resistivity has a non-zero value and matches the calculated value. 
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value correctly, then the value of resistivity should be non zero and match the calculated value.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
+  
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and produces a non-real number/value.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value is not a number, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
+      
+  \end{enumerate}
+
+
+  \subsubsection{User Input Validation Module }
+
+  \begin{enumerate}[{UT-UI}1.]
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method getUserInput() is called.
+
+  Output: The abstract data type UserInput is returned
+
+  Test Case Derivation: If getUserInput() is called,  UserInput should be returned.
+
+  How test will be performed: The User Input Validation Module will be imported and the method getUserInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with correct values for FileName, Date, Name.
+
+  Output: TRUE
+
+  Test Case Derivation: If FileName, Date, Name are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with incorrect values for FileName, Date, or Name.
+
+  Output: FALSE
+
+  Test Case Derivation: If FileName, Date, or Name are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with correct values for SamplingRate, SampleLength, SampleWidth.
+
+  Output: TRUE
+
+  Test Case Derivation: If SamplingRate, SampleLength, SampleWidth are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with incorrect values for SamplingRate, SampleLength, or SampleWidth.
+
+  Output: FALSE
+
+  Test Case Derivation: If SamplingRate, SampleLength, or SampleWidth are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
 \end{enumerate}
 
-\subsubsection{Module ?}
+\subsubsection{Hardware Input Validation Module }
 
-...
+\begin{enumerate}[{UT-HI}1.]
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method getHardwareInput() is called.
+
+  Output: The abstract data type HardwareInput is returned 
+
+  Test Case Derivation: If the method getHardwareInput() is called, then it should return the abstract data type HardwareInput.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with correct values for Voltage, Time and Current.
+
+  Output: TRUE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return TRUE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with incorrect values for Voltage, Time or Current.
+
+  Output: FALSE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return FALSE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Modules}
 
