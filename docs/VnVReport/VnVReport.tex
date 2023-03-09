@@ -36,18 +36,21 @@
 
 \section{Revision History}
 
+
 \begin{tabularx}{\textwidth}{p{3cm}p{3cm}X}
 \toprule {\bf Date} & {\bf Developer} & {\bf Change}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Mar. 8, 2023 & Joseph Braun & Added Sections 5, 7, 8 \\
-Mar. 8, 2023 & Joseph Braun & Added Reflection \\
+Mar 8 2023 & Edwin Do & Added usability test results \\
+Mar 8 2023 & Edwin Do & Added Traceability matrices \\
+Mar 8, 2023 & Joseph Braun & Added Sections 5, 7, 8 \\
+Mar 8, 2023 & Joseph Braun & Added Reflection \\
 \bottomrule
 \end{tabularx}
 
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
+change capacity to size
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -73,25 +76,36 @@ Mar. 8, 2023 & Joseph Braun & Added Reflection \\
 \pagenumbering{arabic}
 
 This document ...
+Section 11 Code Coverage Metrics is removed.
 
 \section{Functional Requirements Evaluation}
 
 \section{Nonfunctional Requirements Evaluation}
 
+In the section
+
+\pagebreak
 \subsection{Usability}
-\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|p{2cm}| }
+The table below shows the results of our usability tests based on the tests in the V\&V plan based on the requirements mentioned in the SRS.
+Each requirement can be traced to multiple unit tests and the usability survey used can be found in the Appendix.\\
+\\
+\begin{tabular}{ |p{2.5cm}||p{2cm}|p{4cm}|p{4cm}|p{1.5cm}| }
   \hline
   \multicolumn{5}{|c|}{Usability Tests} \\
   \hline
-  Requirement & Related Unit Tests & Description & Expected Result & Result\\
+  Test Requirement & Related Unit Tests & Description & Expected Result & Result\\
   \hline
-  Afghanistan   & AF    &AFG&   004 & PASS\\
-  Aland Islands&   AX  & ALA   &248 &\\
-  Albania &AL & ALB&  008 &\\
-  Algeria    &DZ & DZA&  012 &\\
-  American Samoa&   AS  & ASM&016 &\\
-  Andorra& AD  & AND   &020 &\\
-  Angola& AO  & AGO&024 &\\
+  NF-UT1   & AF  & Completing tasks without additional assistance. & User will be complete tasks successfully & PASS\\
+  \hline
+  NF-UT2   & AX  & Interact with interace to modify parameters. & User will be able to modify the parameters accurately and quickly.& PASS\\
+  \hline
+  NF-UT3   & AL  & Completing all tasks with limited number of mistakes & User will be able to complete all tasks with \textsl{MAX\_MISTAKE} & PASS\\
+  \hline
+  NF-UT3   & AL  & Verifying if interacting with the application previously improves ease of use (learnability)  & User will be able to complete the tasks more quickly and accurately the second time & PASS\\
+  \hline
+  NF-UT5   & AS  & Verifying how calculations are performed is hidden &  User will not know how calculations are performed after doing the set of tasks & PASS\\
+  \hline
+  NF-UT6   & AS  & Verifying appropriate application size upon installation&  User will install application onto computer and verify that the application size is less than or equal to \textsl{MAX\_SIZE} & PASS\\
   \hline
  \end{tabular}
 		
@@ -144,10 +158,37 @@ This document ...
 \noindent NUnit tests are setup by first creating a new project file in Visual Studio and adding it to the solution file for your project (in our case, the application). In the new project file, a new class is created. Each unit test we want to carry out is written as a method of the test class. Since the project file for the test class is inlcuded in the same solution file as our application, we are able to call the test methods from our main application to run the tests.\\
 		
 \section{Trace to Requirements}
+\begin{tabular}{ |p{3cm}||p{4cm}|p{4cm}|p{4cm}|p{4cm}| }
+  \hline
+  \multicolumn{4}{|c|}{Traceability Matrix to Non Functional Requirements} \\
+  \hline
+  Requirement Type & Requirement(SRS) & Test Requirement & Related Unit Tests \\
+  \hline
+  Non Functional   & NFR-U1  & NF-UT1 & U \\ \hline
+  Non Functional   & NFR-U2  & NF-UT2 & U \\ \hline
+  Non Functional   & NFR-U3  & NF-UT3 & U \\ \hline
+  Non Functional   & NFR-U4  & NF-UT4 & U \\ \hline
+  Non Functional   & NFR-U5  & NF-UT5 & U \\ \hline
+  Non Functional   & NFR-U6  & NF-UT6 & U \\ \hline
+  
+ \end{tabular}
+
+ \begin{tabular}{ |p{3cm}||p{4cm}|p{4cm}|p{4cm}|p{4cm}| }
+  \hline
+  \multicolumn{4}{|c|}{Traceability Matrix to Functional Requirements} \\
+  \hline
+  Requirement Type & Requirement(SRS) & Test Requirement & Related Unit Tests \\
+  \hline
+  Functional   & FR1  & FR-T1 & U \\ \hline
+  Functional   & FR2  & FR-T2 & U \\ \hline
+  Functional   & FR3  & FR-T3 & U \\ \hline
+  Functional   & FR4  & FR-T4 & U \\ \hline
+  Functional   & FR5  & FR-T5 & U \\ \hline
+  Functional   & FR6  & FR-T6 & U \\ \hline
+  
+ \end{tabular}
 		
 \section{Trace to Modules}		
-
-\section{Code Coverage Metrics}
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
