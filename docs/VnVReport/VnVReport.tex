@@ -1,8 +1,14 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage[shortlabels]{enumitem}
+\usepackage{comment}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{changepage}
+\usepackage{graphicx}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -27,13 +33,17 @@
 
 \section{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\begin{table}[H]
+  \caption{\bf Revision History}
+  \begin{tabularx}{\textwidth}{p{2.5cm}p{2.5cm}X}
+  \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
+  \midrule
+  Mar 7, 2023 & Abdul Nour & Updated template\\
+  Mar 8, 2023 & Abdul Nour & Added Functional Requirements Evaluation \& Trace to Requirements\\
+  Mar 8, 2023 & Abdul Nour & Added Functional Req's Unit Tests\\
+  \bottomrule
+  \end{tabularx}
+  \end{table}
 
 ~\newpage
 
@@ -62,9 +72,33 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+%This document ...
 
 \section{Functional Requirements Evaluation}
+
+\noindent The following table suggests examples of system level tests that were executed in order to verify that the functional requirements of the system were met.
+
+
+\begin{table}[H]
+	\centering
+	\caption{Test Cases for Functional Requirements}
+	\label{my-label}
+%	\begin{tabular}{|l|l|l|l|l|}
+	\begin{tabular}{|p{0.85cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result} \\ \hline
+		ST1 & Check "Current Source" radio button, type (1) in the "Current Supply" textbox, type (10) in the "Compliance" textbox and click "Set" button, click "Current ON" button, check "Nano-Voltmeter" radio button, click "Start Capture" button & Current Source is reset, current  is set to 1mA and displayed, ompliance voltage is set to 10V, current is turned on, nanovoltmeter is reset and values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS\\ \hline
+		ST2 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL*\\ \hline
+		ST3 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS\\ \hline
+		ST4 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL*\\ \hline
+		ST5 & Capture and current are on, click "Stop Experiment" button on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
+		ST6 & Start experiment and capture & Graph is displaying measurements and calculations & PASS \\ \hline
+		ST7 & Enter experiment info \& conduct an experiment & File output contains all experiment data & PASS \\ \hline
+	\end{tabular}
+\end{table}
+\noindent * This feature has not been implemented yet.
+
+\newpage
 
 \section{Nonfunctional Requirements Evaluation}
 
@@ -80,28 +114,95 @@ This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+\subsection{Functional Requirements Testing}
+
+\begin{table}[H]
+	\centering
+	\caption{Unit Tests for Functional Requirements}
+	\label{my-label}
+	\begin{tabular}{|p{0.85cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}\\ \hline
+		UT1 & Check "Current Source" radio button & Current Source is reset & PASS \\ \hline
+		UT2 & Type an integer (1) in the "Current Supply" textbox and click "Set" button & Current Supply is set to 1mA and displayed & PASS \\ \hline
+		UT3 & Type an integer (10) in the "Compliance" textbox and click "Set" button & Compliance voltage is set to 10V & PASS\\ \hline
+		UT4 & Click "Current ON" button & Current Source is supplying current & PASS \\ \hline
+		UT5 & Click "Current OFF" button & Current Source stops supplying current & PASS \\ \hline
+		UT6 & Check "Nano-Voltmeter" radio button & Nano-Voltmeter is reset & PASS \\ \hline
+		UT7 & Click "Start Capture" button & Values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS  \\ \hline
+		UT8 & Click "Stop Capture" button & Values and calcualtions stop generating, latest batch remains visible & PASS \\ \hline
+		UT9 & Current supply is set up and capture is started & Accurate calculations of resistivity are displayed continuously & PASS \\ \hline
+	\end{tabular}
+\end{table}
+
+%\newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{1cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}\\ \hline
+		UT10 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL*\\ \hline
+		UT11 & System is capturing values, no thermal treatment & No critical changes in resistivity are noted & PASS\\ \hline
+		UT12 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS \\ \hline
+		UT13 & Choose an "Integration Rate" of (5 PLC) from the drop-down menu & Voltmeter display shows no change than default rate & PASS\\ \hline
+		UT14 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL* \\ \hline
+		UT15 & System is capturing values, no thermal treatment & No changes in resistivity-temperature slopes are noted in caputre log or displayed & PASS \\ \hline
+		UT16 & Current supply is set up and capture is started, "Stop Experiment" button is clicked on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
+		UT17 & Current supply is set up and capture is started, remote interface is launched but not interacted with & Capture and current supply stay on (no change) & FAIL* \\ \hline
+	\end{tabular}
+\end{table}
+
 \section{Changes Due to Testing}
+
+\wss{This section should highlight how feedback from the users and from 
+the supervisor (when one exists) shaped the final product.  In particular 
+the feedback from the Rev 0 demo to the supervisor (or to potential users) 
+should be highlighted.}
 
 \section{Automated Testing}
 		
 \section{Trace to Requirements}
+
+\begin{table}[H]
+	\centering
+	\caption{Requirements Traceability}
+	\label{my-label}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{System Test} & \textbf{Unit Tests} & \textbf{Requirement} & \textbf{Plan} \\ \hline
+		ST1 & UT1 — UT9 & FR1 &FR-T1 \\ \hline
+		ST2 & UT10, UT11 & FR2 &FR-T2\\ \hline
+		ST3 & UT12, UT13 & FR3 &FR-T3\\ \hline
+		ST4 & UT14, UT15 & FR4 &FR-T4\\ \hline
+		ST5 & UT16, UT17 & FR5 &FR-T5\\ \hline
+		ST6 &  & FR6 &FR-T6\\ \hline
+		ST7 &  & FR7 &FR-T7\\ \hline
+	\end{tabular}
+\end{table}
 		
 \section{Trace to Modules}		
 
 \section{Code Coverage Metrics}
 
 \bibliographystyle{plainnat}
-\bibliography{../../refs/References}
+%\bibliography{../../refs/References}
 
 \newpage{}
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+graduate attribute of Reflection.  Please answer the following question:
 
 \begin{enumerate}
-  \item 
-  \item 
+  \item In what ways was the Verification and Validation (VnV) Plan different
+  from the activities that were actually conducted for VnV?  If there were
+  differences, what changes required the modification in the plan?  Why did
+  these changes occur?  Would you be able to anticipate these changes in future
+  projects?  If there weren't any differences, how was your team able to clearly
+  predict a feasible amount of effort and the right tasks needed to build the
+  evidence that demonstrates the required quality?  (It is expected that most
+  teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
 
 \end{document}
