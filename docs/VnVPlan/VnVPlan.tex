@@ -687,7 +687,7 @@ How test will be performed: Object will be instantiated with hardware input prop
   
   Type: Automatic, Static 
 
-  Initial State: State varaible Resistance has a value of zero
+  Initial State: State variable Resistance has a value of zero
 
   Input: The method getResistance() is called and assigned to the variable Resistance  
 
@@ -702,7 +702,7 @@ How test will be performed: Object will be instantiated with hardware input prop
   
   Type: Automatic, Static 
 
-  Initial State: State varaible Resistance has a value of zero
+  Initial State: State variable Resistance has a value of zero
 
   Input: The method getResistance() is called and results in a value less than zero.
 
@@ -717,7 +717,7 @@ How test will be performed: Object will be instantiated with hardware input prop
   
   Type: Automatic, Static 
 
-  Initial State: State varaible Resistivity has a value of zero
+  Initial State: State variable Resistivity has a value of zero
 
   Input: The method getResistivity() is called and assigned to the variable Resistivity
 
@@ -732,7 +732,7 @@ How test will be performed: Object will be instantiated with hardware input prop
   
   Type: Automatic, Static 
 
-  Initial State: State varaible Resistivity has a value of zero
+  Initial State: State variable Resistivity has a value of zero
 
   Input: The method getResistivity() is called and produces a non-real number/value.
 
@@ -742,6 +742,62 @@ How test will be performed: Object will be instantiated with hardware input prop
 
   How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
   The value of resistivity will be tested through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method calcResistance() is called with valid voltage and current values
+
+  Output: Correct calculated resistance value
+
+  Test Case Derivation: If calcResistance() is called with valid voltage and current values, then the correct resistance is computed.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistance() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method calcResistance() is called with invalid voltage and current values
+
+  Output: INVALID
+
+  Test Case Derivation: If calcResistance() is called with invalid voltage and current values, then an INVALID error is thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistance() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method calcResistivity() is called with valid Resistance, SampleArea and SampleLength
+
+  Output: Correct calculated resistivity value
+
+  Test Case Derivation: If calcResistivity() is called with Resistance, SampleArea and SampleLength, then the correct resistivity is computed.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistivity() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method calcResistivity() is called with invalid Resistance, SampleArea and SampleLength
+
+  Output: INVALID
+
+  Test Case Derivation: If calcResistivity() is called with invalid Resistance, SampleArea and SampleLength, then an INVALID error is thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistivity() will be called. 
       
   \end{enumerate}
 
