@@ -108,6 +108,25 @@ This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+\subsection{Calculation Module}
+\begin{tabular}{ |p{1.5cm}||p{2.5cm}|p{3cm}|p{2cm}|p{2cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for Calculation Module} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 5, Current = 1 & 5.000 & 5.000 & PASS \\
+  \hline
+  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 4, Current = 0.6 & 6.667 & 6.667 & PASS \\
+  \hline
+  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -5, Current = 1 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -4, Current = 0.6 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C1   & Testing the getResistivity Method  &  Resistance = 3,  & 5.000 & 5.000 & PASS \\
+  \hline
+ \end{tabular}
+
 \section{Changes Due to Testing}
 
 \section{Automated Testing}
