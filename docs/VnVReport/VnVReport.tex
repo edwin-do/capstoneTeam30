@@ -125,12 +125,14 @@ This document ...
 
 \section{Changes Due to Testing}
 
+\noindent Based on the feedback from our Rev 0 Demo, we found that our application failed some requirements tests. The major failures were the lack of two main features: the graphical output (which still did not display real data as of Rev 0 Demo) and the ability to save output data to a chosen file. While we did not need to "test" our application to know this, we still consider this to be a failed test, as our application failed to meet requirements set out by the project supervisor. These two features have been implemented for the final demo. \\
+
 \begin{tabular}{ |p{3cm}|p{5cm}|p{5cm}| }
   \hline
-  Test & Failure Observed & Change Made \\
+  Test ID & Failure Observed & Change Made \\
   \hline
-  Test 1 & Failed & Change made to module \\
-  Test 2 & Failed & Change made to module \\
+  ST6 & Graph only displays dummy data & Bug with displaying real-time data was fixed \\ \hline
+  ST7 & There is no method to output data to a file & File system browser and writing to output file was added \\
   \hline
  \end{tabular}
 
