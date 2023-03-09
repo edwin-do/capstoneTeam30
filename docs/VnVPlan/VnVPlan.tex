@@ -603,80 +603,61 @@ The following test will be used to verify if the module stores and returns the p
 
 \begin{enumerate}[{UT-IC}1.]
 
-\item{test-id1\\}
+\item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Automatic, Static
 					
-Initial State: 
+Initial State: The module InputCommunication is imported
 					
-Input: input.getHardwareInput() will be called.
+Input: The method getUserInput() is called with values for user input.
+					
+Output: The abstract data type UserInput is returned.
+
+Test Case Derivation: If the method getUserInput() is called, then it should return the abstract data type UserInput.
+
+How test will be performed: The InputCommunication Module will be imported and the method getUserInput() will be called through automated unit testing.
+
+\item
+
+Type: Automatic, Static
+					
+Initial State: The module InputCommunication is imported
+					
+Input: The method getUserInput() is called with no values for user input.
 					
 Output: NULL
 
-Test Case Derivation: When input.getHardwareInput() is called, NULL exception will be returned as properties has not been given.
+Test Case Derivation: If no values for user input, then it should return NULL.
 
-How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated with hardware inputs and saved to input.
-					
-Input: input.getHardwareInput() will be called.
-					
-Output: HardwareInput ADT
-
-Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
-
-
-How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
+How test will be performed: The InputCommunication Module will be imported and the method getUserInput() will be called through automated unit testing.
 
 \item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Automatic, Static
 					
-Initial State: 
+Initial State: The module InputCommunication is imported
 					
-Input: input.getUserInput() will be called.
+Input: The method getHardwareInput() is called with values for hardware input.
+					
+Output: The abstract data type HardwareInput is returned.
+
+Test Case Derivation: If the method getHardwareInput() is called, then it should return the abstract data type HardwareInput.
+
+How test will be performed: The InputCommunication Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+\item
+
+Type: Automatic, Static
+					
+Initial State: The module InputCommunication is imported
+					
+Input: The method getHardwareInput() is called with no values for hardware input.
 					
 Output: NULL
 
-Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
+Test Case Derivation: If no values for hardware input, then it should return NULL.
 
-How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated with hardware inputs and saved to input.
-					
-Input: input.getHardwareInput() will be called.
-					
-Output: HardwareInput ADT
-
-Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
-
-
-How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated with hardware inputs and saved to input.
-					
-Input: input.getUserInput() will be called.
-					
-Output: NULL
-
-Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
-
-
-How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing
+How test will be performed: The InputCommunication Module will be imported and the method getHardwareInput() will be called through automated unit testing.
 
     
 \end{enumerate}
@@ -691,76 +672,48 @@ access will work and if the user can connect and disconnect successfully.
 
   Type: Static
             
-  Initial State: Object has been instantiated and saved to remote.
+  Initial State: The module RemoteAccess is imported
             
-  Input: remote.connect(userName, password) will be called with valid userName and password.
+  Input: The method connect(userName, password) is called with valid userName and password.
             
   Output: Will observe if it has been connected.
   
-  Test Case Derivation: When connect is called with valid userName and password, there will be a visual indicator showing connect is working.
+  Test Case Derivation: If  valid userName and password are given, then there should be a indication to show it is connected.
   
   
-  How test will be performed: Object will be instantiated and result will be observed.
+  How test will be performed: The RemoteAccess Module will be imported and the method connect(userName, password) will be called. Result will be observed.
 
   \item
 
-  Type: Static, Automatic
+  Type: Automatic, Static
             
-  Initial State: Object has been instantiated and saved to remote.
+  Initial State: The module RemoteAccess is imported
             
-  Input: remote.connect(userName, password) will be called with valid userName and  invalid password.
+  Input: The method connect(userName, password) is called with invalid values for userName and password.
             
   Output: INVALID
   
-  Test Case Derivation: When connect is called with valid userName and invalid password, an exception will be thrown because password is incorrect.
+  Test Case Derivation: If userName or password is not valid, then it should return NULL.
   
   
-  How test will be performed: Object will be instantiated and result will be verified by Automatic Unit Testing.
+  How test will be performed: The RemoteAccess Module will be imported and the method connect(userName, password) will be called through
+  automated unit testing.
 
   \item
 
-  Type: Static, Automatic
+  Type: Automatic, Static
             
-  Initial State: Object has been instantiated and saved to remote.
+  Initial State: The module RemoteAccess is imported
             
-  Input: remote.connect(userName, password) will be called with invalid userName and  valid password.
+  Input: The method disconnect() is called.
             
-  Output: INVALID
+  Output: FALSE
   
-  Test Case Derivation: When connect is called with invalid userName and valid password, an exception will be thrown because userName is incorrect.
-  
-  
-  How test will be performed: Object will be instantiated and result will be verified by Automatic Unit Testing.
-
-  \item
-
-  Type: Static, Automatic
-            
-  Initial State: Object has been instantiated and saved to remote.
-            
-  Input: remote.connect(userName, password) will be called with invalid userName and password.
-            
-  Output: INVALID
-  
-  Test Case Derivation: When connect is called with invalid userName and password, an exception will be thrown because both are incorrect.
+  Test Case Derivation: If disconnect() is called, then the connectionStatus should return FALSE.
   
   
-  How test will be performed: Object will be instantiated and result will be verified bu Automatic Unit Testing.
-
-  \item
-
-  Type: Static
-            
-  Initial State: Object has been instantiated and saved to remote.
-            
-  Input: remote.disconnect() will be called.
-            
-  Output: Will observe if it has been disconnected.
-  
-  Test Case Derivation: When disconnect is called, there will be a visual indicator showing disconnect finished.
-  
-  
-  How test will be performed: Object will be instantiated and result will be observed.
+  How test will be performed: The RemoteAccess Module will be imported and the method disconnect() will be called through
+  automated unit testing.
 
 \end{enumerate}
 
@@ -775,214 +728,60 @@ The following test will be used to verify if the module exposes the correct stat
 
 Type: Static
           
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+Initial State: The module CurrentState is imported and StateInit() is called.
           
-Input: currentState.DisplayUserInfo() will be called.
+Input: The method DisplayUserInfo() is called with correct values.
           
 Output: Will observe if it has been displyed.
 
-Test Case Derivation: When currentState.DisplayUserInfo() is called, there will be a change on the display that can verify if the state is correct.
+Test Case Derivation: If DisplayUserInfo() is called, there will be a changes on the display that can verify if the state is correct.
 
 
-How test will be performed: Object will be instantiated and result will be observed.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayUserInfo() will be called with invalid SamplingRate type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayUserInfo() is called, since SamplingRate is an incorrect type then a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-					
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayUserInfo() will be called with negative SamplingRate.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayUserInfo() is called with a negative SamplingRate a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+How test will be performed: The CurrentState Module will be imported and DisplayUserInfo() will be called. Result will be observed.
 
 \item
 
-Type: Static, Automatic
+Type: Automatic, Static
 					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+Initial State: The module CurrentState is imported and StateInit() is called.
 					
-Input: currentState.DisplayUserInfo() will be called with invalid SampleLength type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayUserInfo() is called with invalid SampleLength type a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayUserInfo() will be called with negative SampleLength.
+Input: The method DisplayUserInfo() is called with invalid values for SamplingRate, SampleLength and SampleWidth.
 					
 Output: INVALID
 
-Test Case Derivation: When currentState.DisplayUserInfo() is called with negative SampleLength a invalid exception should be thrown.
+Test Case Derivation: If the values are invalid for SamplingRate, SampleLength and SampleWidth, then it should return INVALID.
 
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayUserInfo() will be called with invalid SampleWidth type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayUserInfo() is called with invalid SampleWidth type a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayUserInfo() will be called with negative SampleWidth.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayUserInfo() is called with negative SampleWidth a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+How test will be performed: The CurrentState Module will be imported and the method DisplayUserInfo() will be called through automated unit testing.
 
 \item
 
 Type: Static
           
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+Initial State: The module CurrentState is imported and StateInit() is called.
           
-Input: currentState.DisplayHardwareState() will be called.
+Input: The method DisplayHardwareState() is called with correct values.
           
 Output: Will observe if it has been displyed.
 
-Test Case Derivation: When currentState.DisplayHardwareState() is called, there will be a change on the display that can verify if the state is correct.
+Test Case Derivation: If DisplayHardwareState() is called, there will be a changes on the display that can verify if the state is correct.
 
 
-How test will be performed: Object will be instantiated and result will be observed.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with invalid voltage type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid voltage type a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+How test will be performed: The CurrentState Module will be imported and DisplayHardwareState() will be called. Result will be observed.
 
 \item
 
-Type: Static, Automatic
+Type: Automatic, Static
 					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+Initial State: The module CurrentState is imported and StateInit() is called.
 					
-Input: currentState.DisplayHardwareState() will be called with negative voltage.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with negative voltage a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with invalid current type.
+Input: The method DisplayHardwareState() is called with invalid values for Voltage, Current, Time, and Temperature.
 					
 Output: INVALID
 
-Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid current type a invalid exception should be thrown.
+Test Case Derivation: If the values are invalid for Voltage, Current, Time, and Temperature, then it should return INVALID.
 
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+How test will be performed: The CurrentState Module will be imported and the method DisplayHardwareState() will be called through automated unit testing.
 
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with negative current.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with negative current a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with invalid time type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid time type a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with negative time.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with negative time a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
-
-
-\item
-
-Type: Static, Automatic
-					
-Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
-					
-Input: currentState.DisplayHardwareState() will be called with invalid temperature type.
-					
-Output: INVALID
-
-Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid temperature type a invalid exception should be thrown.
-
-How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
     
 \end{enumerate}
 
