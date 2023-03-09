@@ -34,6 +34,7 @@
 Mar 8 2023 & Edwin Do & Added usability test results \\
 Mar 8 2023 & Edwin Do & Added Traceability matrices \\
 Mar 8, 2023 & Timothy Chen & Added performance to the Nonfunctional Test Evaluation\\
+Mar 8, 2023 & Timothy Chen & Added unit test for input communication, current state and remote access\\
 \bottomrule
 \end{tabularx}
 
@@ -133,6 +134,100 @@ The following is the list of Non-functional Test performed on the application to
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+
+\subsection{Input Communication Module}
+\begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for Input Communication Module} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-IC1   & Testing the getUserInput Method  &  SamplingRate : 60, SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & UserInput( SamplingRate : 60; SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : bob; SampleName : sample1; Date : 03/01/2023) & UserInput( SamplingRate : 60; SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : bob; SampleName : sample1; Date : 03/01/2023) & PASS \\
+  \hline
+  UT-IC2   & Testing the getUserInput Method &   & INVALID & INVALID  & PASS \\
+  \hline
+  UT-IC3   & Testing the getHardwareInput Method  &  Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 & HardwareInput( Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 ) & HardwareInput( Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 ) & PASS \\
+  \hline
+  UT-IC4   & Testing the getHardwareInput Method &   & INVALID & INVALID  & PASS \\
+  \hline
+ \end{tabular}
+
+ \subsection{Remote Access Module}
+ \begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+   \hline
+   \multicolumn{6}{|c|}{Unit Tests for Remote Access Module} \\
+   \hline
+   Unit Test ID & Description & Input & Expected Output & Output & Result\\
+   \hline
+   UT-RA1   & Testing the connect Method  & userName: Timothy, password 12341234 & Observed connected & & FAIL \\
+   \hline
+   UT-RA2   & Testing the connect Method &  userName: Bob, password 12341234 & INVALID & INVALID  & PASS \\
+   \hline
+   UT-RA2   & Testing the connect Method &  userName: Timothy, password 56785678 & INVALID & INVALID  & PASS \\  
+  \hline
+  UT-RA2   & Testing the connect Method &  userName: Bob, password 56785678 & INVALID & INVALID  & PASS \\ 
+   \hline
+  UT-RA3   & Testing the disconnect Method &   & FALSE &   & FAIL \\ 
+  \hline
+  \end{tabular}
+
+  \subsection{Current State Module}
+  \begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+    \hline
+    \multicolumn{6}{|c|}{Unit Tests for Current State Module} \\
+    \hline
+    Unit Test ID & Description & Input & Expected Output & Output & Result\\
+    \hline
+    UT-CS1   & Testing the displayUserInfo Method  & SamplingRate : 60, SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & Observed data displayed & data displayed& PASS \\
+    \hline
+    UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : ABC, SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\
+    \hline
+    UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : -100, SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\ 
+   \hline
+  \end{tabular}
+  \newpage
+  \begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+    \hline
+    \multicolumn{6}{|c|}{Unit Tests for Current State Module} \\
+    \hline
+   UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : 60, SampleLength : ABC; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\ 
+    \hline
+    UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : 60, SampleLength : -4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\ 
+    \hline
+    UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : 60, SampleLength : 4; SampleWidth : ABC; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\ 
+    \hline
+  \end{tabular}
+  \newpage
+  \begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+    \hline
+    \multicolumn{6}{|c|}{Unit Tests for Current State Module} \\
+    \hline
+    UT-CS2   & Testing the displayUserInfo Method  & SamplingRate : 60, SampleLength : 4; SampleWidth : -2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & INVALID & INVALID & PASS \\ 
+    \hline
+    UT-CS3   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 & Observed data displayed & data displayed& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : ABC ; Time : 10:00; Temperature : 50; Current: 1 & INVALID & INVALID& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : -5 ; Time : 10:00; Temperature : 50; Current: 1 & INVALID & INVALID& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : ABC; Temperature : 50; Current: 1 & INVALID & INVALID& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : -10:00; Temperature : 50; Current: 1 & INVALID & INVALID& PASS \\
+    \hline
+  \end{tabular}
+  \newpage
+  \begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+    \hline
+    \multicolumn{6}{|c|}{Unit Tests for Current State Module} \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : 10:00; Temperature : ABC; Current: 1 & INVALID & INVALID& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : 10:00; Temperature : 50; Current: ABC & INVALID & INVALID& PASS \\
+    \hline
+    UT-CS4   & Testing the displayHardwareState Method  & Voltage : 5 ; Time : 10:00; Temperature : 50; Current: -1 & INVALID & INVALID& PASS \\
+    \hline
+   \end{tabular}
+
 
 \subsection{Calculation Module}
 \begin{tabular}{ |p{1.5cm}||p{2.5cm}|p{3cm}|p{2cm}|p{2cm}|p{1.5cm}|}
