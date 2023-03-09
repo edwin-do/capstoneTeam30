@@ -46,6 +46,7 @@
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
   Mar 8, 2023 & Tyler Magarelli & Updated user experience survey for section 6.2\\
+  Mar 8, 2023 & Timothy Chen & Added Unit Test Plan for Input Communication and Remote Access\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -592,7 +593,7 @@ How test will be performed: Test will be performed by developers. Performing the
 
 \subsubsection{Input Communication Module}
 
-This module is a class is used to initiate an object that contains properties and methods that will be used throughout the application.
+This module is a class used to initiate an object that contains properties and methods that will be used throughout the application.
 The following test will be used to verify if the module stores and returns the properties correctly using methods exposed.
 
 \begin{enumerate}[{UT-IC}1.]
@@ -657,6 +658,89 @@ Test Case Derivation: When input.getUserInput() is called, NULL exception will b
 How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing
 
     
+\end{enumerate}
+
+\subsubsection{Remote Access Module}
+
+This module is used to allow remote access to the application so the user view the process of the experiment. The following methods will verify if the function of the remote 
+access will work and if the user can connect and disconnect successfully.
+\begin{enumerate}[{UT-RA}1.]
+
+  \item
+
+  Type: Static
+            
+  Initial State: Object has been instantiated and saved to remote.
+            
+  Input: remote.connect(userName, password) will be called with valid userName and password.
+            
+  Output: Will observe if it has been connected.
+  
+  Test Case Derivation: When connect is called with valid userName and password, there will be a visual indicator showing connect is working.
+  
+  
+  How test will be performed: Object will be instantiated and result will be observed.
+
+  \item
+
+  Type: Static, Automatic
+            
+  Initial State: Object has been instantiated and saved to remote.
+            
+  Input: remote.connect(userName, password) will be called with valid userName and  invalid password.
+            
+  Output: INVALID
+  
+  Test Case Derivation: When connect is called with valid userName and invalid password, an exception will be thrown because password is incorrect.
+  
+  
+  How test will be performed: Object will be instantiated and result will be verified by Automatic Unit Testing.
+
+  \item
+
+  Type: Static, Automatic
+            
+  Initial State: Object has been instantiated and saved to remote.
+            
+  Input: remote.connect(userName, password) will be called with invalid userName and  valid password.
+            
+  Output: INVALID
+  
+  Test Case Derivation: When connect is called with invalid userName and valid password, an exception will be thrown because userName is incorrect.
+  
+  
+  How test will be performed: Object will be instantiated and result will be verified by Automatic Unit Testing.
+
+  \item
+
+  Type: Static, Automatic
+            
+  Initial State: Object has been instantiated and saved to remote.
+            
+  Input: remote.connect(userName, password) will be called with invalid userName and password.
+            
+  Output: INVALID
+  
+  Test Case Derivation: When connect is called with invalid userName and password, an exception will be thrown because both are incorrect.
+  
+  
+  How test will be performed: Object will be instantiated and result will be verified bu Automatic Unit Testing.
+
+  \item
+
+  Type: Static
+            
+  Initial State: Object has been instantiated and saved to remote.
+            
+  Input: remote.disconnect() will be called.
+            
+  Output: Will observe if it has been disconnected.
+  
+  Test Case Derivation: When disconnect is called, there will be a visual indicator showing disconnect finished.
+  
+  
+  How test will be performed: Object will be instantiated and result will be observed.
+
 \end{enumerate}
 
 \subsubsection{Module 2}
