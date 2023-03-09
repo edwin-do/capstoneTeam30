@@ -3,6 +3,8 @@
 \usepackage{fullpage}
 \usepackage[round]{natbib}
 \usepackage{multirow}
+\usepackage[shortlabels]{enumitem}
+\usepackage{comment}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -11,6 +13,10 @@
 \usepackage{pdfpages}
 \usepackage{pdflscape}
 
+\usepackage{float}
+\usepackage{soul}
+\usepackage{changepage}
+\usepackage{graphicx}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -40,6 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{3cm}X}
 \toprule {\bf Date} & {\bf Developer} & {\bf Change}\\
 \midrule
+Mar 7, 2023 & Abdul Nour & Updated template\\
 Mar 8 2023 & Edwin Do & Added usability test results \\
 Mar 8 2023 & Edwin Do & Added Traceability matrices \\
 Mar 8, 2023 & Timothy Chen & Added performance to the Nonfunctional Test Evaluation\\
@@ -47,6 +54,8 @@ Mar 8, 2023 & Timothy Chen & Added unit test for input communication, current st
 Mar 8, 2023 & Joseph Braun & Added Sections 5, 7, 8 \\
 Mar 8, 2023 & Joseph Braun & Added Reflection \\
 Mar 8, 2023 & Timothy Chen & Added Trace to Modules \\
+Mar 8, 2023 & Abdul Nour & Added Functional Requirements Evaluation \& Trace to Requirements\\
+Mar 8, 2023 & Abdul Nour & Added Functional Req's Unit Tests\\
 \bottomrule
 \end{tabularx}
 
@@ -92,9 +101,30 @@ Section 11 Code Coverage Metrics of this document has been removed.
 
 \section{Functional Requirements Evaluation}
 
-In the section, the test results for each functional requirement test case is displayed.
+\noindent The following table suggests examples of system level tests that were executed in order to verify that the functional requirements of the system were met.
 
-\pagebreak
+
+\begin{table}[H]
+	\centering
+	\caption{Test Cases for Functional Requirements}
+	\label{my-label}
+%	\begin{tabular}{|l|l|l|l|l|}
+	\begin{tabular}{|p{0.85cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result} \\ \hline
+		ST1 & Check "Current Source" radio button, type (1) in the "Current Supply" textbox, type (10) in the "Compliance" textbox and click "Set" button, click "Current ON" button, check "Nano-Voltmeter" radio button, click "Start Capture" button & Current Source is reset, current  is set to 1mA and displayed, ompliance voltage is set to 10V, current is turned on, nanovoltmeter is reset and values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS\\ \hline
+		ST2 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL*\\ \hline
+		ST3 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS\\ \hline
+		ST4 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL*\\ \hline
+		ST5 & Capture and current are on, click "Stop Experiment" button on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
+		ST6 & Start experiment and capture & Graph is displaying measurements and calculations & PASS \\ \hline
+		ST7 & Enter experiment info \& conduct an experiment & File output contains all experiment data & PASS \\ \hline
+	\end{tabular}
+\end{table}
+\noindent * This feature has not been implemented yet.
+
+\newpage
+
 \section{Nonfunctional Requirements Evaluation}
 
 In the section, the test results for each non functional requirement test case is displayed.
@@ -382,6 +412,45 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
  \end{tabular}
 
+\subsection{Functional Requirements Testing}
+
+\begin{table}[H]
+	\centering
+	\caption{Unit Tests for Functional Requirements}
+	\label{my-label}
+	\begin{tabular}{|p{0.85cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}\\ \hline
+		UT1 & Check "Current Source" radio button & Current Source is reset & PASS \\ \hline
+		UT2 & Type an integer (1) in the "Current Supply" textbox and click "Set" button & Current Supply is set to 1mA and displayed & PASS \\ \hline
+		UT3 & Type an integer (10) in the "Compliance" textbox and click "Set" button & Compliance voltage is set to 10V & PASS\\ \hline
+		UT4 & Click "Current ON" button & Current Source is supplying current & PASS \\ \hline
+		UT5 & Click "Current OFF" button & Current Source stops supplying current & PASS \\ \hline
+		UT6 & Check "Nano-Voltmeter" radio button & Nano-Voltmeter is reset & PASS \\ \hline
+		UT7 & Click "Start Capture" button & Values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS  \\ \hline
+		UT8 & Click "Stop Capture" button & Values and calcualtions stop generating, latest batch remains visible & PASS \\ \hline
+		UT9 & Current supply is set up and capture is started & Accurate calculations of resistivity are displayed continuously & PASS \\ \hline
+	\end{tabular}
+\end{table}
+
+%\newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{1cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+		\hline
+		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result}\\ \hline
+		UT10 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL*\\ \hline
+		UT11 & System is capturing values, no thermal treatment & No critical changes in resistivity are noted & PASS\\ \hline
+		UT12 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS \\ \hline
+		UT13 & Choose an "Integration Rate" of (5 PLC) from the drop-down menu & Voltmeter display shows no change than default rate & PASS\\ \hline
+		UT14 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL* \\ \hline
+		UT15 & System is capturing values, no thermal treatment & No changes in resistivity-temperature slopes are noted in caputre log or displayed & PASS \\ \hline
+		UT16 & Current supply is set up and capture is started, "Stop Experiment" button is clicked on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
+		UT17 & Current supply is set up and capture is started, remote interface is launched but not interacted with & Capture and current supply stay on (no change) & FAIL* \\ \hline
+	\end{tabular}
+\end{table}
+
 \section{Changes Due to Testing}
 
 \noindent Based on the feedback from our Rev 0 Demo, we found that our application failed some requirements tests. The major failures were the lack of two main features: the graphical output (which still did not display real data as of Rev 0 Demo) and the ability to save output data to a chosen file. While we did not need to "test" our application to know this, we still consider these to be failed tests, as our application failed to meet requirements set out by the project supervisor. These two features have been implemented for the final demo. \\
@@ -440,7 +509,25 @@ The table below shows the traceability between each non functional requirement f
   Functional   & FR6  & FR-T6 \\ \hline
   
  \end{tabular}
+
+\begin{table}[H]
+	\centering
+	\caption{Requirements Traceability}
+	\label{my-label}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{System Test} & \textbf{Unit Tests} & \textbf{Requirement} & \textbf{Plan} \\ \hline
+		ST1 & UT1 — UT9 & FR1 &FR-T1 \\ \hline
+		ST2 & UT10, UT11 & FR2 &FR-T2\\ \hline
+		ST3 & UT12, UT13 & FR3 &FR-T3\\ \hline
+		ST4 & UT14, UT15 & FR4 &FR-T4\\ \hline
+		ST5 & UT16, UT17 & FR5 &FR-T5\\ \hline
+		ST6 &  & FR6 &FR-T6\\ \hline
+		ST7 &  & FR7 &FR-T7\\ \hline
+	\end{tabular}
+\end{table}
 		
+\pagebreak
 \section{Trace to Modules}		
 The table below shows the traceability between each module, and its respective unit tests in this report.\\
 \\
@@ -453,7 +540,7 @@ The table below shows the traceability between each module, and its respective u
   Input Communication   & UT-IC1, UT-IC2, UT-IC3, UT-IC4  \\ \hline
   Remote Access   & UT-RA1, UT-RA2, UT-RA3   \\ \hline
   Current State   & UT-CS1, UT-CS2, UT-CS3, UT-CS4   \\ \hline
-  File Output   & FR4   \\ \hline
+  File Output   & -  \\ \hline
   Calculation   & UT-C1, UT-C2, UT-C3, UT-C4,UT-C5, UT-C6, UT-C7, UT-C8   \\ \hline
   User Input Validation  & UT-UI1, UT-UI2, UT-UI3, UT-UI4, UT-UI5   \\ \hline
   Hardware Input Validation  & UT-HI1, UT-HI2, UT-HI3  \\ \hline
@@ -467,7 +554,7 @@ The table below shows the traceability between each module, and its respective u
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+graduate attribute of Reflection.  Please answer the following question:
 
 \begin{enumerate}
   \item In what ways was the Verification and Validation (VnV) Plan different
