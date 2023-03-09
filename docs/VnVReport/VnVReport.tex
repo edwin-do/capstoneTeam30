@@ -41,6 +41,7 @@
 \midrule
 Date 1 & 1.0 & Notes\\
 Mar. 8, 2023 & Joseph Braun & Added Sections 5, 7, 8 \\
+Mar. 8, 2023 & Joseph Braun & Added Reflection \\
 \bottomrule
 \end{tabularx}
 
@@ -111,12 +112,12 @@ This document ...
 
 \noindent The key elememts of the existing implementation will also be included in our implementation. This is so that the application will be familiar to the user and as intuitive as possible. These elements are listed below:
 \begin{itemize}
-  \item Method Panel: controls which device to read data from (tempertaure or voltage), and which file to save the data in
+  \item Method Panel: controls which device to read data from (temperature or voltage), and which file to save the data in
   \item Device Settings Panel: used to send SCPI commands directly to a device
   \item Readout: includes graphical output and listed output of relevant values (current, voltage, resistance, etc.)
 \end{itemize}
 
-\noindent The primary difference between the existing implementation and our implementaion is the appearance of the GUI. The exisiting implementation was developed for Windows XP whereas our implementation is developed for Windows 10, which gives it an updated look.\\
+\noindent The primary differences between the existing implementation and our implementaion are the appearance of the GUI and the option of remote access. The existing implementation was developed for Windows XP whereas our implementation is developed for Windows 10, which gives it an updated look. One of the stretch goals for this project is to enable remote access to the application to be able to monitor and stop experiments remotely. The existing implementatio  does not have this functionality.\\
 
 
 \section{Unit Testing}
@@ -156,8 +157,17 @@ The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item 
-  \item 
+  \item In what ways was the Verification and Validation (VnV) Plan different
+  from the activities that were actually conducted for VnV?  If there were
+  differences, what changes required the modification in the plan?  Why did
+  these changes occur?  Would you be able to anticipate these changes in future projects?  If there weren't any differences, how was your team able to clearly predict a feasible amount of effort and the right tasks needed to build the evidence that demonstrates the required quality?  (It is expected that most teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
 
+\indent There were several differences between what we had planned for VnV and what we ended up carrying out. When completing the initial revision of VnV plan, we had not yet completed the Design documents (MG, MIS, System Design) and so we did not have a plan for unit/module testing, only for system testing. Our initial VnV plan included three main sections: SRS Verification, Design Verification, and Implementation Verification.\\
+
+\indent For SRS Verification, we planned to meet every two weeks to discuss potential updates to the SRS doc. While we continued to meet frequently (weekly or bi-weekly), our team focussed instead on the next deliverable rather than revisiting old documents during meetings. Because of this, our SRS was not continually being updated during the project. This change occurred mainly due to time constraints, as we faced some technical issues leading up to the first demo which took priority over other tasks. In hindsight, frequently revisiting and updating the SRS certainly would have created less work for us in the long run. For future projects, though we can't predict any exact technical issues that would set us back on time, we should be able to anticipate issues arising which cause delays. We should have a plan to stay on schedule despite such issues. \\
+
+\indent  For Design Verification, we planned to use the MIS checklist to ensure that requirements in the SRS are met and hazards in the Hazard Analysis are covered. Our team followed the MIS checklist when testing. We also planned to use feedback from the course instructor, teaching assistants, classmates, and our project supervisor. There were not many changes made in this section of the plan, except that our team decided to focus primarily on feedback from Dr. Zurob, as he is the end-user of the application. \\
+
+\indent For Implementation Verification, we planned to used GitHub issues and pull requests to maintain our code base. Any pull request made to the main branch requires at least two other team members to review and approve. We did not make any major changes to our Implementation Verification. 
 \end{document}
