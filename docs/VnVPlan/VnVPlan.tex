@@ -41,6 +41,13 @@
   Nov 1, 2022 & Abdul Nour Seddiki & Added to 5.1, 5.3\\
   Nov 2, 2022 & Joseph Braun & Added Section 3\\
   Nov 2, 2022 & Edwin Do & Added more content to section 4 \\
+  Mar 4, 2023 & Edwin Do & Revised tests for non functional requirements\\
+  Mar 4, 2023 & Timothy Chen & Revised Usability and Performance NFR test\\
+  Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
+  Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
+  Mar 8, 2023 & Edwin Do & Added unit tests for calculation and validation\\
+  Mar 8, 2023 & Tyler Magarelli & Updated user experience survey for section 6.2\\
+  Mar 8, 2023 & Timothy Chen & Added Unit Test Plan for Input Communication, Remote Access, Current State\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -51,10 +58,10 @@
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
+%\wss{Remove this section if it isn't needed}
 
-\listoffigures
-\wss{Remove this section if it isn't needed}
+%\listoffigures
+%\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -69,6 +76,15 @@
   SRS & Software Requirements Specifications \\
   VS & Visual Studio\\
   UWP & Universal Windows Platform\\
+  MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
+  TARGET\_TIME & 60 seconds \\
+  INTERACT\_TIME & 5 seconds \\
+  MAX\_MISTAKE & 2 \\
+  MAX\_SIZE & 8GB \\ 
+  MIN\_UPTIME & 30 minutes \\ 
+  MIN\_SAMPLE\_RATE & 60 samples per second\\
+  TIME\_ACCEPTED & 1 second \\
+  ACCEPTED\_SIGFIG & 3 decimals \\
   \bottomrule
 \end{tabular}\\
 
@@ -285,40 +301,56 @@ results are outside a reasonable range, then the team shall conclude that the re
 \subsection{Tests for Functional Requirements}
 
 \begin{enumerate}[{FR-T}1.]
-    \item Control: Dynamic \& Manual \\
+    \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will set up a sample and demonstrate the main function of the application.\\
-    Output: The application shall display the voltage, the current, the temperature and measure the conductivity of sample materials in real-time. Updates to values on the measurement tools should match with updates on the application and changes to the value of conductivity. \\
-    Test Case Derivation: Since the measurement tools are using a unified communication bus with the control computer, measurements are expected to be synchronised and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the external measurement tools and the values in the application and observing for latency in the display and calculation.
+    Input: Developers will initialize the current source with supply parameters, initialize the nanovoltmeter and capture measurements, and set up a sample and demonstrate the main function of the application.\\
+    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately. The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
+    Test Case Derivation: Since the measurement devices are connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Then verify the resistivity calculations by taking samples from the logs and doing a manual calculation. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
     Input: Developers will set up a sample and perform thermal treatment on it.\\
-    Output: The application shall make note of critical changes in conductivity.\\
-    Test Case Derivation: While the application is constantly monitoring the state of conductivity of samples in real-time, any major change in the conductivity indicates a transition in the phase of the material.\\
-    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing changes in conductivity as calculated by the application.
+    Output: The application shall monitor and take note of critical changes in resistivity.\\
+    Test Case Derivation: While the application is constantly monitoring the state of resistivity of samples in real-time, any major change in the resistivity indicates a transition in the phase of the material.\\
+How test will be performed: Test will be performed by developers. Performing thermal treatment and observing changes in resistivity as calculated by the application.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will modify the setting that controls the data sampling rate in the application.\\
-    Output: The sampling rate of inputs is modified. Therefore, the display rate of inputs and outputs is going to change.\\
-    Test Case Derivation: The application is expected to be able to sample the data at variable rates, either by changing the actual rate of data acquisition or by changing the interval at which the data is displayed and analysed.\\
-    How test will be performed: Test will be performed by developers, manually testing this function of the system. 
-    
+    Input: Developers will control the sampling rate of the voltage measurement.\\
+    Output: The nanovoltmeter shall display measurements at a rate faster or slower than the default rate, and the application shall follow suit when displaying measurements and calculations.\\
+    Test Case Derivation: The application is expected to be able to sample the data at variable rates, by changing the ‘integration rate’ of the nanovoltmeter through Powerline Cycles per calculation (PLC) and since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
+    How test will be performed: Test will be performed by developers. By choosing an integration rate from the drop-down menu and starting capture. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency in the display and calculation.
+
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
     Input: Developers will set up a sample and perform thermal treatment on it.\\
     Output: The application shall automatically calculate the slopes of resistivity-temperature in the phase change diagram, identify changes in these slopes and attributing slope changes to phase transitions. This information is highlighted with appropriate phase transition labels.\\
     Test Case Derivation: While the application is constantly monitoring the resistivity of samples in real-time, major changes in the resistivity to temperature ratios correlate to phase changes of the material.\\
-    How test will be performed: Test will be performed by developers. Performing thermal treatment and observing notifications and labels on graphs or logs made by the application.
-    
+How test will be performed: Test will be performed by developers. Performing thermal treatment, capturing measurements, and observing notifications and labels on graphs or logs made by the application.
+
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will prompt a wireless connection to control computer and navigate the application.\\
+    Input: Developers will prompt a wireless connection to control computer and stop an experiment.\\
     Output: The application is able to be controlled using a proxy/web application.\\
     Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
-    How test will be performed: Test will be performed by developers communicating remotely with the control computer.  
+    How test will be performed: Test will be performed by developers communicating remotely with the control computer through a web app. The main application is already capturing measurements and making calculations. Remotely, the testing developer will click “Stop Experiment” button on the web app and that will prompt the main app to stop capturing data and turn the current supply off.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment.\\
+    Output: The application displays a graph that shows real-time values and calculations.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a graph will be able to follow these values and display them in a visual representation.\\
+    How test will be performed: Test will be performed by developers. By initializing the current source and voltmeter, then turning current supply on and starting capture. Then observing the graph in the application window.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment then stop it.\\
+    Output: The application shall save a file on the control computer containing the measurements and calculations of the experiment.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a file system will be able to follow these values and write them to a data file outside of the application.\\
+    How test will be performed: Test will be performed by developers. By inputting information about the experiment and the personnel involved, then initializing the current source and voltmeter, and turning current supply on and starting capture. When enough data has been captured, they shall stop the experiment and check the generated file.
+
+
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -328,16 +360,16 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-AT}1.]
     \item Type: Static \& Manual \\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Users will explore the application then take a survey.\\
-    Output/Result: Survey result will indicate 90 percent of users feel application is uncomplicated. \\
-    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If 90 percent of users inidicate a 1 out of 5, it will be considered successful. (Appendix)
+    Initial State: Application is opened and ready for use.\\
+    Input/Condition: User will follow a simple set of instructions to explore application, followed by a survey\\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application is uncomplicated. \\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree, then it will be considered successful. (Refer to Appendix for Sample Survey)
     
     \item Type: Static \& Manual\\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Developers will navigate the application and explore all sections.\\
-    Output/Result: Developers will ensure all section of the application is in English.\\
-    How test will be performed: Test will be performed by developers. 
+    Initial State: Application is opened and ready for use.\\
+    Input/Condition: Developers will navigate the application by exploring every screen and state.\\
+    Output/Result: If all sections of the applications is in English, then this test is considered a pass. Otherwise, it is considered a fail.\\
+    How test will be performed: Different sets of instructions are used to cover a subset of the application screens and states, each set of instruction is to be carried out by a developer to verify the result. 
   \end{enumerate}
 \end{adjustwidth}
 
@@ -345,38 +377,41 @@ results are outside a reasonable range, then the team shall conclude that the re
 
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-UT}1.]
+  \item Type: Dynamic \& Manual\\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: The users with no prior experience with the product.\\
+  Output/Result: At least \textsl{MIN\_USER\_ACCEPT\_RATE} of users with no prior experience can successfully complete each task without additional assistance\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if users complete the task without additional assistance.
 
-How test will be performed: 
+  \item Type: Dynamic \& Manual\\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: User will be asked to modify the voltage and current parameters of the application to match a sample experiment we provide.\\
+  Output/Result: The user takes no more than \textsl{INTERACT\_TIME} to interact with the application and make the modifications to the voltage and current parameters matching the sample experiment provided.\\
+  How test will be performed: The users will be observed while completing the task. The test will pass if the user takes no more than \textsl{INTERACT\_TIME}.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application home screen will be open.\\
-    Input/Condition: Invalid and edge case parameters will be enter into the application.\\
-    Output/Result: Application will flag the parameters that are not accepted and prevent the program from running.\\
-    How test will be performed: Test will be performed by a script which will enter and check for the flag messages after parameters have been given.
+  \item Type: Dynamic \& Manual \\
+  Initial State: The application is open to home screen  and ready to use.\\
+  Input/Condition: User will use the application by following a predefined set of tasks.\\
+  Output/Result: The total number of mistakes made by the user when completing the tasks by interacting with application should be no more than \textsl{MAX\_MISTAKE}.\\
+  How test will be performed: The observer will record the number of mistakes that they observe as the user completes the set of tasks.
 
-    \item Type: Dynamic \& Manual\\
-    Initial State: Application will be closed.\\
-    Input/Condition: Users will be ask to open the application and perform a task. User then will be asked to return the next day to perform the same task.\\
-    Output/Result: Time from the users opening the application to interacting with it should be within 5 seconds.\\
-    How test will be performed: Test will be performed by the users. The test will pass only if the time is within 5 seconds and the task the user is asked to complete is completed without any mistakes the second time.
+  \item Type: Dynamic \& Manual\\
+  Initial State: Application will be closed.\\
+  Input/Condition: Users will open the application and perform a set of tasks listed for a sample experiment. User then will be asked to return the next day to perform the same set of tasks.\\
+  Output/Result:  The time that the user takes to complete the set of tasks for the second time will be less than the time taken for the first time.\\
+  How test will be performed: The users will be observed and timed while completing the set of tasks both times. The test will pass if the user completes the set of tasks in the same or less amount of time in the next day.
 
-    \item Type: Static \& Manual\\
-    Initial State: Application will be open.\\
-    Input/Condition: Developers will navigate and explore the application.\\
-    Output/Result: No calculations will be found when exploring the application. \\
-    How test will be performed: Test will be performed by the developers.
+  \item Type: Static \& Manual\\
+  Initial State: The application is open to home screen and ready to use.\\
+  Input/Condition: User will input sample parameters and application will perform calculations.\\
+  Output/Result: The application will display the result of the application and the user will not know how the calculations are performed \\
+  How test will be performed: User will be observed while performing the task and asked to fill out an usuablity survey question. If the user is unaware of how the calculations were performed, the test will pass.
 
-    \item Type: Static \& Manual\\
-    Initial State: Research device will not have the application on it.\\
-    Input/Condition: Users will install the application on the device.\\
-    Output/Result: Application capacity on the device will be less than 8 GB.\\
-    How test will be performed: Test will be performed by the users.
-
-    \item Type: Staic \& Manual\\
-    Initial State: Application will be installed on the device.\\
-    Input/Condition: Users will set up the application with the measurement equipments according to instructions provided.\\
-    Output/Result: Application will not indicate further set up required after the initial set up of the measurement devices on the first uses.\\
-    How test will be performed: Test will be performed by users. User will be ask to set up the measurement equipment. The next time the user uses the appliaction, there will be no inidication that there will be a need to perform further set up. 
+  \item Type: Static \& Manual\\
+  Initial State: The application will be installed on the research device\\
+  Input/Condition: The size of the application will be checked manually\\
+  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_SIZE}. \\
+  How test will be performed: We will open the file properties of the application and verify that the size of the application is less than or equal to \textsl{MAX\_CAPACITY}.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -384,35 +419,30 @@ How test will be performed:
 
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-PT}1.]
-    \item Type: Dynamic \& Automated\\
-    Initial State: Measurement devices will be connected to sample and to device with application open.\\
-    Input/Condition: Start thermal treatment of sample.\\
-    Output/Result: Should return 100 readings a second for 95 precent of the time with the lowest reading being 98 per second.\\
-    How test will be performed: Test will be performed by a script to start the treatment while measuring the readings per second. 
-    
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will have defualt parameters.\\
-    Input/Condition: Parameters will be changed\\
-    Output/Result: Application will relfect changes by within 1 second for 95 percent of the time with the longest time being 2 seconds.\\
-    How test will be performed: Test will be performed by a script where parameters will be changed and the change will be timed and verified.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Set \textsl{MIN\_SAMPLE\_RATE} and start thermal treatment of sample.\\
+  Output/Result: Calculate and output the application's sample rate and check to see if it is greater or equal to \textsl{MIN\_SAMPLE\_RATE}.\\
+  How test will be performed: Using the parameters of the devices, we will calculate the observed sample rate and compare it with the inputted sample rate by the user. The test will pass if the observed sample rate is \textsl{MIN\_SAMPLE\_RATE} or greater.
+  
+  \item Type: Dynamic \& Manual\\
+  Initial State: Application is installed and running.\\
+  Input/Condition: User will be given parameters to change.\\
+  Output/Result: Application will reflect changes by within \textsl{TIME\_ACCEPTED}.\\
+  How test will be performed: User will make modifications, we will observe how long the application takes to reflect changes. 
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Measurement devies will be connected to device.\\
-    Input/Condition: Thermal treatment sample data will be read into the device.\\
-    Output/Result: The sample reading from the thermal treatment will be accurate to 3 decminal places 99.99 percent of the time.\\
-    How test will be performed: Test will be performed by a script where the data being read in will be compared to an exising data set of the same sample with the same parameters. The data will be identical for 99.99 percent of the readings.
+  \item Type: Dynamic \& Automated\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Thermal treatment sample data will be read into the device.\\
+  Output/Result: The sample reading from the thermal treatment will be accurate to \textsl{ACCEPTED\_SIGFIG} number of significant digits.\\
+  How test will be performed: An automated test will be used to compare the expected values to the measured values. The test will pass if the result is correct up to the number of {ACCEPTED\_SIGFIG} significant digits.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will be open with measuremnt devices connceted.\\
-    Input/Condition: Readings for thermal treatment sample.\\
-    Output/Result: The calculations displayed on the application will be accurate to 3 decimal places for 99.99 percent of the time.\\
-    How test will be performed: Test will be performed by a sscript performing the caluations and comparing the result to the result on the application.
+  \item Type: Dynamic \& Manual\\
+  Initial State: Application is installed and running with measurement devices connected to a sample.\\
+  Input/Condition: Application will be opened and user will interact with it.\\
+  Output/Result: The application will be up and running for at least \textsl{MIN\_UPTIME} and for the entire duration of the task given to the user to perform.\\
+  How test will be performed: User will complete a set of tasks using the application and the application will be left running for at least \textsl{MIN\_UPTIME} afterwards.
 
-    \item Type: Dynamic \& Automated\\
-    Initial State: Application will be closed.\\
-    Input/Condition: Application will be opened and have modification applied to the it.\\
-    Output/Result: The application will be up and running 99 percent of the time.\\
-    How test will be performed: Test will be performed by a script making modifications on the application throughout 12 hours and seeing if the application gives a healthly response for 99 percent of the time.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -421,16 +451,17 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-OT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open with keyboard and mouse connected to the device.\\
+    Initial State: Application is opened and ready with keyboard and mouse connected to the device.\\
     Input/Condition: User will interact with the application with mouse and keyboard.\\
-    Output/Result: Application will reflect inputs provided by mouse and keyboard.\\
-    How test will be performed: Test will be performed by the users.
+    Output/Result: Application will accurately and correctly reflect the inputs from the mouse and keyboard provided by the user.\\
+    How test will be performed: User will be asked to perform a simple set of instructions using the mouse and keyboard such as clicking and typing.
     
     \item Type: Static \& Manual\\
-    Initial State: Application will be uninstalled from the device.\\
-    Input/Condition: Users will be asked to installed the application.\\
-    Output/Result: Feedback surveys from the installtion should indicate the installation was simple for 90 percent of of the users.\\
-    How test will be performed: Test will be performed by the user. User will be given a survey a question where 1 being simple and 5 being difficult. If 90 percent of users answer 1, it will be considered a success.
+    Initial State: A machine/computer that does not have the application installed.\\
+    Input/Condition: Users will be asked to install the application on the machine/computer.\\
+    Output/Result: Survey results should indicate that the installation was easy to follow for MIN\_USER\_ACCEPT\_RATE of the users.\\
+    How test will be performed: Test will be performed by the user. User will be given a survey including a question where 5 indicates easy to use, straightforward, and 1 indicating confusing, and/or difficult. If MIN\_USER\_ACCEPT\_RATE of users respond with 5, 
+    the test will be considered a pass.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -439,10 +470,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-MT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be uninstalled for device.\\
-    Input/Condition: Application will be installed on the device and connected to measurement devices.\\
-    Output/Result: The applications functions will be verified and ensure it is performing smoothly on the device.\\
-    How test will be performed: Test will be performed by the developer installing the application onto the  lab computer running window 7.
+    Initial State: A machine/computer that does not have the application installed.\\
+    Input/Condition: Application will be installed on the device and connected to the required measurement devices.\\
+    Output/Result: The application is able to operate smoothly without error with the connected measuring devices.\\
+    How test will be performed: Test will be performed by a developer installing the application onto a lab computer running Windows 10.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -451,16 +482,16 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-ST}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: User will attempt to inject data or modify parameters they do not have permission for.\\
-    Output/Result: Application will have a indicator inform user does not have permission.\\
-    How test will be performed: Test will be performed by users who do not have certain permissions.
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: User will attempt to enter or modify data/parameters that they currently do not have permission for.\\
+    Output/Result: Application will display a message informing the user that they do not have permission.\\
+    How test will be performed: Test will be performed by users with missing permissions, or a test account by a developer.
     
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: User will be asked to change hidden settings and calculations.\\
-    Output/Result: Changes should be accepted and saved by the application. Will be reflected on the application interface.\\
-    How test will be performed: Test will be performed by users who have permission to access these settings/parameters.
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: User will be asked to change protected/hidden settings given the appropriate permissions.\\
+    Output/Result: The changes are accepted and saved by the application. Settings are also accurately reflected on the application's interface.\\
+    How test will be performed: Test will be performed by users who have been granted permission to access these settings, or test account by a developer.
 \end{enumerate}
 \end{adjustwidth}
 
@@ -469,10 +500,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-CT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: Users will explore the appliaction then take a survey \\
-    Output/Result: Result from survey will return a score of 8.\\
-    How test will be performed: Test will be performed by users which will take a survey after interacting with the application, 1 being inappropriate and 10 being appropriate. 
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: Users will explore the application through a demo/test account. \\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application is appropriate.\\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree that application is appropriate, then it will be considered successful. (Refer to Appendix for Sample Survey)
 \end{enumerate}
 \end{adjustwidth}
 
@@ -481,10 +512,10 @@ How test will be performed:
 \begin{adjustwidth}{2.2em}{0pt}
 \begin{enumerate}[{NF-HT}1.]
     \item Type: Static \& Manual\\
-    Initial State: Application will be open on device.\\
-    Input/Condition: Users will explore the appliaction then take a survey \\
-    Output/Result: Result from survey will indicate application interface does not pose any health concerns.\\
-    How test will be performed: Test will be performed by the user which will take a survey regarding the interface's colour and design.  
+    Initial State: Application is opened and ready to use.\\
+    Input/Condition: Users will explore the application through a demo/test account. \\
+    Output/Result: Survey result will indicate MIN\_USER\_ACCEPT\_RATE of users agree or strongly agree application does not cause/pose any noticeable health concerns.\\
+    How test will be performed: Test will be performed by the user. They will receive a survey with a question. If MIN\_USER\_ACCEPT\_RATE of users indicate agree or strongly agree that application is free from health and safety concerns, then it will be considered successful. (Refer to Appendix for Sample Survey).  
 \end{enumerate}
 \end{adjustwidth}
 
@@ -502,6 +533,8 @@ How test will be performed:
 		FR3 & FR-T3 \\ \hline
 		FR4 & FR-T4 \\ \hline
 		FR5 & FR-T5 \\ \hline
+		FR6 & FR-T6 \\ \hline
+		FR7 & FR-T7 \\ \hline
 		NFR-L1 & NF-AT1 \\ \hline
     NFR-L2 & NF-AT2 \\ \hline
     NFR-U1 & NF-UT1 \\ \hline
@@ -510,12 +543,10 @@ How test will be performed:
     NFR-U4 & NF-UT4 \\ \hline
     NFR-U5 & NF-UT5\\ \hline
     NFR-U6 & NF-UT6 \\ \hline
-    NFR-U7 & NF-UT7 \\ \hline
     NFR-P1 & NF-PT1 \\ \hline
     NFR-P2 & NF-PT2 \\ \hline
     NFR-P3 & NF-PT3 \\ \hline
     NFR-P4 & NF-PT4 \\ \hline
-    NFR-P5 & NF-PT5 \\ \hline
     NFR-O1 & NF-OT1 \\ \hline
     NFR-O2 & NF-OT2 \\ \hline
     NFR-O3 & N/A \\ \hline
@@ -523,6 +554,16 @@ How test will be performed:
     NFR-M2 & NF-MT1 \\ \hline
     NFR-M3 & NF-MT1 \\ \hline
     NFR-S1 & NF-ST1 \\ \hline
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Requirements} & \textbf{Tests} \\ \hline
     NFR-S2 & NF-ST2 \\ \hline
     NFR-C1 & NF-CT1 \\ \hline
     NFR-H1 & NF-HT1 \\ \hline
@@ -531,6 +572,7 @@ How test will be performed:
 	\end{tabular}
 \end{table}
 
+\newpage
 
 \section{Unit Test Description}
 
@@ -541,6 +583,7 @@ How test will be performed:
 
 \subsection{Unit Testing Scope}
 
+No individual module correspond to any non functional requirements so section for non functional unit tests are removed.
 \wss{What modules are outside of the scope.  If there are modules that are
   developed by someone else, then you would say here if you aren't planning on
   verifying them.  There may also be modules that are part of your software, but
@@ -549,100 +592,443 @@ How test will be performed:
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\subsubsection{Module 1}
+\subsubsection{Input Communication Module}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+This module is a class used to initiate an object that contains properties and methods that will be used throughout the application.
+The following test will be used to verify if the module stores and returns the properties correctly using methods exposed.
 
-\begin{enumerate}
+\begin{enumerate}[{UT-IC}1.]
 
-\item{test-id1\\}
+\item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Automatic, Static
 					
-Initial State: 
+Initial State: The module InputCommunication is imported
 					
-Input: 
+Input: The method getUserInput() is called with values for user input.
 					
-Output: \wss{The expected result for the given inputs}
+Output: The abstract data type UserInput is returned.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: If the method getUserInput() is called, then it should return the abstract data type UserInput.
 
-How test will be performed: 
+How test will be performed: The InputCommunication Module will be imported and the method getUserInput() will be called through automated unit testing.
+
+\item
+
+Type: Automatic, Static
 					
-\item{test-id2\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Initial State: The module InputCommunication is imported
 					
-Initial State: 
+Input: The method getUserInput() is called with no values for user input.
 					
-Input: 
+Output: NULL
+
+Test Case Derivation: If no values for user input, then it should return NULL.
+
+How test will be performed: The InputCommunication Module will be imported and the method getUserInput() will be called through automated unit testing.
+
+\item
+
+Type: Automatic, Static
 					
-Output: \wss{The expected result for the given inputs}
+Initial State: The module InputCommunication is imported
+					
+Input: The method getHardwareInput() is called with values for hardware input.
+					
+Output: The abstract data type HardwareInput is returned.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: If the method getHardwareInput() is called, then it should return the abstract data type HardwareInput.
 
-How test will be performed: 
+How test will be performed: The InputCommunication Module will be imported and the method getHardwareInput() will be called through automated unit testing.
 
-\item{...\\}
+\item
+
+Type: Automatic, Static
+					
+Initial State: The module InputCommunication is imported
+					
+Input: The method getHardwareInput() is called with no values for hardware input.
+					
+Output: NULL
+
+Test Case Derivation: If no values for hardware input, then it should return NULL.
+
+How test will be performed: The InputCommunication Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
     
 \end{enumerate}
 
-\subsubsection{Module 2}
+\subsubsection{Remote Access Module}
 
-...
+This module is used to allow remote access to the application so the user view the process of the experiment. The following methods will verify if the function of the remote 
+access will work and if the user can connect and disconnect successfully.
+\begin{enumerate}[{UT-RA}1.]
 
-\subsection{Tests for Nonfunctional Requirements}
+  \item
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+  Type: Static
+            
+  Initial State: The module RemoteAccess is imported
+            
+  Input: The method connect(userName, password) is called with valid userName and password.
+            
+  Output: Will observe if it has been connected.
+  
+  Test Case Derivation: If  valid userName and password are given, then there should be a indication to show it is connected.
+  
+  
+  How test will be performed: The RemoteAccess Module will be imported and the method connect(userName, password) will be called. Result will be observed.
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+  \item
 
-\subsubsection{Module ?}
-		
-\begin{enumerate}
+  Type: Automatic, Static
+            
+  Initial State: The module RemoteAccess is imported
+            
+  Input: The method connect(userName, password) is called with invalid values for userName and password.
+            
+  Output: INVALID
+  
+  Test Case Derivation: If userName or password is not valid, then it should return NULL.
+  
+  
+  How test will be performed: The RemoteAccess Module will be imported and the method connect(userName, password) will be called through
+  automated unit testing.
 
-\item{test-id1\\}
+  \item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Type: Automatic, Static
+            
+  Initial State: The module RemoteAccess is imported
+            
+  Input: The method disconnect() is called.
+            
+  Output: FALSE
+  
+  Test Case Derivation: If disconnect() is called, then the connectionStatus should return FALSE.
+  
+  
+  How test will be performed: The RemoteAccess Module will be imported and the method disconnect() will be called through
+  automated unit testing.
 
 \end{enumerate}
 
-\subsubsection{Module ?}
+\subsubsection{Current State Module}
 
-...
+This module is a class used to display current state within the application for the user to understand.
+The following test will be used to verify if the module exposes the correct state for the user to see.
+
+\begin{enumerate}[{UT-CS}1.]
+
+\item
+
+Type: Static
+          
+Initial State: The module CurrentState is imported and StateInit() is called.
+          
+Input: The method DisplayUserInfo() is called with correct values.
+          
+Output: Will observe if it has been displyed.
+
+Test Case Derivation: If DisplayUserInfo() is called, there will be a changes on the display that can verify if the state is correct.
+
+
+How test will be performed: The CurrentState Module will be imported and DisplayUserInfo() will be called. Result will be observed.
+
+\item
+
+Type: Automatic, Static
+					
+Initial State: The module CurrentState is imported and StateInit() is called.
+					
+Input: The method DisplayUserInfo() is called with invalid values for SamplingRate, SampleLength and SampleWidth.
+					
+Output: INVALID
+
+Test Case Derivation: If the values are invalid for SamplingRate, SampleLength and SampleWidth, then it should return INVALID.
+
+How test will be performed: The CurrentState Module will be imported and the method DisplayUserInfo() will be called through automated unit testing.
+
+\item
+
+Type: Static
+          
+Initial State: The module CurrentState is imported and StateInit() is called.
+          
+Input: The method DisplayHardwareState() is called with correct values.
+          
+Output: Will observe if it has been displyed.
+
+Test Case Derivation: If DisplayHardwareState() is called, there will be a changes on the display that can verify if the state is correct.
+
+
+How test will be performed: The CurrentState Module will be imported and DisplayHardwareState() will be called. Result will be observed.
+
+\item
+
+Type: Automatic, Static
+					
+Initial State: The module CurrentState is imported and StateInit() is called.
+					
+Input: The method DisplayHardwareState() is called with invalid values for Voltage, Current, Time, and Temperature.
+					
+Output: INVALID
+
+Test Case Derivation: If the values are invalid for Voltage, Current, Time, and Temperature, then it should return INVALID.
+
+How test will be performed: The CurrentState Module will be imported and the method DisplayHardwareState() will be called through automated unit testing.
+
+    
+\end{enumerate}
+
+\subsubsection{Calculation Module }
+
+\begin{enumerate}[{UT-C}1.]
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method getResistance() is called and assigned to the variable Resistance  
+
+  Output: Resistance has a value greater than zero and matches the calculated value.
+
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value correctly, then the value of resistance should be non zero and match the calculated value.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method getResistance() is called and results in a value less than zero.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value less than zero, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
+            
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and assigned to the variable Resistivity
+
+  Output: Resistivity has a non-zero value and matches the calculated value. 
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value correctly, then the value of resistivity should be non zero and match the calculated value.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
+  
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and produces a non-real number/value.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value is not a number, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method calcResistance() is called with valid voltage and current values
+
+  Output: Correct calculated resistance value
+
+  Test Case Derivation: If calcResistance() is called with valid voltage and current values, then the correct resistance is computed.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistance() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistance has a value of zero
+
+  Input: The method calcResistance() is called with invalid voltage and current values
+
+  Output: INVALID
+
+  Test Case Derivation: If calcResistance() is called with invalid voltage and current values, then an INVALID error is thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistance() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method calcResistivity() is called with valid Resistance, SampleArea and SampleLength
+
+  Output: Correct calculated resistivity value
+
+  Test Case Derivation: If calcResistivity() is called with Resistance, SampleArea and SampleLength, then the correct resistivity is computed.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistivity() will be called. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: State variable Resistivity has a value of zero
+
+  Input: The method calcResistivity() is called with invalid Resistance, SampleArea and SampleLength
+
+  Output: INVALID
+
+  Test Case Derivation: If calcResistivity() is called with invalid Resistance, SampleArea and SampleLength, then an INVALID error is thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method calcResistivity() will be called. 
+      
+  \end{enumerate}
+
+
+  \subsubsection{User Input Validation Module }
+
+  \begin{enumerate}[{UT-UI}1.]
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method getUserInput() is called.
+
+  Output: The abstract data type UserInput is returned
+
+  Test Case Derivation: If getUserInput() is called,  UserInput should be returned.
+
+  How test will be performed: The User Input Validation Module will be imported and the method getUserInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with correct values for FileName, Date, Name.
+
+  Output: TRUE
+
+  Test Case Derivation: If FileName, Date, Name are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with incorrect values for FileName, Date, or Name.
+
+  Output: FALSE
+
+  Test Case Derivation: If FileName, Date, or Name are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with correct values for SamplingRate, SampleLength, SampleWidth.
+
+  Output: TRUE
+
+  Test Case Derivation: If SamplingRate, SampleLength, SampleWidth are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with incorrect values for SamplingRate, SampleLength, or SampleWidth.
+
+  Output: FALSE
+
+  Test Case Derivation: If SamplingRate, SampleLength, or SampleWidth are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
+\end{enumerate}
+
+\subsubsection{Hardware Input Validation Module }
+
+\begin{enumerate}[{UT-HI}1.]
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method getHardwareInput() is called.
+
+  Output: The abstract data type HardwareInput is returned 
+
+  Test Case Derivation: If the method getHardwareInput() is called, then it should return the abstract data type HardwareInput.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with correct values for Voltage, Time and Current.
+
+  Output: TRUE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return TRUE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with incorrect values for Voltage, Time or Current.
+
+  Output: FALSE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return FALSE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Modules}
 
@@ -667,7 +1053,7 @@ Their values are defined in this section for easy maintenance.
 \begin{figure}
   \subsection{Survey Questions}
   \centering
-  \includegraphics[width=1\textwidth]{User Experience Survey.pdf}
+  \includegraphics[width=1\textwidth]{UserExperienceSurvey.pdf}
 \end{figure}
 
 
