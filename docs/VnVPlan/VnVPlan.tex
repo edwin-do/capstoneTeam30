@@ -45,6 +45,7 @@
   Mar 4, 2023 & Timothy Chen & Revised Usability and Performance NFR test\\
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
+  Mar 8, 2023 & Edwin Do & Added unit tests for calculation and validation\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -576,6 +577,7 @@ How test will be performed: Test will be performed by developers. Performing the
 
 \subsection{Unit Testing Scope}
 
+No individual module correspond to any non functional requirements so section for non functional unit tests are removed.
 \wss{What modules are outside of the scope.  If there are modules that are
   developed by someone else, then you would say here if you aren't planning on
   verifying them.  There may also be modules that are part of your software, but
@@ -633,84 +635,192 @@ How test will be performed:
 
 \subsubsection{Calculation Module }
 
-\begin{enumerate}
+\begin{enumerate}[{UT-C}1.]
 
-  \item{UT-C1\\}
+  \item
   
-  Type: Automatic
-            
-  Initial State: resistance = 0
-            
-  Input: 
-            
-  Output: \wss{The expected result for the given inputs}
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistance has a value of zero
+
+  Input: The method getResistance() is called and assigned to the variable Resistance  
+
+  Output: Resistance has a value greater than zero and matches the calculated value.
+
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value correctly, then the value of resistance should be non zero and match the calculated value.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
+
+  \item
   
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
-  
-  How test will be performed: 
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistance has a value of zero
+
+  Input: The method getResistance() is called and results in a value less than zero.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistance() calculates and retrieves the resistance value less than zero, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistance() will be called. 
+  The value of resistance will be tested through automated unit testing.
             
-  \item{test-id2\\}
+  \item
   
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-            
-  Initial State: 
-            
-  Input: 
-            
-  Output: \wss{The expected result for the given inputs}
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and assigned to the variable Resistivity
+
+  Output: Resistivity has a non-zero value and matches the calculated value. 
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value correctly, then the value of resistivity should be non zero and match the calculated value.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
   
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+  \item
   
-  How test will be performed: 
-  
-  \item{...\\}
+  Type: Automatic, Static 
+
+  Initial State: State varaible Resistivity has a value of zero
+
+  Input: The method getResistivity() is called and produces a non-real number/value.
+
+  Output: Method will throw an INVALID error
+
+  Test Case Derivation: If getResistivity() calculates and retrieves the resistivity value is not a number, then an error should be thrown.
+
+  How test will be performed: The Calculation Module will be imported and the method getResistivity() will be called. 
+  The value of resistivity will be tested through automated unit testing.
       
   \end{enumerate}
 
-\subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+  \subsubsection{User Input Validation Module }
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+  \begin{enumerate}[{UT-UI}1.]
 
-\subsubsection{Module ?}
-		
-\begin{enumerate}
+  \item
+  
+  Type: Automatic, Static 
 
-\item{test-id1\\}
+  Initial State: The module UserInputValidation is imported
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Input: The method getUserInput() is called.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  Output: The abstract data type UserInput is returned
 
+  Test Case Derivation: If getUserInput() is called,  UserInput should be returned.
+
+  How test will be performed: The User Input Validation Module will be imported and the method getUserInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with correct values for FileName, Date, Name.
+
+  Output: TRUE
+
+  Test Case Derivation: If FileName, Date, Name are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateFileData() is called with incorrect values for FileName, Date, or Name.
+
+  Output: FALSE
+
+  Test Case Derivation: If FileName, Date, or Name are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateFileData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with correct values for SamplingRate, SampleLength, SampleWidth.
+
+  Output: TRUE
+
+  Test Case Derivation: If SamplingRate, SampleLength, SampleWidth are valid, then it should return TRUE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module UserInputValidation is imported
+
+  Input: The method validateSampleData() is called with incorrect values for SamplingRate, SampleLength, or SampleWidth.
+
+  Output: FALSE
+
+  Test Case Derivation: If SamplingRate, SampleLength, or SampleWidth are not valid, then it should return FALSE.
+
+  How test will be performed: The User Input Validation Module will be imported and the method validateSampleData() will be called through automated unit testing. 
 \end{enumerate}
 
-\subsubsection{Module ?}
+\subsubsection{Hardware Input Validation Module }
 
-...
+\begin{enumerate}[{UT-HI}1.]
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method getHardwareInput() is called.
+
+  Output: The abstract data type HardwareInput is returned 
+
+  Test Case Derivation: If the method getHardwareInput() is called, then it should return the abstract data type HardwareInput.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing. 
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with correct values for Voltage, Time and Current.
+
+  Output: TRUE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return TRUE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+  \item
+  
+  Type: Automatic, Static 
+
+  Initial State: The module HardwareInputValidation is imported
+
+  Input: The method validateParameters() is called with incorrect values for Voltage, Time or Current.
+
+  Output: FALSE
+
+  Test Case Derivation: If the values for Voltage, Time and Current are correct, then it should return FALSE.
+
+  How test will be performed: The Hardware Input Validation Module will be imported and the method getHardwareInput() will be called through automated unit testing.
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Modules}
 
