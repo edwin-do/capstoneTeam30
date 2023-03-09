@@ -77,7 +77,7 @@
   TARGET\_TIME & 60 seconds \\
   INTERACT\_TIME & 5 seconds \\
   MAX\_MISTAKE & 2 \\
-  MAX\_CAPACITY & 8GB \\ 
+  MAX\_SIZE & 8GB \\ 
   MIN\_UPTIME & 30 minutes \\ 
   MIN\_SAMPLE\_RATE & 60 samples per second\\
   TIME\_ACCEPTED & 1 second \\
@@ -406,7 +406,7 @@ How test will be performed: Test will be performed by developers. Performing the
   \item Type: Static \& Manual\\
   Initial State: The application will be installed on the research device\\
   Input/Condition: The size of the application will be checked manually\\
-  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_CAPACITY}. \\
+  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_SIZE}. \\
   How test will be performed: We will open the file properties of the application and verify that the size of the application is less than or equal to \textsl{MAX\_CAPACITY}.
 \end{enumerate}
 \end{adjustwidth}
@@ -585,50 +585,76 @@ How test will be performed: Test will be performed by developers. Performing the
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\subsubsection{Module 1}
+\subsubsection{Input Communication Module}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+This module is a class is used to initiate an object that contains properties and methods that will be used throughout the application.
+The following test will be used to verify if the module stores and returns the properties correctly using methods exposed.
 
-\begin{enumerate}
+\begin{enumerate}[{UT-IC}1.]
 
-\item{test-id1\\}
+\item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Static, Automatic
 					
-Initial State: 
+Initial State: Object has been instantiated with properties from user inputs and stored in input variable.
 					
-Input: 
+Input: input.getUserInput() method will be called.
 					
-Output: \wss{The expected result for the given inputs}
+Output: UserInput ADT
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: When input.getUserInput() is called the UserInput ADT should be returned.
 
-How test will be performed: 
+How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing.
 					
-\item{test-id2\\}
+\item
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Static, Automatic
 					
-Initial State: 
+Initial State: Object has been instantiated with properties from user inputs and stored to input variable.
 					
-Input: 
+Input: input.getHardwareInput() will be called.
 					
-Output: \wss{The expected result for the given inputs}
+Output: NULL
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: When input.getHardwareInput() is called, NULL exception will be returned as properties has not been given.
 
-How test will be performed: 
 
-\item{...\\}
+How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getHardwareInput() will be called.
+					
+Output: HardwareInput ADT
+
+Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getUserInput() will be called.
+					
+Output: NULL
+
+Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing
+
     
 \end{enumerate}
 
