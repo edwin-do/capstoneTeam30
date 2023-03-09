@@ -743,6 +743,228 @@ access will work and if the user can connect and disconnect successfully.
 
 \end{enumerate}
 
+\subsubsection{Current State Module}
+
+This module is a class used to display current state within the application for the user to understand.
+The following test will be used to verify if the module exposes the correct state for the user to see.
+
+\begin{enumerate}[{UT-CS}1.]
+
+\item
+
+Type: Static
+          
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+          
+Input: currentState.DisplayUserInfo() will be called.
+          
+Output: Will observe if it has been displyed.
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called, there will be a change on the display that can verify if the state is correct.
+
+
+How test will be performed: Object will be instantiated and result will be observed.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with invalid SamplingRate type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called, since SamplingRate is an incorrect type then a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+					
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with negative SamplingRate.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called with a negative SamplingRate a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with invalid SampleLength type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called with invalid SampleLength type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with negative SampleLength.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called with negative SampleLength a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with invalid SampleWidth type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called with invalid SampleWidth type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayUserInfo() will be called with negative SampleWidth.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayUserInfo() is called with negative SampleWidth a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static
+          
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+          
+Input: currentState.DisplayHardwareState() will be called.
+          
+Output: Will observe if it has been displyed.
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called, there will be a change on the display that can verify if the state is correct.
+
+
+How test will be performed: Object will be instantiated and result will be observed.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with invalid voltage type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid voltage type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with negative voltage.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with negative voltage a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with invalid current type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid current type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with negative current.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with negative current a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with invalid time type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid time type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with negative time.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with negative time a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated and saved to currentState, currentState.StateInit() will be called.
+					
+Input: currentState.DisplayHardwareState() will be called with invalid temperature type.
+					
+Output: INVALID
+
+Test Case Derivation: When currentState.DisplayHardwareState() is called with invalid temperature type a invalid exception should be thrown.
+
+How test will be performed: Object will be instantiated and verified using Automated Unit Testing.
+    
+\end{enumerate}
+
 \subsubsection{Module 2}
 
 ...
