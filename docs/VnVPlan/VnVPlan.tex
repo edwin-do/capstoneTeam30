@@ -46,6 +46,8 @@
   Mar 6, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements \& fixed formatting\\
   Mar 8, 2023 & Edwin Do, Timothy Chen & Further revision of tests for non functional requirements\\
   Mar 8, 2023 & Edwin Do & Added unit tests for calculation and validation\\
+  Mar 8, 2023 & Tyler Magarelli & Updated user experience survey for section 6.2\\
+  Mar 8, 2023 & Abdul Nour Seddiki & Revised tests for Functional Requirements\\
   \bottomrule
   \end{tabularx}
   \end{table}
@@ -78,7 +80,8 @@
   TARGET\_TIME & 60 seconds \\
   INTERACT\_TIME & 5 seconds \\
   MAX\_MISTAKE & 2 \\
-  MAX\_CAPACITY & 8GB\% \\ 
+  MAX\_SIZE & 8GB \\ 
+  MIN\_UPTIME & 30 minutes \\ 
   MIN\_SAMPLE\_RATE & 60 samples per second\\
   TIME\_ACCEPTED & 1 second \\
   ACCEPTED\_SIGFIG & 3 decimals \\
@@ -300,24 +303,10 @@ results are outside a reasonable range, then the team shall conclude that the re
 \begin{enumerate}[{FR-T}1.]
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the current source with supply parameters.\\
-    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately.\\
-    Test Case Derivation: Since the current source is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will initialize the nanovoltmeter and capture measurements.\\
-    Output: The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.\\
-    Test Case Derivation: Since the nanovoltmeter is connected via a high-speed communication bus (GPIB) to the control computer, measurements are expected to be synchronized and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. By checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Simultaneously monitoring both the values displayed on the nanovoltmeter and the ones displayed in the application while observing for latency.
-    
-    \item Control: Dynamic \& Manual\\
-    Initial State: Entire system is set up and the application is running.\\
-    Input: Developers will set up a sample and demonstrate the main function of the application.\\
-    Output: The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
+    Input: Developers will initialize the current source with supply parameters, initialize the nanovoltmeter and capture measurements, and set up a sample and demonstrate the main function of the application.\\
+    Output: The current source shall be reset and the application shall input the parameters of the current supply and set them to the current source appropriately, then enabling and disabling the current. The current level shall be displayed appropriately. The nanovoltmeter shall be reset and the application shall display the voltage levels appropriately when capture is started. When stopping capture, the application shall pause the measurements and keep the last batch of data displayed.The application shall calculate and display the resistivity of the metallic sample based on values obtained from the measurement devices.\\
     Test Case Derivation: Since the measurement devices are connected via a high-speed communication bus (GPIB) to the control computer, calculations are expected to be synchronized to the measurements and displayed in real-time.\\
-    How test will be performed: Test will be performed by developers. Simultaneously monitoring both the values displayed on the measurement devices and the ones displayed in the application while observing for latency. They will take a random sample of the mentioned measurements and conduct a manual analysis of the resistivity of said sample and compare the results to what is expected.
+    How test will be performed: Test will be performed by developers. By checking the “Current Source” radio button and specifying other parameters then clicking “Current ON” button and “Current OFF” button. Checking the “Nanovoltmeter” radio button and clicking “Start Capture” button and “Stop Capture” button. Then verify the resistivity calculations by taking samples from the logs and doing a manual calculation. Simultaneously monitoring both the values displayed on the current source and the ones displayed in the application while observing for latency.
     
     \item Control: Dynamic \& Manual\\
     Initial State: Entire system is set up and the application is running.\\
@@ -346,6 +335,21 @@ How test will be performed: Test will be performed by developers. Performing the
     Output: The application is able to be controlled using a proxy/web application.\\
     Test Case Derivation: The control computer is expected to be connected to the network so that when the system is set up the application is operable remotely.\\
     How test will be performed: Test will be performed by developers communicating remotely with the control computer through a web app. The main application is already capturing measurements and making calculations. Remotely, the testing developer will click “Stop Experiment” button on the web app and that will prompt the main app to stop capturing data and turn the current supply off.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment.\\
+    Output: The application displays a graph that shows real-time values and calculations.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a graph will be able to follow these values and display them in a visual representation.\\
+    How test will be performed: Test will be performed by developers. By initializing the current source and voltmeter, then turning current supply on and starting capture. Then observing the graph in the application window.
+
+    \item Control: Dynamic \& Manual\\
+    Initial State: Entire system is set up, connected to a sample, and the application is running.\\
+    Input: Developers will start an experiment then stop it.\\
+    Output: The application shall save a file on the control computer containing the measurements and calculations of the experiment.\\
+    Test Case Derivation: Since the application is constantly monitoring and displaying resistivity of samples and other measurements in real-time, a file system will be able to follow these values and write them to a data file outside of the application.\\
+    How test will be performed: Test will be performed by developers. By inputting information about the experiment and the personnel involved, then initializing the current source and voltmeter, and turning current supply on and starting capture. When enough data has been captured, they shall stop the experiment and check the generated file.
+
 
 \end{enumerate}
 
@@ -406,7 +410,7 @@ How test will be performed: Test will be performed by developers. Performing the
   \item Type: Static \& Manual\\
   Initial State: The application will be installed on the research device\\
   Input/Condition: The size of the application will be checked manually\\
-  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_CAPACITY}. \\
+  Output/Result: Application capacity on the device will be no more than \textsl{MAX\_SIZE}. \\
   How test will be performed: We will open the file properties of the application and verify that the size of the application is less than or equal to \textsl{MAX\_CAPACITY}.
 \end{enumerate}
 \end{adjustwidth}
@@ -586,18 +590,16 @@ No individual module correspond to any non functional requirements so section fo
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\subsubsection{Module 1}
+\subsubsection{Input Communication Module}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+This module is a class is used to initiate an object that contains properties and methods that will be used throughout the application.
+The following test will be used to verify if the module stores and returns the properties correctly using methods exposed.
 
-\begin{enumerate}
+\begin{enumerate}[{UT-IC}1.]
 
 \item{test-id1\\}
 
@@ -606,31 +608,75 @@ Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 					
 Initial State: 
 					
-Input: 
+Input: input.getHardwareInput() will be called.
 					
-Output: \wss{The expected result for the given inputs}
+Output: NULL
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: When input.getHardwareInput() is called, NULL exception will be returned as properties has not been given.
 
-How test will be performed: 
+How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
+
+\item
+
+Type: Static, Automatic
 					
-\item{test-id2\\}
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getHardwareInput() will be called.
+					
+Output: HardwareInput ADT
+
+Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
+
+\item
 
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
 					
 Initial State: 
 					
-Input: 
+Input: input.getUserInput() will be called.
 					
-Output: \wss{The expected result for the given inputs}
+Output: NULL
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
 
-How test will be performed: 
+How test will be performed: Object will be instantiated with input user properties and verified using Automated Unit Testing
 
-\item{...\\}
-    
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getHardwareInput() will be called.
+					
+Output: HardwareInput ADT
+
+Test Case Derivation: When input.getHardwareInput() is called, getHardwareInput ADT will be returned as properties has been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing 
+
+\item
+
+Type: Static, Automatic
+					
+Initial State: Object has been instantiated with hardware inputs and saved to input.
+					
+Input: input.getUserInput() will be called.
+					
+Output: NULL
+
+Test Case Derivation: When input.getUserInput() is called, NULL exception will be returned as properties has not been given.
+
+
+How test will be performed: Object will be instantiated with hardware input properties and verified using Automated Unit Testing
+
+
 \end{enumerate}
 
 \subsubsection{Calculation Module }
@@ -845,7 +891,7 @@ Their values are defined in this section for easy maintenance.
 \begin{figure}
   \subsection{Survey Questions}
   \centering
-  \includegraphics[width=1\textwidth]{User Experience Survey.pdf}
+  \includegraphics[width=1\textwidth]{UserExperienceSurvey.pdf}
 \end{figure}
 
 
