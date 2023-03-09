@@ -136,6 +136,25 @@ Each requirement can be traced to multiple unit tests and the usability survey u
 
 \section{Unit Testing}
 
+\subsection{Calculation Module}
+\begin{tabular}{ |p{1.5cm}||p{2.5cm}|p{3cm}|p{2cm}|p{2cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for Calculation Module} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 5, Current = 1 & 5.000 & 5.000 & PASS \\
+  \hline
+  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 4, Current = 0.6 & 6.667 & 6.667 & PASS \\
+  \hline
+  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -5, Current = 1 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -4, Current = 0.6 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C3   & Testing the getResistivity Method  &  Resistance = 3, Area = 2.5, Length = 2 & 3.750 & 3.750 & PASS \\
+  \hline
+  UT-C3   & Testing the getResistivity Method  &  Resistance = 2, Area = 2.8, Length = 1 & 5.600 & 5.600 & PASS \\
+ \end{tabular}
 
 \section{Changes Due to Testing}
 
