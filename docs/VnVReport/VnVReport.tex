@@ -110,14 +110,14 @@ This document ...
 \label{fig}
 \end{figure}
 
-\noindent The key elememts of the existing implementation will also be included in our implementation. This is so that the application will be familiar to the user and as intuitive as possible. These elements are listed below:
+\noindent The key elements of the existing implementation will also be included in our implementation. This is so that the application will be familiar to the user and as intuitive as possible. These elements are listed below:
 \begin{itemize}
   \item Method Panel: controls which device to read data from (temperature or voltage), and which file to save the data in
   \item Device Settings Panel: used to send SCPI commands directly to a device
   \item Readout: includes graphical output and listed output of relevant values (current, voltage, resistance, etc.)
 \end{itemize}
 
-\noindent The primary differences between the existing implementation and our implementaion are the appearance of the GUI and the option of remote access. The existing implementation was developed for Windows XP whereas our implementation is developed for Windows 10, which gives it an updated look. One of the stretch goals for this project is to enable remote access to the application to be able to monitor and stop experiments remotely. The existing implementatio  does not have this functionality.\\
+\noindent The primary differences between the existing implementation and our implementaion are the appearance of the GUI and the option of remote access. The existing implementation was developed for Windows XP whereas our implementation is developed for Windows 10, which gives it an updated look. One of the stretch goals for this project is to enable remote access to the application to be able to monitor and stop experiments remotely. The existing implementation does not have this functionality.\\
 
 
 \section{Unit Testing}
@@ -125,12 +125,12 @@ This document ...
 
 \section{Changes Due to Testing}
 
-\noindent Based on the feedback from our Rev 0 Demo, we found that our application failed some requirements tests. The major failures were the lack of two main features: the graphical output (which still did not display real data as of Rev 0 Demo) and the ability to save output data to a chosen file. While we did not need to "test" our application to know this, we still consider this to be a failed test, as our application failed to meet requirements set out by the project supervisor. These two features have been implemented for the final demo. \\
+\noindent Based on the feedback from our Rev 0 Demo, we found that our application failed some requirements tests. The major failures were the lack of two main features: the graphical output (which still did not display real data as of Rev 0 Demo) and the ability to save output data to a chosen file. While we did not need to "test" our application to know this, we still consider these to be failed tests, as our application failed to meet requirements set out by the project supervisor. These two features have been implemented for the final demo. \\
 
 \begin{tabular}{ |p{3cm}|p{5cm}|p{5cm}| }
   \hline
-  Test ID & Failure Observed & Change Made \\
-  \hline
+  \textbf{Test ID} & \textbf{Failure Observed} & \textbf{Change(s) Made} \\
+  \hline 
   ST6 & Graph only displays dummy data & Bug with displaying real-time data was fixed \\ \hline
   ST7 & There is no method to output data to a file & File system browser and writing to output file was added \\
   \hline
@@ -139,7 +139,7 @@ This document ...
 
 \section{Automated Testing}
 
-\noindent We acheived automated unit testing through the use of the NUnit testing framework in Visual Studio. NUnit is one of the most popular test frameworks used for running tests on a .NET project.\\
+\noindent We achieved automated unit testing through the use of the NUnit testing framework in Visual Studio. NUnit is one of the most popular test frameworks used for running tests on a .NET project.\\
 
 \noindent NUnit tests are setup by first creating a new project file in Visual Studio and adding it to the solution file for your project (in our case, the application). In the new project file, a new class is created. Each unit test we want to carry out is written as a method of the test class. Since the project file for the test class is inlcuded in the same solution file as our application, we are able to call the test methods from our main application to run the tests.\\
 		
