@@ -126,6 +126,92 @@ This section will not be appropriate for every project.
   UT-C3   & Testing the getResistivity Method  &  Resistance = 3, Area = 2.5, Length = 2 & 3.750 & 3.750 & PASS \\
   \hline
   UT-C3   & Testing the getResistivity Method  &  Resistance = 2, Area = 2.8, Length = 1 & 5.600 & 5.600 & PASS \\
+  \hline
+  UT-C4   & Testing the getResistivity Method  &  Resistance = A, Area = 2.8, Length = 0 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C4   & Testing the getResistivity Method  &  Resistance = 1, Area = 0, Length = BC & Invalid & Invalid & PASS \\
+  \hline
+  UT-C5  & Testing the calcResistance Method  &  Voltage = 2.6, Current = 2 & 1.300 & 1.300 & PASS \\
+  \hline
+  UT-C5  & Testing the calcResistance Method  &  Voltage = 3.6, Current = 2 & 1.800 & 1.800 & PASS \\
+  \hline
+ \end{tabular}
+
+ \pagebreak
+ \begin{tabular}{ |p{1.5cm}||p{2.5cm}|p{3cm}|p{2cm}|p{2cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for Calculation Module (Continued)} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-C6  & Testing the calcResistance Method  &  Voltage = AB, Current = 0 & Invalid & Invalid & PASS \\
+  \hline
+  UT-C6  & Testing the calcResistance Method  &  Voltage = 0, Current = DR & Invalid & Invalid & PASS \\
+  \hline
+  UT-C7  & Testing the calcResistivity Method  &  Resistance = 2, Area = 1.5, Length = 2 & 1.500 & 1.500 & PASS \\
+  \hline
+  UT-C7  & Testing the calcResistivity Method  &  Resistance = 1.8, Area = 1.3, Length = 1.5  & 1.560 & 1.560 & PASS \\
+  \hline
+  UT-C8  & Testing the calcResistivity Method  &  Resistance = AB, Area = 1, Length = 2  & Invalid & Invalid & PASS \\
+  \hline
+  UT-C8  & Testing the calcResistivity Method  &  Resistance = 2, Area = 2, Length = NT  & Invalid & Invalid & PASS \\
+  \hline
+ \end{tabular}
+
+ \subsection{User Input Validation Module}
+ \begin{tabular}{ |p{1.5cm}||p{2cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for User Input Validation Module} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-UI1   & Testing the getUserInput Method  &  N/A  & UserInput (SamplingRate: 60, SampleLength: 4, SampleWidth:2) & UserInput (SamplingRate: 60, SampleLength: 4, SampleWidth:2) & PASS \\
+  \hline
+  UT-UI2   & Testing the validateFileData Method  &  FileName: Test, Date: 03/01/2023, Name: Test & TRUE & TRUE & PASS \\
+  \hline
+  UT-UI2   & Testing the validateFileData Method  &  FileName: Output, Date: 03/01/2023, Name: John & TRUE & TRUE & PASS \\
+  \hline
+  UT-UI3   & Testing the validateFileData Method  &  FileName: Output, Date: Someday, Name: Tester & FALSE & FALSE & PASS \\
+  \hline
+  UT-UI3   & Testing the validateFileData Method  &  FileName: 0, Date: 03/01/2023, Name: 0 & FALSE & FALSE & PASS \\
+  \hline
+ \end{tabular}
+
+ \pagebreak 
+
+ \begin{tabular}{ |p{1.5cm}||p{2cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for User Input Validation Module (Continued)} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-UI4   & Testing the validateSampleData Method  &  SamplingRate: 50, SampleLength:2, SampleWidth:5 & TRUE & TRUE & PASS \\
+  \hline
+  UT-UI4   & Testing the validateSampleData Method  &  SamplingRate: 60, SampleLength:1.5, SampleWidth:3 & TRUE & TRUE & PASS \\
+  \hline
+  UT-UI5   & Testing the validateSampleData Method  &  SamplingRate: -7, SampleLength:1.5, SampleWidth:3 & FALSE & FALSE & PASS \\
+  \hline
+  UT-UI5  & Testing the validateSampleData Method  &  SamplingRate: 60, SampleLength:-5, SampleWidth:3 & FALSE & FALSE & PASS \\
+  \hline
+ \end{tabular}
+
+ \subsection{Hardware Input Validation Module}
+ \begin{tabular}{ |p{1.5cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+  \hline
+  \multicolumn{6}{|c|}{Unit Tests for Hardware Input Validation Module} \\
+  \hline
+  Unit Test ID & Description & Input & Expected Output & Output & Result\\
+  \hline
+  UT-HI1   & Testing the getHardwareInput Method  &  -  & HardwareInput ( Voltage: 5, Current: 3) & HardwareInput ( Voltage: 5, Current: 3) & PASS \\
+  \hline
+  UT-HI2   & Testing the validateParameters Method  &  Voltage: 3.0 , Time: 5:31 PM , Current: 1.0 & TRUE & TRUE & PASS \\
+  \hline
+  UT-HI2   & Testing the validateFileData Method  &  Voltage: 3.2 , Time: 5:45 PM , Current: 1.2 & TRUE & TRUE & PASS \\
+  \hline
+  UT-HI3   & Testing the validateFileData Method  &  Voltage: 10 , Time: 5:48 PM , Current: NY & FALSE & FALSE & PASS \\
+  \hline
+  UT-HI3   & Testing the validateFileData Method  &  Voltage: YT , Time: 5:51 PM , Current: 0.5  & FALSE & FALSE & PASS \\
+  \hline
  \end{tabular}
 
 \section{Changes Due to Testing}
