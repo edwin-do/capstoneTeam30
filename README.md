@@ -19,6 +19,9 @@ Application has been deployed. Initial requirements and features requested by th
 ## Tech/Framework
 - C#
 
+## Supported OS
+- Window 10/11
+
 ## Fearures
 - Remote Access
 - Live Graph
