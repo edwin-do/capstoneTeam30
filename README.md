@@ -12,9 +12,9 @@ This project is a revision of an application used by the Department of Materials
 
 Start by copying the Zip folder called ... to your local computer. After you have successfully copy over the zip folder, unzip it and open the folder. You should see an ReSprint.exe and a User Guide. To start the application, double-click on ReSprint.exe. For more information on how to navigate the application, please refer to the User Guide in the Folder.
 
-##The folders and files for this project are as follows:
+## The folders and files for this project are as follows:
 
-###docs - Documentation for the project which contains the following:
+### docs - Documentation for the project which contains the following:
 - Desgin
 - Development Plan
 - HaxardAnalysis
@@ -24,6 +24,6 @@ Start by copying the Zip folder called ... to your local computer. After you hav
 - UserGuide
 - VNVPlan
 - VnVReport
-###refs - Reference material used for the project
-###src - Source code
-###test - Test cases
+### refs - Reference material used for the project
+### src - Source code
+### test - Test cases
