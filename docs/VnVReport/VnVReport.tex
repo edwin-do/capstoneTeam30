@@ -69,7 +69,6 @@ Mar 8, 2023 & Abdul Nour & Added Functional Req's Unit Tests\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
-  MIN\_USER\_ACCEPT\_RATE & 90\% - minimum acceptance rate\\
   TARGET\_TIME & 60 seconds \\
   INTERACT\_TIME & 5 seconds \\
   MAX\_MISTAKE & 2 \\
@@ -95,7 +94,7 @@ Mar 8, 2023 & Abdul Nour & Added Functional Req's Unit Tests\\
 
 \pagenumbering{arabic}
 
-This document discusses the results from the test cases mentioned in the V\&V plan and the changes the team made in respsonse. 
+This document discusses the results from the test cases mentioned in the V\&V plan and the changes the team made in response. 
 Section 11 Code Coverage Metrics of this document has been removed. 
 
 \section{Functional Requirements Evaluation}
@@ -108,21 +107,40 @@ Section 11 Code Coverage Metrics of this document has been removed.
 	\caption{Test Cases for Functional Requirements}
 	\label{my-label}
 %	\begin{tabular}{|l|l|l|l|l|}
-	\begin{tabular}{|p{0.85cm}|p{5cm}|p{5cm}|p{1.3cm}|}
+	\begin{tabular}{|p{1.3cm}|p{5cm}|p{5cm}|p{1.2cm}|}
 		\hline
 		\textbf{ID} & \textbf{User Action} & \textbf{Expected Result}  & \textbf{Result} \\ \hline
-		ST1 & Check "Current Source" radio button, type (1) in the "Current Supply" textbox, type (10) in the "Compliance" textbox and click "Set" button, click "Current ON" button, check "Nano-Voltmeter" radio button, click "Start Capture" button & Current Source is reset, current  is set to 1mA and displayed, ompliance voltage is set to 10V, current is turned on, nanovoltmeter is reset and values from the voltmeter are continuously displayed on the application along with real-time calculations & PASS\\ \hline
-		ST2 & System is capturing values, thermal treatment is taking place & Critical changes in resistivity are noted in the capture log & FAIL*\\ \hline
-		ST3 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS\\ \hline
-		ST4 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL*\\ \hline
-		ST5 & Capture and current are on, click "Stop Experiment" button on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
-		ST6 & Start experiment and capture & Graph is displaying measurements and calculations & PASS \\ \hline
-		ST7 & Enter experiment info \& conduct an experiment & File output contains all experiment data & PASS \\ \hline
+		FR-T1 & Type (1) in the "Current Level" textbox, type (10) in the "Compliance" textbox and click "Set All" button, select "ON" button next to "Toggle Output" label; type (100) in the "Acquisition Rate" textbox and click "Set" button & Current Source is set to 1mA and displayed, compliance voltage is set to 10V, current is turned on, nanovoltmeter acquisition rate is set to 100Hz & PASS\\ \hline
+		FR-T2 & Click the "Start Capture button" and monitor graph and table output & Voltage values measured by the nanvoltmeter are displayed appropriately displayed in real-time on the GUI & PASS \\ \hline
+        FR-T3 & Click the "Start Capture" button and monitor calculated resistivity values, perform  manual resistivity calculation for the sample, check the output log and compare resistivity value calculated by application to manual calculation & Resistivity values calculated by the application match manual calculations performed & PASS \\ \hline
+		FR-T4 & Type (100) in the "Acquisition Rate" textbox and click "Set" button & Voltmeter display shows faster reading than default & PASS\\ \hline
+        FR-T6 & Click the "Refresh" button on the remote access web client page & Main application will update its current status to the web client & PASS\\ \hline 
 	\end{tabular}
 \end{table}
-\noindent * This feature has not been implemented yet.
-
 \newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{1.5cm}|p{5cm}|p{5cm}|p{1.2cm}|}
+		\hline
+        FR-T7 & Click the "Start Capture" button on the remote access web client page & Capture will begin on main application, web client page notifies user that capture has started & PASS\\ \hline
+        FR-T8 & Click "Turn Current Supply ON/OFF" button on the remote access web client page & Current output is disabled in the system, user is notified that current output is disabled & PASS\\ \hline
+        FR-T9 & Current source and nanovoltmeter settings are input as described in FR-T1, click "Start Capture" button & Measured and calculated values are displayed on the graph in real-time & PASS \\ \hline
+        FR-T10 & Current source and nanovoltmeter settings are input as described in FR-T1, click "Start Capture" button and observe graph, use the mouse wheel to zoom in/out, use the scroll bar to scroll left and right, click and drag one end of the scroll bar to adjust the timespan of the graph, un-check each of the display values, re-check each of the display values & All graph features behave as expected, graph is adjustable & PASS\\ \hline
+        FR-T11 & Current source and nanovoltmeter settings are input as described in FR-T1, click "Start Capture" button and allow some values to be capture, click "Stop Capture" button, check lab computer Documents folder for generated .CSV file & .CSV file was generated in the Documents folder & PASS\\ \hline
+        FR-T12 & Follow steps as described in FR-T11, review generated .CSV file to ensure that it contains measured and calculated values from the application & Generated .CSV file contains correct data output from the application & PASS \\ \hline
+    \end{tabular}
+\end{table}
+\newpage
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{1.4cm}|p{5cm}|p{5cm}|p{1.2cm}|}
+		\hline
+        FR-T13 & Unxip the installation package folder, check the folder for a .EXE file & The installation package folder contains a .EXE file & PASS \\ \hline
+        FR-T14 & Double-click the .EXE file in the installation package folder & Application successfully launches & PASS \\ \hline
+	\end{tabular}
+\end{table}
 
 \section{Nonfunctional Requirements Evaluation}
 
@@ -196,26 +214,6 @@ The following is the list of Non-functional tests performed on the application t
 \section{Unit Testing}
 In this section, the results of each unit test case is shown for each module. The module for graphical output utilizes a third party module so it will not be tested.\\
 
-\subsection{Input Communication Module}
-The table below shows the results of each unit test case in the Input Communication Module.\\
-\\
-\begin{tabular}{ |p{1.4cm}||p{2cm}|p{2.5cm}|p{3cm}|p{3cm}|p{1.5cm}|}
-  \hline
-  \multicolumn{6}{|c|}{Unit Tests for Input Communication Module} \\
-  \hline
-  Unit Test ID & Description & Input & Expected Output & Output & Result\\
-  \hline
-  UT-IC1   & Testing the getUserInput Method  &  SamplingRate : 60, SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : Bob; SampleName :sample1; Date : 03/01/2023 & UserInput( SamplingRate : 60; SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : bob; SampleName : sample1; Date : 03/01/2023) & UserInput( SamplingRate : 60; SampleLength : 4; SampleWidth : 2; Filename : sample1; Name : bob; SampleName : sample1; Date : 03/01/2023) & PASS \\
-  \hline
-  UT-IC2   & Testing the getUserInput Method &   & INVALID & INVALID  & PASS \\
-  \hline
-  UT-IC3   & Testing the getHardwareInput Method  &  Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 & HardwareInput( Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 ) & HardwareInput( Voltage : 5 ; Time : 10:00; Temperature : 50; Current: 1 ) & PASS \\
-  \hline
-  UT-IC4   & Testing the getHardwareInput Method &   & INVALID & INVALID  & PASS \\
-  \hline
- \end{tabular}
-
- \pagebreak
  \subsection{Remote Access Module}
  The table below shows the results of each unit test case in the Remote Access Module.\\
 \\
@@ -307,25 +305,23 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
   Unit Test ID & Description & Input & Expected Output & Output & Result\\
   \hline
-  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 5, Current = 1 & 5.000 & 5.000 & PASS \\
+  UT-C1   & Testing the CalcResistance Method  &  5, 1 & TRUE & TRUE & PASS \\
   \hline
-  UT-C1   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = 4, Current = 0.6 & 6.667 & 6.667 & PASS \\
+  UT-C1   & Testing the CalcResistance Method  &  -5, 1 & TRUE & TRUE & PASS \\
   \hline
-  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -5, Current = 1 & Invalid & Invalid & PASS \\
+  UT-C2   & Testing the CalcResistivity Method  &  5, 4*1, 4 & TRUE & TRUE & PASS \\
   \hline
-  UT-C2   & Testing the getResistance Method  &  From HardwareInput ADT: Voltage = -4, Current = 0.6 & Invalid & Invalid & PASS \\
+  UT-C2   & Testing the CalcResistivity Method  &   -5, 4*1, 4 & TRUE & TRUE & PASS \\
   \hline
-  UT-C3   & Testing the getResistivity Method  &  Resistance = 3, Area = 2.5, Length = 2 & 3.750 & 3.750 & PASS \\
+  UT-C3   & Testing the CalcTemperature Method  & 5, 5, 0, -10 & TRUE & TRUE & PASS \\
   \hline
-  UT-C3   & Testing the getResistivity Method  &  Resistance = 2, Area = 2.8, Length = 1 & 5.600 & 5.600 & PASS \\
+  UT-C4   & Testing the CalcTemperature Method  &  5, 5, 0, 1400 & TRUE & TRUE & PASS \\
   \hline
-  UT-C4   & Testing the getResistivity Method  &  Resistance = A, Area = 2.8, Length = 0 & Invalid & Invalid & PASS \\
+  UT-C4   & Testing the CalcTemperature Method  &  5, 5, 0, -1400 &  TRUE & TRUE & PASS \\
   \hline
-  UT-C4   & Testing the getResistivity Method  &  Resistance = 1, Area = 0, Length = BC & Invalid & Invalid & PASS \\
+  UT-C5  & Testing the CalcAperture Method  &  1 & TRUE & TRUE & PASS \\
   \hline
-  UT-C5  & Testing the calcResistance Method  &  Voltage = 2.6, Current = 2 & 1.300 & 1.300 & PASS \\
-  \hline
-  UT-C5  & Testing the calcResistance Method  &  Voltage = 3.6, Current = 2 & 1.800 & 1.800 & PASS \\
+  UT-C5  & Testing the CalcAperture Method  &  100 & TRUE & TRUE & PASS \\
   \hline
  \end{tabular}
 
@@ -336,17 +332,13 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
   Unit Test ID & Description & Input & Expected Output & Output & Result\\
   \hline
-  UT-C6  & Testing the calcResistance Method  &  Voltage = AB, Current = 0 & Invalid & Invalid & PASS \\
+  UT-C6  & Testing the CalcAperture Method  &  600 & TRUE & TRUE & PASS \\
   \hline
-  UT-C6  & Testing the calcResistance Method  &  Voltage = 0, Current = DR & Invalid & Invalid & PASS \\
+  UT-C6  & Testing the CalcAperture Method  &  6000 & TRUE & TRUE & PASS \\
   \hline
-  UT-C7  & Testing the calcResistivity Method  &  Resistance = 2, Area = 1.5, Length = 2 & 1.500 & 1.500 & PASS \\
+  UT-C7  & Testing the CalcAperture Method  &  -1 & TRUE & TRUE & PASS \\
   \hline
-  UT-C7  & Testing the calcResistivity Method  &  Resistance = 1.8, Area = 1.3, Length = 1.5  & 1.560 & 1.560 & PASS \\
-  \hline
-  UT-C8  & Testing the calcResistivity Method  &  Resistance = AB, Area = 1, Length = 2  & Invalid & Invalid & PASS \\
-  \hline
-  UT-C8  & Testing the calcResistivity Method  &  Resistance = 2, Area = 2, Length = NT  & Invalid & Invalid & PASS \\
+  UT-C7  & Testing the CalcAperture Method  &  0 & TRUE & TRUE & PASS \\
   \hline
  \end{tabular}
 
@@ -360,15 +352,15 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
   Unit Test ID & Description & Input & Expected Output & Output & Result\\
   \hline
-  UT-UI1   & Testing the getUserInput Method  &  N/A  & UserInput (SamplingRate: 60, SampleLength: 4, SampleWidth:2) & UserInput (SamplingRate: 60, SampleLength: 4, SampleWidth:2) & PASS \\
+  UT-UI1   & Testing the checkUserInput Method  &  N/A  & UserInput (userName: "Bob", sampleName: "Test", length: 10, width: 10, thickness: 10) &UserInput (userName: "Bob", sampleName: "Test", length: 10, width: 10, thickness: 10) & PASS \\
   \hline
-  UT-UI2   & Testing the validateFileData Method  &  FileName: Test, Date: 03/01/2023, Name: Test & TRUE & TRUE & PASS \\
+  UT-UI2   & Testing the checkUserInput Method  &  UserInput (userName: null, sampleName: "Test", length: 10, width: 10, thickness: 10) & UserInput () & UserInput () & PASS \\
   \hline
-  UT-UI2   & Testing the validateFileData Method  &  FileName: Output, Date: 03/01/2023, Name: John & TRUE & TRUE & PASS \\
+  UT-UI3   & Testing the checkInputBox Method  &  10 & TRUE & TRUE & PASS \\
   \hline
-  UT-UI3   & Testing the validateFileData Method  &  FileName: Output, Date: Someday, Name: Tester & FALSE & FALSE & PASS \\
+  UT-UI4   & Testing the checkInputBox Method  &  null & Message informing user of invalid value & Message informing user of invalid value & PASS \\
   \hline
-  UT-UI3   & Testing the validateFileData Method  &  FileName: 0, Date: 03/01/2023, Name: 0 & FALSE & FALSE & PASS \\
+  UT-UI5   & Testing the validateUserData Method  &  userName: "Bob", sampleName: null, length: 10, width: 10, thickness: 10) & FALSE & FALSE & PASS \\
   \hline
  \end{tabular}
 
@@ -380,18 +372,14 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
   Unit Test ID & Description & Input & Expected Output & Output & Result\\
   \hline
-  UT-UI4   & Testing the validateSampleData Method  &  SamplingRate: 50, SampleLength:2, SampleWidth:5 & TRUE & TRUE & PASS \\
+  UT-UI6   & Testing the validateUserData Method  &  userName: "Bob", sampleName: "Test", length: 10, width: 10, thickness: 10 & TRUE & TRUE & PASS \\
   \hline
-  UT-UI4   & Testing the validateSampleData Method  &  SamplingRate: 60, SampleLength:1.5, SampleWidth:3 & TRUE & TRUE & PASS \\
-  \hline
-  UT-UI5   & Testing the validateSampleData Method  &  SamplingRate: -7, SampleLength:1.5, SampleWidth:3 & FALSE & FALSE & PASS \\
-  \hline
-  UT-UI5  & Testing the validateSampleData Method  &  SamplingRate: 60, SampleLength:-5, SampleWidth:3 & FALSE & FALSE & PASS \\
+  UT-UI7   & Testing the validateUserData Method  &  userName: "Bob", sampleName: "Test", length: 10, width: 10, thickness: -10 & FALSE & FALSE & PASS \\
   \hline
  \end{tabular}
 
  \pagebreak
- \subsection{Hardware Input Validation Module}
+ \subsection{Instrument Input Validation Module}
  The table below shows the results of each unit test case in the Hardware Input Validation Module.\\
  \\
  \begin{tabular}{ |p{1.5cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|p{1.5cm}|}
@@ -400,15 +388,17 @@ The table below shows the results of each unit test case in the Calculation Modu
   \hline
   Unit Test ID & Description & Input & Expected Output & Output & Result\\
   \hline
-  UT-HI1   & Testing the getHardwareInput Method  &  -  & HardwareInput ( Voltage: 5, Current: 3) & HardwareInput ( Voltage: 5, Current: 3) & PASS \\
+  UT-II1   & Testing the checkSampleRate Method  &  100  & TRUE & TRUE & PASS \\
   \hline
-  UT-HI2   & Testing the validateParameters Method  &  Voltage: 3.0 , Time: 5:31 PM , Current: 1.0 & TRUE & TRUE & PASS \\
+  UT-II2   & Testing the checkSampleRate Method  &  -100 & ArgumentException & ArgumentException & PASS \\
   \hline
-  UT-HI2   & Testing the validateFileData Method  &  Voltage: 3.2 , Time: 5:45 PM , Current: 1.2 & TRUE & TRUE & PASS \\
+  UT-II3   & Testing the checkCurrentLevel Method  &  100 & TRUE & TRUE & PASS \\
   \hline
-  UT-HI3   & Testing the validateFileData Method  &  Voltage: 10 , Time: 5:48 PM , Current: NY & FALSE & FALSE & PASS \\
+  UT-II4    & Testing the checkCurrentLevel Method  &  -100 & ArgumentException & ArgumentException & PASS \\
   \hline
-  UT-HI3   & Testing the validateFileData Method  &  Voltage: YT , Time: 5:51 PM , Current: 0.5  & FALSE & FALSE & PASS \\
+  UT-II5   & Testing the checkJuncTemperature Method  &  10  & TRUE & TRUE & PASS \\
+  \hline
+  UT-II6   & Testing the checkJuncTemperature Method  &  10000, -10000  & ArgumentException & ArgumentException & PASS \\
   \hline
  \end{tabular}
 
@@ -444,8 +434,8 @@ The table below shows the results of each unit test case in the Calculation Modu
 		UT11 & System is capturing values, no thermal treatment & No critical changes in resistivity are noted & PASS\\ \hline
 		UT12 & Choose an "Integration Rate" of (1 PLC) from the drop-down menu & Voltmeter display shows faster reading than default & PASS \\ \hline
 		UT13 & Choose an "Integration Rate" of (5 PLC) from the drop-down menu & Voltmeter display shows no change than default rate & PASS\\ \hline
-		UT14 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in caputre log and displayed & FAIL* \\ \hline
-		UT15 & System is capturing values, no thermal treatment & No changes in resistivity-temperature slopes are noted in caputre log or displayed & PASS \\ \hline
+		UT14 & System is capturing values, thermal treatment is taking place & Changes in resistivity-temperature slopes are noted in capture log and displayed & FAIL* \\ \hline
+		UT15 & System is capturing values, no thermal treatment & No changes in resistivity-temperature slopes are noted in capture log or displayed & PASS \\ \hline
 		UT16 & Current supply is set up and capture is started, "Stop Experiment" button is clicked on remote interface & Capture and current supply are turned off & FAIL* \\ \hline
 		UT17 & Current supply is set up and capture is started, remote interface is launched but not interacted with & Capture and current supply stay on (no change) & FAIL* \\ \hline
 	\end{tabular}
@@ -469,7 +459,7 @@ The table below shows the results of each unit test case in the Calculation Modu
 
 \noindent We achieved automated unit testing through the use of the NUnit testing framework in Visual Studio. NUnit is one of the most popular test frameworks used for running tests on a .NET project.\\
 
-\noindent NUnit tests are setup by first creating a new project file in Visual Studio and adding it to the solution file for your project (in our case, the application). In the new project file, a new class is created. Each unit test we want to carry out is written as a method of the test class. Since the project file for the test class is inlcuded in the same solution file as our application, we are able to call the test methods from our main application to run the tests.\\
+\noindent NUnit tests are setup by first creating a new project file in Visual Studio and adding it to the solution file for your project (in our case, the application). In the new project file, a new class is created. Each unit test we want to carry out is written as a method of the test class. Since the project file for the test class is included in the same solution file as our application, we are able to call the test methods from our main application to run the tests.\\
 		
 \section{Trace to Requirements}
 The table below shows the traceability between each non functional requirement from the SRS, and the test requirement in this report.\\
@@ -503,13 +493,13 @@ The table below shows the traceability between each non functional requirement f
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		\textbf{System Test} & \textbf{Requirement} & \textbf{Plan} \\ \hline
-		ST1  & FR1 &FR-T1 \\ \hline
-		ST2  & FR2 &FR-T2\\ \hline
-		ST3  & FR3 &FR-T3\\ \hline
-		ST4  & FR4 &FR-T4\\ \hline
-		ST5  & FR5 &FR-T5\\ \hline
-		ST6  & FR6 &FR-T6\\ \hline
-		ST7  & FR7 &FR-T7\\ \hline
+		ST1  & FR1 & FR-T1 \\ \hline
+		ST2  & FR2 & FR-T2\\ \hline
+		ST3  & FR3 & FR-T3\\ \hline
+		ST4  & FR4 & FR-T4\\ \hline
+		ST5  & FR5 & FR-T5\\ \hline
+		ST6  & FR6 & FR-T6\\ \hline
+		ST7  & FR7 & FR-T7\\ \hline
 	\end{tabular}
 \end{table}
 		

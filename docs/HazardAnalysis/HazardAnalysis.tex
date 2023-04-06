@@ -30,7 +30,6 @@
 \begin{document}
 
 \maketitle
-\thispagestyle{empty}
 
 ~\newpage
 
@@ -48,6 +47,8 @@ Oct 19, 2022 & Joseph Braun & Added Hardware and Software Requirements \\
 Oct 19, 2022 & Joseph Braun & Added FMEA Table\\
 Oct 19, 2022 & Edwin Do & Add roadmap \\
 Oct 19, 2022 & Timothy Chen & Critical Assumptions \\
+Apr 2, 2023 & Abdul Nour Seddiki & Fixed spelling \& added List of Tables\\
+Apr 2, 2023 & Edwin Do & Added more details to Critical Assumptions\\
 
 ... & ... & ...\\
 \bottomrule
@@ -57,6 +58,7 @@ Oct 19, 2022 & Timothy Chen & Critical Assumptions \\
 ~\newpage
 
 \tableofcontents
+\listoftables
 
 ~\newpage
 
@@ -69,7 +71,7 @@ This document is the hazard analysis for Team 30 (ReSprint) Capstone project.
 This project collaborates with the Department of Materials Engineering to measure the microstructure changes of samples during thermal treatment.\\
 
 \noindent For this document, a hazard will be defined as 
-a scenario where the conditions of a system and environment constitutes the potential of harm to someone or something.
+a scenario where the conditions of a system and environment constitute the potential of harm to someone or something.
 
 \section{Scope and Purpose of Hazard Analysis}
 The purpose of this hazard analysis is to document any potential unsafe behaviour in this project. 
@@ -93,18 +95,18 @@ potential causes, and any resulting security or safety requirements.
   \item The software application that will be installed on the control computer
 \end{enumerate}
 
-\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the temperature sensor, the nanovoltmeter, the communication interfaces and the control computer. Therefore, the only component controllable by ReSprint team is the software application and its sub-systems.
+\noindent These components comprise the system in question. And they each are also considered the boundaries for this system. Some of the components mentioned are not controllable by the ReSprint team, such as the thermally treated samples and all of the measurement devices and hardware including the current source, the temperature sensor, the nanovoltmeter, the communication interfaces, and the control computer. Therefore, the only component controllable by the ReSprint team is the software application and its sub-systems.
 
 \section{Critical Assumptions}
 
 \noindent The following is a list of assumptions to protect ourselves during the development of ReSprint from unforeseen hazards:
 
 \begin{itemize}
-  \item Thermal treated samples will be contained in a safe area away from the control computer and operator. 
-  \item Current source device will be used as intended and will not be misuse by the operator.
-  \item Wires will not come loose during operation by the operator.
-  \item Data collected from the samples will be saved correctly on the control computer.
-  \item Plugs and wires are attached correctly into the devices and control computer.
+  \item Thermally treated samples will be contained in a safe area away from the control computer and operator to avoid unnecessary noise in the data. 
+  \item Current source device will be used as intended and will not be misused by the operator, avoiding potential harm and injury caused by the current source.
+  \item Wires will not come loose during operation by the operator to prevent inaccurate data or failure to start experiment.
+  \item Data collected from the samples will be saved correctly on the control computer to prevent the possibility of losing the captured data from the experiment.
+  \item Plugs and wires are attached correctly to the devices and control computer to ensure that the experiment can be conducted correctly.
 \end{itemize}
 
 
@@ -122,37 +124,37 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
     \textbf{Component} & \textbf{Failure Mode} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{Req.} & \textbf{Ref.}      \\ \hline
     Current Source
     & Current source does not provide current 
-    & Nanovoltmeter cannot measure voltage across sample
+    & Nanovoltmeter cannot measure the voltage across the sample
     & a. Setup error \newline
       b. Hardware failure
-    & a. Troubleshoot current source setup \newline
-      b. Replace current source
+    & a. Troubleshoot current source setup \& check the manual \newline
+      b. Replace the current source
     & a. HWR1 \newline
       b. HWR2
     & H1-1      \\ \hline
     Nanovoltmeter
-    & Nanovoltmeter does not read voltage across sample
-    & Voltage data cannot be communicated to App
+    & Nanovoltmeter does not read voltage across the sample
+    & Voltage data cannot be communicated to the App
     & a. Setup error \newline
       b. Hardware failure
-    & a. Troubleshoot nanovoltmeter \newline
+    & a. Troubleshoot nanovoltmeter setup \& check the manual \newline
       b. Replace nanovoltmeter
     & a. HWR1 \newline
       b. HWR2
     & H1-2      \\ \hline
     Temperature Sensor
-    & Temperature sensor does not read temperature of the sample
-    & Temperature data cannot be communicated to App
+    & Temperature sensor does not read the temperature of the sample
+    & Temperature data cannot be communicated to the App
     & a. Setup error \newline
       b. Hardware failure
-    & a. Troubleshoot temperature sensor setup \newline
-      b. Replace temperature sensor 
+    & a. Troubleshoot temperature sensor setup \& check the manual \newline
+      b. Replace the temperature sensor 
     & a. HWR1 \newline
       b. HWR2
     & H1-3    \\ \hline
     Serial Connection
     & App does not receive data from hardware
-    & Data cannot be communicated to App
+    & User will miss changes in the sample during a test
     & a. Setup error \newline
       b. Hardware failure
     & a. Troubleshoot serial connection \newline
@@ -161,14 +163,14 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
       b. HWR2
     & H1-4      \\ \hline
     \multirow{2}{*}{Windows App}
-    & App cannot be installed on control computer
+    & App cannot be installed on the control computer
     & User cannot utilise the App
     & a. Compatibility error
     & a. App shall be designed to be compatible with the operating system on the control computer
     & a. SWR1
     & H2  \\ \cline{2-7}
     %Windows Application continued
-    & App is not ergonomic for user
+    & App is not ergonomic for the user
     & User cannot utilise the App without causing harm
     & a. Graphics change brightness too rapidly \newline
       b. Graphics contain colours that are too bright \newline
@@ -185,7 +187,7 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
 \begin{landscape}
 \begin{table}[h]
   \centering
-  \caption{FMEA Table continued}
+  \caption{FMEA Table (Continued)}
   \label{my-label}
   \begin{tabular}{|P{20mm}|P{30mm}|P{30mm}|P{30mm}|P{35mm}|P{20mm}|P{10mm}|}
     \rowcolor{gray!30}
@@ -194,7 +196,7 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
     % Windows Application continued
     \multirow{2}{*}{Windows App}
     & App does not receive data
-    & Resistivity of sample cannot be calculated
+    & Resistivity of the sample cannot be calculated
     & a. Setup error \newline
       b. Hardware failure \newline
       c. Software connection error
@@ -211,12 +213,12 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
     & a. User altered measurements through interface \newline
       b. Software does not calculate values correctly
     & a. Prevent user from altering measurements received from hardware \newline
-      b. Check that formulas for calculation used by software are correct
+      b. Check that the formulas for calculation used by the software are correct
     & a. SCR1 \newline
       b. SWR3
     & H5  \\ \hline
     \multirow{2}{*}{User}
-    & User sustains physical injury while interacting with hardware components
+    & User sustains physical injuries while interacting with hardware components
     & User cannot utilise the App; Legal ramifications
     & a. User is not trained to interact with hardware components
     & a. Ensure that authorised users are properly trained to interact with hardware components safely
@@ -225,7 +227,7 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
     %User continued
     & App is modified by unauthorised user
     & App no longer functions as required
-    & a. Unauthorsied user has gained access to App
+    & a. Unauthorised user has gained access to App
     & a. Ensure that only authorised users are permitted to access the App
     & a. SCR2
     & H7    \\ \hline
@@ -239,20 +241,25 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
 
 \subsection*{Safety Requirements}
 \begin{enumerate}
-  \item[SFR1.] Graphics shall avoid changing of brightness at rapid rate to take account for users prone to seizures.
-  \item[SFR2.] Colours should avoid brightness that can be damaging to users' eyes.
+  \item[SFR1.] Graphics shall avoid changing brightness at a rapid rate to take account of users prone to seizures.\\
+  Fit Criterion: There should be no repetitive changes of brightness that occur at a rate of more than 1 change per second.
+  \item[SFR2.] Colours should avoid brightness that can be damaging to users' eyes.\\
+  Fit Criterion: Brightness should not exceed 5000 lumens.
   \item[SFR3.] Untrained users should not need to interact with any electronic equipment to avoid potential injury.\\
+  Fit Criterion: A user is considered to be appropriately trained when given clearance from Dr. Zurob or a lab supervisor.
 \end{enumerate}
 
 \subsection*{Security Requirements}
 \begin{enumerate}
-  \item[SCR1.] Interface shall prevent any modifications or injections of data from the user. 
-  \item[SCR2.] Only authorized users are allowed to modify concealed calculations, settings and/or parameters. \\
+  \item[SCR1.] The interface shall prevent any modifications or injections of data from unauthorized users. 
+  Fit Criterion: Unauthorized users are unable to make any modifications or injections in the data.
+  \item[SCR2.] Only authorized users are allowed to modify concealed calculations, settings, and/or parameters. \\
+  Fit Criterion: Unauthorized users are unable to modify concealed calculations, settings, and/or parameters.
 \end{enumerate}
 
 \subsection*{Hardware Requirements}
 \begin{enumerate}
-  \item[HWR1.] All hardware components must be properly setup and configured to perform their required functions. 
+  \item[HWR1.] All hardware components must be properly set up and configured to perform their required functions. 
   \item[HWR2.] All hardware components must be functioning properly i.e. not faulty. \\
 \end{enumerate} 
 
@@ -267,10 +274,10 @@ The next two pages contain the Failure Mode and Effect Analysis (FMEA) Table.
 
 As part of this project, the safety requirements that we will address
 includes not using any colours and/or graphics that may cause harm or discomfort to the users
-and that the application along with its equipments will be functional.
+and that the application along with its equipment will be functional.
 In addition, hardware-related requirements mentioned in the table above will be addressed up to the day of the final deliverable for the scope of this project.
 Any other requirement may be included in the Proof of concept or the final deliverable 
-which are on November 14 2023 and March 20 2023 respectively. \\
+which are on November 14, 2023, and March 20, 2023, respectively. \\
 
 \noindent Certain requirements will not be included as part of the capstone timeline.
 These requirements include ensuring that any future users will have sufficient training before interacting with the project
