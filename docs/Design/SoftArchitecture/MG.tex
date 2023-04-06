@@ -46,11 +46,13 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Developer} & {\bf Notes/Changes}\\
 \midrule
-Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikey Cahnges (4)\\
+Jan 15, 2023 & Timothy Chen & Added Anticipated and Unlikely Changes (4)\\
 Jan 15, 2023 & Timothy & Added Module Hierarchy (5)\\
 Jan 16, 2023 & Edwin Do & Add use hierarchy diagram \\
 Jan 18, 2023 & Edwin Do & Add traceability matrices \\
 Jan 18, 2023 & Tyler Magarelli & Added Module Decomposition \\
+Apr 2, 2023 & Joseph Braun & Replaced .png graphic with .pdf version \\
+Apr 5, 2023 & Edwin Do & Updated revised module design \\
 
 \bottomrule
 \end{tabularx}
@@ -99,12 +101,12 @@ Decomposing a system into modules is a commonly accepted approach to developing
 software.  A module is a work assignment for a programmer or programming
 team~\citep{ParnasEtAl1984}.  We advocate a decomposition
 based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
+principle supports design for change because the ``secrets'' that each module
 hides represent likely future changes.  Design for change is valuable in SC,
 where modifications are frequent, especially during initial development as the
 solution space is explored.  
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+Our design follows the rules laid out by \citet{ParnasEtAl1984}, as follows:
 \begin{itemize}
 \item System details that are likely to change independently should be the
   secrets of separate modules.
@@ -129,12 +131,12 @@ potential readers of this document are as follows:
   after changes have been made.
 \item Designers: Once the module guide has been written, it can be used to
   check for consistency, feasibility, and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
+  system in various ways, such as the consistency among modules, feasibility of the
   decomposition, and flexibility of the design.
 \end{itemize}
 
 The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
+\ref{SecChange} lists the anticipated and unlikely changes in the software
 requirements. Section \ref{SecMH} summarizes the module decomposition that
 was constructed according to the likely changes. Section \ref{SecConnection}
 specifies the connections between the software requirements and the
@@ -156,7 +158,7 @@ unlikely changes are listed in Section \ref{SecUchange}.
 Anticipated changes are the source of the information that is to be hidden
 inside the modules. Ideally, changing one of the anticipated changes will only
 require changing the one module that hides the associated decision. The approach
-adapted here is called design for
+adopted here is called design for
 change.
 
 \begin{description}
@@ -175,7 +177,7 @@ change.
 The module design should be as general as possible. However, a general system is
 more complex. Sometimes this complexity is not necessary. Fixing some design
 decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
+these decisions should later need to be changed, then many parts of the design
 will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
@@ -195,14 +197,13 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item [\refstepcounter{mnum} \mthemnum \label{mIC}:] Input Communication Module
-\item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
 \item [\refstepcounter{mnum} \mthemnum \label{mCS}:] Current State Module
 \item [\refstepcounter{mnum} \mthemnum \label{mFO}:] File Output Module
 \item [\refstepcounter{mnum} \mthemnum \label{mGO}:] Graphical Output Module
 \item [\refstepcounter{mnum} \mthemnum \label{mC}:] Calculation Module
 \item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Input Validation Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHI}:] Hardware Input Validation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mII}:] Instrument Input Validation Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Remote Access Module
 \end{description}
 
 
@@ -216,8 +217,7 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
-& Input Communication Module\\
+\multirow{4}{0.3\textwidth}{Behaviour-Hiding Module}
 & Remote Access Module\\
 & Current State Module\\
 & FileOutput Module\\
@@ -257,79 +257,76 @@ to be implemented.
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the hardware.
-\item[Services:]This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item[Note:]This module is not implemented because changing the devices and the lab computer with the specialized ports is not likely to occur often. In addition, each device contains its own valid set of SCPI commands and will require a library to act as a wrapper. The effort of this may not be worthwhile since an update to the hardware will occur much less frequent and maintaining the library will require much more effort in comparison. 
+
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
-\subsubsection{Communication Module}
+\subsubsection{Experiment Module}
+Responsible for all experiment related operations such as capturing data, displaying results and creating remote connections.
 \begin{description}
-  \item[Secrets:] Format input and output data and manage remote connection communication.
-  \item[Services:]Converts the data into the appropriate data structure used by the
-    input/output parameters module. Controls communication for remote access. 
+  \item[Secrets:] The formatting of input and output data from both the user and instruments as well as management of remote access communication.
+  \item[Services:] Handles the data received from the hardware and formats it into the appropriate data structure to be used by other modules for validation. Controls communication for remote access. 
   \item[Implemented By:] -
   \end{description}
 
-\paragraph{Input Communication Module (\mref{mIC})}
-\begin{description}
-\item[Secrets:]The format and structure of the data from user input and hardware input.
-\item[Services:]Converts the input data into the data structure used by other modules.
-\item[Implemented By:] Communication.cs
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-\paragraph{Remote Access Module (\mref{mRA})}
-\begin{description}
-\item[Secrets:]The implementation and algorithm of remote access. Login info and other credentials required for remote connection.
-\item[Services:]Remote acces to the application for the user.
-\item[Implemented By:] RemoteAccess.cs
-\item[Type of Module:] Abstract Object Type
-\end{description}
-
-\subsubsection{Display Module}
-\begin{description}
-  \item[Secrets:] Display output data and and other information to the user.
-  \item[Services:]Receives data to be displayed and displays it on the screen for the user to see. 
-  \item[Implemented By:] -
-\end{description}
-
 \paragraph{Current State Module (\mref{mCS})}
+\\~\\
+Responsible for handling all state changes in the application from inputs.
 \begin{description}
-\item[Secrets:]The contents of obtaining current system state.
-\item[Services:]Display state of hardware (current temp, current voltage, current sampling rate, etc.)
-\item[Implemented By:] CurrentState.cs
+\item[Secrets:]The contents of obtaining the current system state.
+\item[Services:]Display and modify the state of hardware (current temp, current voltage, current sampling rate, etc.)
+\item[Implemented By:] MainWindow.xaml.cs
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
 \paragraph{File Output Module (\mref{mFO})}
+\\~\\
+Responsible for constructing the output file using captured/calculated data for the user to access after the experiment has stopped.
 \begin{description}
 \item[Secrets:]The contents of obtaining correct files for output.
-\item[Services:]Outputs the file the to screen for the user. 
+\item[Services:]Outputs the file to a file location for the user in the format of CSV. 
 \item[Implemented By:] FileOutput.cs
 \item[Type of Module:] Record
 \end{description}
+
 \paragraph{Graphical Output Module (\mref{mGO})}
+\\~\\
+Responsible for displaying a graphical representation of the data that is captured. Allow the user to modify the graphical representation with zoom/pan.
 \begin{description}
-\item[Secrets:]Obtaining the correct data to produce accurate graphs.
+\item[Secrets:] The contents of obtaining the correct data to produce accurate graphs.
 \item[Services:]Displays the data in a graphical format. 
 \item[Implemented By:] Graph.cs
+\item[Type of Module:] Abstract Object Type
+\end{description}
+
+\paragraph{Remote Access Module (\mref{mRA})} 
+\\~\\
+Responsible for creating a connection that can be accessed by remote clients. Remote clients can view experiment status and modify the current output.
+
+\begin{description}
+\item[Secrets:]The implementation details of remote access (i.e. Remote URL, SSL Certificate). 
+\item[Services:]Remote access to the application for the user.
+\item[Implemented By:] RemoteAccess.cs
 \item[Type of Module:] Abstract Object Type
 \end{description}
 
 \subsection{Software Decision Module}
 
 \paragraph{Calculation Module (\mref{mC})}
+\\~\\
+Responsible for calculations of resistivity and resistance.
 \begin{description}
-  \item[Secrets:] The mathematical equation for calculating resistivity and resistance.
+  \item[Secrets:] The mathematical equation for calculating resistivity and resistance using unique constants for two types of temperature calculations.
   \item[Services:]Solve the equation for resistivity and resistance respectively and return the result.
   \item[Implemented By:] Calculation.cs 
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
 \subsubsection{Validation Module}
+\\~\\
+Responsible for validating inputs from the user and hardware instruments.
 \begin{description}
   \item[Secrets:] Validation criteria for various input streams.
   \item[Services:]Validates the correctness of provided input from the given stream.
@@ -337,6 +334,8 @@ to be implemented.
 \end{description}
 
 \paragraph{User Input Validation Module (\mref{mUI})}
+\\~\\
+Responsible for validating inputs from the user.
 \begin{description}
   \item[Secrets:] Validation criteria for user input.
   \item[Services:] Validates the input from the user.
@@ -344,18 +343,19 @@ to be implemented.
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
-\paragraph{Hardware Input Validation Module(\mref{mHI})}
+\paragraph{Instrument Input Validation Module(\mref{mII})}
+\\~\\
+Responsible for validating inputs from the instruments (hardware).
 \begin{description}
   \item[Secrets:] Validation criteria for hardware input.
   \item[Services:] Validates the input from the hardware.
-  \item[Implemented By:] HardwareValidation.cs 
+  \item[Implemented By:] InstrumentInputValidation.cs 
   \item[Type of Module:] Abstract Data Type
 \end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
-This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+This section shows two traceability matrices: between the modules and the \href{https://github.com/edwin-do/capstoneTeam30/blob/main/docs/SRS/SRS.pdf}{requirements} and between the modules and the anticipated changes. The functional requirements can be found in the SRS document from the hyperlink above. FR6 (The installability of the application) does not correspond to a specific module.
 
 % the table should use mref, the requirements should be named, use something
 % like fref
@@ -365,11 +365,12 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mRA}, \mref{mCS}\\
-R2 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
-R3 & \mref{mIC}\\
-R4 & \mref{mFO}, \mref{mGO}, \mref{mC}\\
-R5 & \mref{mRA}\\
+FR1 & \mref{mCS}, \mref{mC}, \mref{mRA}   \\
+FR2 & \mref{mCS} \\
+FR3 & \mref{mRA} \\
+FR4 & \mref{mGO}, \mref{mC}\\
+FR5 & \mref{mFO}, \mref{mC}\\
+FR6 &  N/A \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -382,11 +383,11 @@ R5 & \mref{mRA}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mIC}\\
+\acref{acHardware} & \mref{mCS}\\
+\acref{acInput} & \mref{mUI}, \mref{mII}\\
 \acref{acCalculation} & \mref{mC}\\
 \acref{acGraph} & \mref{mGO}\\
-\acref{acNumInput} & \mref{mIC}\\
+\acref{acNumInput} & \mref{mCS}\\
 \acref{acValidation} & \mref{mUI}\\
 \bottomrule
 \end{tabular}
@@ -401,7 +402,7 @@ provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
 correct execution of B may be necessary for A to complete the task described in
 its specification. That is, A {\em uses} B if there exist situations in which
 the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
+implementation of B.  Figure \ref{FigUH} (Shown below)  illustrates the use relation between
 the modules. It can be seen that the graph is a directed acyclic graph
 (DAG). Each level of the hierarchy offers a testable and usable subset of the
 system, and modules in the higher level of the hierarchy are essentially simpler
@@ -410,8 +411,8 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
+\includegraphics[scale=0.8]{UseHierarchy.pdf}
 \label{FigUH}
 \end{figure}
 
